@@ -41,8 +41,14 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
+      // If near the top, always prioritize "home"
+      if (window.scrollY < 250) {
+        setActiveSection("home");
+        return;
+      }
+
       const sectionIds = ["home", "about", "skills", "journey", "projects", "education", "contact"];
-      const scrollPosition = window.scrollY + 140;
+      const scrollPosition = window.scrollY + 180;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const section = document.getElementById(sectionIds[i]);

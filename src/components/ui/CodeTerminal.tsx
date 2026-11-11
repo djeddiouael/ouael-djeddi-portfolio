@@ -21,19 +21,27 @@ export function CodeTerminal() {
   const [copied, setCopied] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Auto scroll ONLY the internal terminal container, never the window
   useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
-  }, [history, inputVal]);
+  }, [history]);
 
-  const focusInput = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+  const focusInput = (e?: React.MouseEvent) => {
+    // Avoid interfering when clicking directly on inputs, buttons, or links
+    if (e) {
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT" || target.closest("button, a")) {
+        return;
+      }
+    }
+    if (inputRef.current && document.activeElement !== inputRef.current) {
+      inputRef.current.focus({ preventScroll: true });
     }
   };
 
@@ -1006,7 +1014,10 @@ export function CodeTerminal() {
       </div>
 
       {/* Terminal Screen Body */}
-      <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto leading-relaxed selection:bg-white selection:text-black text-xs sm:text-[12.5px] text-[#cccccc] cursor-text space-y-2">
+      <div
+        ref={terminalBodyRef}
+        className="flex-1 p-3.5 sm:p-4 overflow-y-auto leading-relaxed selection:bg-white selection:text-black text-xs sm:text-[12.5px] text-[#cccccc] cursor-text space-y-2"
+      >
         {/* Windows Header Banner */}
         <div className="text-[#cccccc] select-text">
           <p>Microsoft Windows [Version 10.0.22631.4317]</p>
@@ -1046,8 +1057,6 @@ export function CodeTerminal() {
             />
           </div>
         </div>
-
-        <div ref={terminalEndRef} />
       </div>
 
       {/* Touch-Friendly Quick Command Suggestion Bar */}

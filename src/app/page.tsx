@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
@@ -22,6 +22,15 @@ export default function Home() {
     selectedTechFilter,
     setSelectedTechFilter,
   } = useUIModals();
+
+  // Ensure initial load opens strictly at top (Accueil)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (!window.location.hash || window.location.hash === "#home") {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+      }
+    }
+  }, []);
 
   return (
     <>
