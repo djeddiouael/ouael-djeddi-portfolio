@@ -5,6 +5,7 @@ import { ArrowUp } from "lucide-react";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/data/portfolioData";
 import { TechIcon } from "@/components/icons/TechIcons";
 import { useLanguage } from "@/context/LanguageContext";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -34,16 +35,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Identity column */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 p-0.5">
-                <div className="w-full h-full bg-white dark:bg-[#070b1a] rounded-[6px] flex items-center justify-center font-bold text-xs text-purple-600 dark:text-purple-300">
-                  O
-                </div>
-              </div>
-              <span className="font-extrabold text-xl tracking-wider text-slate-900 dark:text-white">
-                OUAEL DJEDDI
-              </span>
-            </div>
+            <a href="#home" className="inline-block group focus:outline-none" aria-label="DJEDDI Ouael">
+              <Logo size="lg" />
+            </a>
 
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
               {t.footer.bio}

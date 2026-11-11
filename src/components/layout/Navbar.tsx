@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Check, Menu, Monitor, Moon, Sparkles, Sun, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { ThemeMode, useTheme } from "@/context/ThemeContext";
+import { Logo } from "@/components/ui/Logo";
 
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
@@ -97,21 +98,10 @@ export function Navbar() {
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, "#home")}
-          className="group flex items-center gap-2.5 focus:outline-none"
+          className="group focus:outline-none"
+          aria-label="DJEDDI Ouael - Accueil"
         >
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-md shadow-purple-500/20 transition-transform duration-300 group-hover:scale-105">
-            <div className="w-full h-full bg-white dark:bg-[#070b1a] rounded-[10px] flex items-center justify-center font-bold text-sm tracking-wider text-purple-600 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-purple-300 dark:to-cyan-300">
-              O
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-extrabold tracking-wider text-base sm:text-lg text-slate-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-white dark:via-purple-100 dark:to-purple-300 transition-all">
-              OUAEL
-            </span>
-            <span className="text-[10px] font-mono text-purple-600 dark:text-purple-400 tracking-widest hidden sm:block font-semibold">
-              AI &amp; FULL STACK
-            </span>
-          </div>
+          <Logo size="md" />
         </a>
 
         {/* Desktop Navigation Links */}
