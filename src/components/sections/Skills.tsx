@@ -155,8 +155,8 @@ export function Skills({ onSelectTech }: SkillsProps) {
                   <div className="space-y-3">
                     {/* Header: Icon + Category Badge */}
                     <div className="flex items-center justify-between">
-                      <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center p-2.5 text-slate-800 dark:text-white group-hover:scale-110 transition-transform duration-200">
-                        <TechIcon name={skill.icon} className="w-6 h-6 text-slate-700 dark:text-slate-200 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
+                      <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center p-2.5 group-hover:scale-110 transition-transform duration-200 shadow-sm">
+                        <TechIcon name={skill.icon} className="w-6 h-6" size={24} />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
                         {getTranslatedCategoryTitle(skill.categoryKey)}

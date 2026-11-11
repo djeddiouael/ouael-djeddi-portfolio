@@ -1,16 +1,13 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, Command, Download, Globe, Menu, Monitor, Moon, Search, Sparkles, Sun, X } from "lucide-react";
+import { ArrowUpRight, Check, Menu, Monitor, Moon, Sparkles, Sun, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { ThemeMode, useTheme } from "@/context/ThemeContext";
-import { useUIModals } from "@/context/UIModalContext";
-import { AVAILABILITY_CONFIG } from "@/config/availability";
 
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const { openCommandPalette, openCVModal } = useUIModals();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,7 +32,6 @@ export function Navbar() {
     { label: t.nav.about, href: "#about" },
     { label: t.nav.skills, href: "#skills" },
     { label: t.nav.journey, href: "#journey" },
-    { label: t.nav.capabilities, href: "#capabilities" },
     { label: t.nav.projects, href: "#projects" },
     { label: t.nav.education, href: "#education" },
     { label: t.nav.contact, href: "#contact" },
@@ -45,7 +41,7 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sectionIds = ["home", "about", "skills", "journey", "capabilities", "projects", "education", "contact"];
+      const sectionIds = ["home", "about", "skills", "journey", "projects", "education", "contact"];
       const scrollPosition = window.scrollY + 140;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -81,9 +77,6 @@ export function Navbar() {
         return <Monitor className="w-3.5 h-3.5 text-cyan-400" />;
     }
   };
-
-  const activeAvailability = AVAILABILITY_CONFIG.statusOptions[AVAILABILITY_CONFIG.currentStatus];
-  const availabilityBadgeText = activeAvailability.badgeText[language];
 
   return (
     <header
@@ -139,33 +132,8 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Action Controls: Command Palette Trigger, CV Center, Language, Theme, Status */}
-        <div className="hidden md:flex items-center gap-2">
-          {/* Command Palette Trigger Button (⌘K) */}
-          <button
-            onClick={openCommandPalette}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/[0.1] bg-slate-100/90 dark:bg-[#0a0f24] text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white hover:border-purple-400/40 transition-all text-xs font-mono shadow-sm"
-            title="Open Command Palette (Ctrl+K / Cmd+K)"
-            aria-label="Open Command Palette"
-          >
-            <Search className="w-3.5 h-3.5 text-purple-500" />
-            <span className="hidden lg:inline text-[11px] text-slate-500">Cmd</span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-white/10 text-[10px] font-bold border border-slate-200 dark:border-white/10">
-              ⌘K
-            </kbd>
-          </button>
-
-          {/* Smart CV Center Trigger */}
-          <button
-            onClick={openCVModal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/[0.1] bg-slate-100/90 dark:bg-[#0a0f24] text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white hover:border-purple-400/40 transition-all text-xs font-semibold shadow-sm"
-            title={t.nav.smartCV}
-            aria-label={t.nav.smartCV}
-          >
-            <Download className="w-3.5 h-3.5 text-purple-500" />
-            <span className="hidden lg:inline">{t.nav.smartCV}</span>
-          </button>
-
+        {/* Action Controls: Language, Theme, Contact */}
+        <div className="hidden md:flex items-center gap-2.5">
           {/* Language Switcher Pill (EN / FR) */}
           <div className="flex items-center p-0.5 rounded-full border border-slate-200 dark:border-white/[0.08] bg-slate-100 dark:bg-[#0a0f24] text-xs font-mono">
             <button
@@ -264,12 +232,6 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Centralized Availability Status Pill */}
-          <div className="hidden 2xl:flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-[11px] font-mono text-purple-700 dark:text-purple-300">
-            <span className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400 animate-pulse" />
-            <span>{availabilityBadgeText}</span>
-          </div>
-
           {/* Contact CTA */}
           <a
             href="#contact"
@@ -281,17 +243,8 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Hamburger & Quick Command / Language Toggle */}
+        {/* Mobile Hamburger & Language Toggle */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* Quick Command Trigger on Mobile */}
-          <button
-            onClick={openCommandPalette}
-            className="p-2 rounded-xl text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08]"
-            aria-label="Open Command Search"
-          >
-            <Search className="w-4 h-4 text-purple-500" />
-          </button>
-
           {/* Quick Language Toggle on Mobile */}
           <button
             onClick={() => setLanguage(language === "en" ? "fr" : "en")}
@@ -335,30 +288,6 @@ export function Navbar() {
                 </a>
               );
             })}
-          </div>
-
-          {/* Quick Smart CV & Command Actions in Mobile Drawer */}
-          <div className="pt-2 grid grid-cols-2 gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                openCVModal();
-              }}
-              className="py-2 px-3 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50 dark:bg-white/[0.03] text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center justify-center gap-1.5"
-            >
-              <Download className="w-3.5 h-3.5 text-purple-500" />
-              <span>{t.nav.smartCV}</span>
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                openCommandPalette();
-              }}
-              className="py-2 px-3 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50 dark:bg-white/[0.03] text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center justify-center gap-1.5"
-            >
-              <Search className="w-3.5 h-3.5 text-cyan-500" />
-              <span>Search (⌘K)</span>
-            </button>
           </div>
 
           {/* Language & Theme Controls row on Mobile */}
@@ -428,12 +357,6 @@ export function Navbar() {
                   <span>{t.nav.themeLight}</span>
                 </button>
               </div>
-            </div>
-
-            {/* Centralized Status Pill in Mobile Drawer */}
-            <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-xs font-mono text-purple-700 dark:text-purple-300">
-              <span className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400 animate-pulse" />
-              <span>{availabilityBadgeText}</span>
             </div>
 
             {/* Contact CTA */}

@@ -5,7 +5,6 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { DeveloperJourney } from "@/components/sections/DeveloperJourney";
-import { TechnicalCapabilities } from "@/components/sections/TechnicalCapabilities";
 import { Projects } from "@/components/sections/Projects";
 import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
@@ -30,7 +29,6 @@ export default function Home() {
       <About />
       <Skills onSelectTech={(tech) => setSelectedTechFilter(tech)} />
       <DeveloperJourney />
-      <TechnicalCapabilities />
       <Projects
         selectedTechFilter={selectedTechFilter}
         onClearTechFilter={() => setSelectedTechFilter(null)}

@@ -18,8 +18,8 @@ import {
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { TechIcon } from "@/components/icons/TechIcons";
 import { useLanguage } from "@/context/LanguageContext";
-import { AVAILABILITY_CONFIG } from "@/config/availability";
 
 export function Contact() {
   const { t, language } = useLanguage();
@@ -171,29 +171,15 @@ export function Contact() {
                   )}
                 </button>
               </div>
-
-              {/* Status & Availability */}
-              <div className="pt-2 space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-mono">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    {AVAILABILITY_CONFIG.statusOptions[AVAILABILITY_CONFIG.currentStatus].label[language]}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-[11px] text-slate-500">
-                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                  <span>{t.contact.responseWindow}</span>
-                </div>
-              </div>
             </GlassCard>
 
-            {/* Social Channels List */}
+            {/* Social Channels List with Colorful Brand Vectors */}
             <GlassCard glowColor="cyan" className="p-6 sm:p-7 space-y-4">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
                 {t.contact.profilesTitle}
               </h3>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {/* GitHub */}
                 <a
                   href={PERSONAL_INFO.contact.github}
@@ -202,8 +188,8 @@ export function Contact() {
                   className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#070b1a] border border-slate-200 dark:border-white/[0.06] hover:border-purple-400/50 hover:bg-white dark:hover:bg-[#0a0f26] transition-all group shadow-sm dark:shadow-none"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 group-hover:text-purple-600 dark:group-hover:text-purple-300 border border-slate-200 dark:border-transparent">
-                      <Github className="w-4 h-4" />
+                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
+                      <TechIcon name="github" size={18} className="w-4.5 h-4.5" />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -225,8 +211,8 @@ export function Contact() {
                   className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#070b1a] border border-slate-200 dark:border-white/[0.06] hover:border-red-400/50 hover:bg-white dark:hover:bg-[#0a0f26] transition-all group shadow-sm dark:shadow-none"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 group-hover:text-red-500 border border-slate-200 dark:border-transparent">
-                      <Youtube className="w-4 h-4" />
+                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
+                      <TechIcon name="youtube" size={18} className="w-4.5 h-4.5" />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -248,8 +234,8 @@ export function Contact() {
                   className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#070b1a] border border-slate-200 dark:border-white/[0.06] hover:border-blue-400/50 hover:bg-white dark:hover:bg-[#0a0f26] transition-all group shadow-sm dark:shadow-none"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 group-hover:text-blue-500 border border-slate-200 dark:border-transparent">
-                      <Linkedin className="w-4 h-4" />
+                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
+                      <TechIcon name="linkedin" size={18} className="w-4.5 h-4.5" />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -261,6 +247,52 @@ export function Contact() {
                     </div>
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                </a>
+
+                {/* Facebook */}
+                <a
+                  href="https://facebook.com/djeddiouael"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#070b1a] border border-slate-200 dark:border-white/[0.06] hover:border-blue-500/50 hover:bg-white dark:hover:bg-[#0a0f26] transition-all group shadow-sm dark:shadow-none"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
+                      <TechIcon name="facebook" size={18} className="w-4.5 h-4.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-900 dark:text-white block">
+                        Facebook
+                      </span>
+                      <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                        Ouael Djeddi
+                      </span>
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" />
+                </a>
+
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com/djeddiouael"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#070b1a] border border-slate-200 dark:border-white/[0.06] hover:border-pink-500/50 hover:bg-white dark:hover:bg-[#0a0f26] transition-all group shadow-sm dark:shadow-none"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
+                      <TechIcon name="instagram" size={18} className="w-4.5 h-4.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-900 dark:text-white block">
+                        Instagram
+                      </span>
+                      <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                        @djeddiouael
+                      </span>
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-pink-500 transition-colors" />
                 </a>
               </div>
             </GlassCard>

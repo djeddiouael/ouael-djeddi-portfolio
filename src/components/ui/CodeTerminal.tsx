@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Check, Copy, ExternalLink, Maximize2, Minimize2, Terminal as TerminalIcon } from "lucide-react";
+import { Check, Copy, ExternalLink, Maximize2, Minimize2, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface CommandOutput {
@@ -25,7 +25,6 @@ export function CodeTerminal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll to bottom whenever history updates
   useEffect(() => {
     if (terminalEndRef.current) {
       terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -50,10 +49,228 @@ export function CodeTerminal() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // AI Assistant natural language responder
+  const handleAIChat = (prompt: string): React.ReactNode => {
+    const q = prompt.toLowerCase().trim();
+
+    if (!q || q === "help" || q === "aide") {
+      return (
+        <div className="space-y-1.5 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-purple-500 pl-2.5 my-1">
+          <div className="flex items-center gap-1.5 text-purple-400 font-bold">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>[Ouael-AI Assistant]</span>
+          </div>
+          <p className="text-white">
+            {language === "fr"
+              ? "Bonjour ! Je suis l'assistant IA intégré de DJEDDI Ouael. Posez-moi n'importe quelle question :"
+              : "Hello! I am Ouael's portfolio AI assistant. Ask me anything in natural language:"}
+          </p>
+          <div className="space-y-1 text-cyan-300 pt-1 text-[11.5px]">
+            <p>• &quot;ai qui est Ouael ?&quot; / &quot;ai who is Ouael?&quot;</p>
+            <p>• &quot;ai parle-moi de tes projets&quot; / &quot;ai what projects did you build?&quot;</p>
+            <p>• &quot;ai que fais-tu en Super-Résolution ?&quot; / &quot;ai tell me about super-resolution&quot;</p>
+            <p>• &quot;ai quelles sont tes compétences ?&quot; / &quot;ai what is your tech stack?&quot;</p>
+            <p>• &quot;ai comment te contacter ?&quot; / &quot;ai how to contact you?&quot;</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (
+      q.includes("bonjour") ||
+      q.includes("salut") ||
+      q.includes("hello") ||
+      q.includes("hi") ||
+      q.includes("hey") ||
+      q.includes("coucou")
+    ) {
+      return (
+        <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-purple-500 pl-2.5 my-1">
+          <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
+          <p className="text-white">
+            {language === "fr"
+              ? "Bonjour et bienvenue sur mon portfolio ! Je suis DJEDDI Ouael, étudiant en Master I2A à l'UMBB et développeur Full Stack & IA passionné par le Deep Learning, la vision par ordinateur et les applications web modernes. Que souhaitez-vous découvrir ?"
+              : "Hello and welcome to my portfolio! I am DJEDDI Ouael, Master I2A student at UMBB and Full Stack & AI Developer passionate about Deep Learning, Computer Vision, and modern web applications. What would you like to explore?"}
+          </p>
+        </div>
+      );
+    }
+
+    if (
+      q.includes("qui") ||
+      q.includes("who") ||
+      q.includes("presentation") ||
+      q.includes("présentation") ||
+      q.includes("bio") ||
+      q.includes("about")
+    ) {
+      return (
+        <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-purple-500 pl-2.5 my-1">
+          <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
+          <p className="text-white">
+            {language === "fr"
+              ? "DJEDDI Ouael est développeur Full Stack & IA, actuellement en Master Spécialité Intelligence Artificielle et Applications (I2A) à l'Université M'Hamed Bougara de Boumerdès (UMBB). Titulaire d'une Licence en Informatique Générale (2020-2023), il conçoit des modèles d'apprentissage profond (PyTorch, Computer Vision) et des architectures logicielles complètes (Next.js, TypeScript, Node.js)."
+              : "DJEDDI Ouael is a Full Stack & AI Developer currently pursuing a Master's Degree in Artificial Intelligence & Applications (I2A) at UMBB. Holding a Bachelor's degree in General Computer Science (2020-2023), he focuses on deep learning models (PyTorch, Computer Vision) and full-stack software architectures (Next.js, TypeScript, Node.js)."}
+          </p>
+        </div>
+      );
+    }
+
+    if (
+      q.includes("projet") ||
+      q.includes("project") ||
+      q.includes("super resolution") ||
+      q.includes("resolution") ||
+      q.includes("scraper") ||
+      q.includes("iot") ||
+      q.includes("university") ||
+      q.includes("wokwi")
+    ) {
+      return (
+        <div className="space-y-2 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-cyan-400 pl-2.5 my-1">
+          <p className="text-cyan-400 font-bold">[Ouael-AI Assistant — Projets Clés]</p>
+          <p className="text-white">
+            {language === "fr"
+              ? "Voici les 4 projets phares développés par Ouael :"
+              : "Here are the 4 core projects built by Ouael:"}
+          </p>
+          <div className="space-y-1 text-slate-300">
+            <p>
+              <strong className="text-white">1. Single Image Super-Resolution :</strong>{" "}
+              {language === "fr"
+                ? "Réseau de neurones profonds en PyTorch pour la reconstruction 4x et la restauration de textures haute fréquence."
+                : "Deep convolutional model in PyTorch for 4x detail reconstruction and high-frequency feature recovery."}
+            </p>
+            <p>
+              <strong className="text-white">2. Python Books Web Scraper :</strong>{" "}
+              {language === "fr"
+                ? "Système automatisé d'extraction de données web avec BeautifulSoup, Requests et Pandas."
+                : "Automated web data extraction pipeline using BeautifulSoup, Requests, and Pandas DataFrames."}
+            </p>
+            <p>
+              <strong className="text-white">3. University Transfer Platform :</strong>{" "}
+              {language === "fr"
+                ? "Application Full Stack avec Next.js, Node.js et base relationnelle pour gérer les mobilités universitaires."
+                : "Full-stack web application with Next.js, Node.js, and relational database for campus student transfers."}
+            </p>
+            <p>
+              <strong className="text-white">4. SEI IoT Project :</strong>{" "}
+              {language === "fr"
+                ? "Simulation de circuits et télémétrie de capteurs sur microcontrôleurs via Wokwi."
+                : "Microcontroller circuit simulation and sensor telemetry state machine executed in Wokwi."}
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    if (
+      q.includes("skill") ||
+      q.includes("competence") ||
+      q.includes("compétence") ||
+      q.includes("stack") ||
+      q.includes("techno") ||
+      q.includes("python") ||
+      q.includes("react")
+    ) {
+      return (
+        <div className="space-y-1.5 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-emerald-400 pl-2.5 my-1">
+          <p className="text-emerald-400 font-bold">[Ouael-AI Assistant — Stack Technologique]</p>
+          <p className="text-white">
+            <span className="text-purple-400 font-semibold">• Langages :</span> Python, TypeScript, JavaScript, HTML5, CSS3
+          </p>
+          <p className="text-white">
+            <span className="text-cyan-400 font-semibold">• IA & Machine Learning :</span> PyTorch, TensorFlow, Scikit-learn, NumPy, Pandas, Computer Vision
+          </p>
+          <p className="text-white">
+            <span className="text-indigo-400 font-semibold">• Web Full Stack :</span> React, Next.js (App Router), Node.js, Tailwind CSS
+          </p>
+          <p className="text-white">
+            <span className="text-amber-400 font-semibold">• Outils & DevOps :</span> Git, GitHub, Visual Studio Code, Docker
+          </p>
+        </div>
+      );
+    }
+
+    if (
+      q.includes("contact") ||
+      q.includes("email") ||
+      q.includes("recruter") ||
+      q.includes("hire") ||
+      q.includes("stage") ||
+      q.includes("internship") ||
+      q.includes("social") ||
+      q.includes("facebook") ||
+      q.includes("instagram")
+    ) {
+      return (
+        <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-blue-400 pl-2.5 my-1">
+          <p className="text-blue-400 font-bold">[Ouael-AI Assistant — Coordonnées & Réseaux]</p>
+          <p className="text-white">
+            📧 <span className="font-semibold">Email :</span> ouael.djeddi.contact@gmail.com
+          </p>
+          <p className="text-white">
+            💻 <span className="font-semibold">GitHub :</span> https://github.com/djeddiouael
+          </p>
+          <p className="text-white">
+            🔗 <span className="font-semibold">LinkedIn :</span> https://linkedin.com/in/ouael-djeddi
+          </p>
+          <p className="text-white">
+            📘 <span className="font-semibold">Facebook :</span> https://facebook.com/djeddiouael
+          </p>
+          <p className="text-white">
+            📷 <span className="font-semibold">Instagram :</span> https://instagram.com/djeddiouael
+          </p>
+          <p className="text-white">
+            📺 <span className="font-semibold">YouTube :</span> https://www.youtube.com/@djeddiouael
+          </p>
+          <p className="text-emerald-400 font-semibold pt-1">
+            {language === "fr"
+              ? "Disponible pour stages, projets de recherche et collaborations techniques !"
+              : "Available for internships, applied research, and technical collaboration!"}
+          </p>
+        </div>
+      );
+    }
+
+    if (
+      q.includes("etude") ||
+      q.includes("étude") ||
+      q.includes("master") ||
+      q.includes("umbb") ||
+      q.includes("boumerdes") ||
+      q.includes("formation") ||
+      q.includes("education")
+    ) {
+      return (
+        <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-amber-400 pl-2.5 my-1">
+          <p className="text-amber-400 font-bold">[Ouael-AI Assistant — Formation Universitaire]</p>
+          <p className="text-white">
+            🎓 <strong className="text-white">Master Spécialité I2A (2023 — Présent) :</strong> Intelligence Artificielle et Applications à l&apos;Université M&apos;Hamed Bougara de Boumerdès (UMBB).
+          </p>
+          <p className="text-white">
+            📜 <strong className="text-white">Licence Informatique Générale (2020 — 2023) :</strong> Université M&apos;Hamed Bougara de Boumerdès (UMBB).
+          </p>
+        </div>
+      );
+    }
+
+    // Default synthesis
+    return (
+      <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-purple-500 pl-2.5 my-1">
+        <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
+        <p className="text-white">
+          {language === "fr"
+            ? `Concernant "${prompt}" : En tant qu'assistant de DJEDDI Ouael (Master I2A @ UMBB), je peux vous renseigner en détail sur ses projets en vision par ordinateur et web full stack, ses compétences (Python, PyTorch, React, Next.js), ou vous mettre en contact direct avec lui par email à ouael.djeddi.contact@gmail.com.`
+            : `Regarding "${prompt}": As Ouael's AI assistant (Master I2A @ UMBB), I can provide detailed insights into his computer vision and full-stack projects, core tech stack (Python, PyTorch, Next.js), or connect you directly via email at ouael.djeddi.contact@gmail.com.`}
+        </p>
+      </div>
+    );
+  };
+
   const executeCommand = (rawCmd: string) => {
     const trimmed = rawCmd.trim();
     if (!trimmed) {
-      // Empty enter
       setHistory((prev) => [
         ...prev,
         {
@@ -76,108 +293,120 @@ export function CodeTerminal() {
     let outputNode: React.ReactNode = null;
 
     switch (cmd) {
+      // AI Assistant Chat command!
+      case "ai":
+      case "chat":
+      case "ask":
+      case "ia":
+        outputNode = handleAIChat(arg);
+        break;
+
       case "help":
       case "?":
         outputNode = (
           <div className="space-y-2 text-[#cccccc] font-mono text-xs sm:text-[12.5px] py-1">
             <p className="text-white font-semibold">
               {language === "fr"
-                ? "Pour plus d'informations sur une commande, tapez HELP <nom-commande>"
-                : "For more information on a specific command, type HELP <command-name>"}
+                ? "Commandes système & portfolio disponibles dans l'invite de commandes :"
+                : "Available system & portfolio commands in Command Prompt:"}
             </p>
             <div className="grid grid-cols-1 gap-1 pt-1">
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">HELP</span>
+                <span className="w-28 text-purple-400 font-bold shrink-0">AI [message]</span>
                 <span className="text-[#cccccc]">
                   {language === "fr"
-                    ? "Affiche l'aide des commandes de ce portfolio Windows."
-                    : "Displays help information for available portfolio commands."}
+                    ? "Discutez en direct avec l'assistant IA intégré du portfolio !"
+                    : "Chat directly with the built-in portfolio AI assistant!"}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">DIR</span>
+                <span className="w-28 text-white font-bold shrink-0">HELP</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche la liste des fichiers et sous-dossiers."
-                    : "Displays a list of files and subdirectories in directory."}
+                  {language === "fr" ? "Affiche la liste complète des commandes." : "Displays this command help table."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">CD</span>
+                <span className="w-28 text-white font-bold shrink-0">DIR</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Change de dossier actuel (ex: cd projects, cd skills, cd ..)."
-                    : "Changes the current directory (e.g. cd projects, cd skills, cd ..)."}
+                  {language === "fr" ? "Affiche les fichiers et dossiers du répertoire." : "Displays files and subdirectories."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">CLS</span>
+                <span className="w-28 text-white font-bold shrink-0">CD [dir]</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr" ? "Efface l'écran du terminal." : "Clears the terminal screen buffer."}
+                  {language === "fr" ? "Change de répertoire (ex: cd projects, cd skills, cd ..)." : "Changes current directory."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">WHOAMI</span>
+                <span className="w-28 text-white font-bold shrink-0">TYPE [file]</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche l'identité et le rôle du développeur."
-                    : "Displays developer identity, title, and current status."}
+                  {language === "fr" ? "Affiche le contenu d'un fichier texte (ex: type README.md)." : "Displays contents of a text file."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">ABOUT</span>
+                <span className="w-28 text-white font-bold shrink-0">SYSTEMINFO</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche le parcours universitaire (Master I2A @ UMBB)."
-                    : "Displays academic background and university specialization."}
+                  {language === "fr" ? "Affiche les informations système du poste de travail." : "Displays system diagnostics."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">PROJECTS</span>
+                <span className="w-28 text-white font-bold shrink-0">WHOAMI</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Liste les projets phares (IA, Scraping, Full Stack, IoT)."
-                    : "Lists featured engineering projects and technical domains."}
+                  {language === "fr" ? "Affiche l'identité et le profil du développeur." : "Displays developer identity."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">SKILLS</span>
+                <span className="w-28 text-white font-bold shrink-0">PROJECTS</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche la stack technologique (Python, PyTorch, React, etc.)."
-                    : "Displays tech stack competencies (Python, PyTorch, React, etc.)."}
+                  {language === "fr" ? "Liste les projets phares (Super-Résolution, Scraper, IoT, Web)." : "Lists featured software projects."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">GITHUB</span>
+                <span className="w-28 text-white font-bold shrink-0">SKILLS</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche les liens du profil GitHub et du dépôt."
-                    : "Displays GitHub profile link and repository status."}
+                  {language === "fr" ? "Affiche la stack technologique (Python, PyTorch, React, etc.)." : "Displays technical skills."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">CONTACT</span>
+                <span className="w-28 text-white font-bold shrink-0">EDUCATION</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche les coordonnées directes et la disponibilité."
-                    : "Displays email, communication channels, and availability."}
+                  {language === "fr" ? "Détaille le cursus Master I2A et Licence à l'UMBB." : "Displays academic curriculum."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">PYTHON</span>
+                <span className="w-28 text-white font-bold shrink-0">SOCIAL</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Lance le diagnostic de l'environnement Python & PyTorch."
-                    : "Runs Python 3.11 environment and PyTorch diagnostics."}
+                  {language === "fr" ? "Affiche tous les profils (GitHub, YouTube, Facebook, Instagram)." : "Displays external profiles."}
                 </span>
               </div>
               <div className="flex">
-                <span className="w-24 text-white font-bold shrink-0">GIT</span>
+                <span className="w-28 text-white font-bold shrink-0">CONTACT</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr"
-                    ? "Affiche l'état du dépôt Git et de la branche main."
-                    : "Displays git branch status and repository synchronization."}
+                  {language === "fr" ? "Affiche les coordonnées directes de contact." : "Displays email & contact details."}
+                </span>
+              </div>
+              <div className="flex">
+                <span className="w-28 text-white font-bold shrink-0">PYTHON</span>
+                <span className="text-[#cccccc]">
+                  {language === "fr" ? "Lance le diagnostic de l'environnement Python & PyTorch." : "Tests Python/CUDA environment."}
+                </span>
+              </div>
+              <div className="flex">
+                <span className="w-28 text-white font-bold shrink-0">GIT</span>
+                <span className="text-[#cccccc]">
+                  {language === "fr" ? "Affiche le statut de la branche Git main." : "Displays git branch status."}
+                </span>
+              </div>
+              <div className="flex">
+                <span className="w-28 text-white font-bold shrink-0">CLS</span>
+                <span className="text-[#cccccc]">
+                  {language === "fr" ? "Efface l'écran du terminal." : "Clears the screen buffer."}
+                </span>
+              </div>
+              <div className="flex">
+                <span className="w-28 text-white font-bold shrink-0">VER / DATE / TIME</span>
+                <span className="text-[#cccccc]">
+                  {language === "fr" ? "Commandes Windows standard." : "Standard Windows utilities."}
                 </span>
               </div>
             </div>
@@ -189,6 +418,89 @@ export function CodeTerminal() {
       case "clear":
         setHistory([]);
         return;
+
+      case "systeminfo":
+        outputNode = (
+          <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12px]">
+            <p>OS Name:                   Microsoft Windows 11 Pro 64-bit</p>
+            <p>OS Version:                10.0.22631 Build 22631</p>
+            <p>System Manufacturer:       Ouael AI Workstation</p>
+            <p>System Model:              UMBB Master I2A Research Lab</p>
+            <p>Processor(s):              Intel(R) Core(TM) i7 with NVIDIA CUDA Acceleration</p>
+            <p>Total Physical Memory:     32,768 MB RAM</p>
+            <p>Workspace:                 E:\ouael-djeddi-ai-portfolio</p>
+            <p>Repository:                https://github.com/djeddiouael/ouael-djeddi-portfolio</p>
+            <p>Active Frameworks:         Next.js 14, React 18, PyTorch 2.2, TypeScript 5.7</p>
+          </div>
+        );
+        break;
+
+      case "ver":
+        outputNode = <p className="text-[#cccccc] font-mono">Microsoft Windows [Version 10.0.22631.4317]</p>;
+        break;
+
+      case "date":
+        outputNode = (
+          <p className="text-[#cccccc] font-mono">
+            {language === "fr" ? "La date actuelle est : " : "The current date is: "}
+            {new Date().toLocaleDateString(language === "fr" ? "fr-FR" : "en-US", {
+              weekday: "short",
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          </p>
+        );
+        break;
+
+      case "time":
+        outputNode = (
+          <p className="text-[#cccccc] font-mono">
+            {language === "fr" ? "L'heure actuelle est : " : "The current time is: "}
+            {new Date().toLocaleTimeString(language === "fr" ? "fr-FR" : "en-US")}
+          </p>
+        );
+        break;
+
+      case "echo":
+        outputNode = <p className="text-[#cccccc] font-mono">{arg || ""}</p>;
+        break;
+
+      case "type":
+      case "cat":
+        if (!arg) {
+          outputNode = (
+            <p className="text-[#cccccc] font-mono">
+              {language === "fr" ? "Syntaxe : TYPE <nom_du_fichier>" : "The syntax of the command is incorrect. Usage: TYPE <filename>"}
+            </p>
+          );
+        } else if (arg.toLowerCase() === "readme.md") {
+          outputNode = (
+            <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12px] bg-[#141414] p-2 rounded">
+              <p className="text-white font-bold"># DJEDDI Ouael — AI & Full Stack Developer</p>
+              <p>Master Student in Artificial Intelligence and Applications (I2A) at UMBB.</p>
+              <p>Core Repositories: Single Image Super-Resolution, Python Web Scraper, University Transfer Platform, SEI IoT.</p>
+              <p>GitHub: https://github.com/djeddiouael</p>
+            </div>
+          );
+        } else if (arg.toLowerCase() === "contact.txt") {
+          outputNode = (
+            <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12px] bg-[#141414] p-2 rounded">
+              <p>Email:    ouael.djeddi.contact@gmail.com</p>
+              <p>GitHub:   https://github.com/djeddiouael</p>
+              <p>LinkedIn: https://linkedin.com/in/ouael-djeddi</p>
+              <p>Facebook: https://facebook.com/djeddiouael</p>
+              <p>Instagram: https://instagram.com/djeddiouael</p>
+            </div>
+          );
+        } else {
+          outputNode = (
+            <p className="text-[#cccccc] font-mono">
+              {language === "fr" ? "Le fichier spécifié est introuvable." : "The system cannot find the file specified."}
+            </p>
+          );
+        }
+        break;
 
       case "dir":
         if (currentDir === "C:\\Users\\Ouael\\projects") {
@@ -240,12 +552,11 @@ export function CodeTerminal() {
                 <p>11/11/2026  08:30 PM    &lt;DIR&gt;          projects</p>
                 <p>11/11/2026  08:30 PM    &lt;DIR&gt;          skills</p>
                 <p>11/11/2026  08:30 PM    &lt;DIR&gt;          education</p>
-                <p>11/11/2026  08:30 PM             1,842 cv-fullstack.pdf</p>
-                <p>11/11/2026  08:30 PM             1,920 cv-ai-specialist.pdf</p>
+                <p>11/11/2026  08:30 PM             2,410 README.md</p>
                 <p>11/11/2026  08:30 PM               412 contact.txt</p>
                 <p>11/11/2026  08:30 PM               890 developer-profile.json</p>
               </div>
-              <p className="pt-1">               4 File(s)          5,064 bytes</p>
+              <p className="pt-1">               3 File(s)          3,712 bytes</p>
               <p>               5 Dir(s)   284,912,414,720 bytes free</p>
             </div>
           );
@@ -293,10 +604,6 @@ export function CodeTerminal() {
               Intelligence & Applications) @ UMBB
             </p>
             <p>
-              <span className="text-white font-semibold">Status:</span> Available for Internship & Technical
-              Collaboration
-            </p>
-            <p>
               <span className="text-white font-semibold">Environment:</span> Windows 11 Pro 64-bit / WSL2 Ubuntu Linux
             </p>
           </div>
@@ -325,6 +632,26 @@ export function CodeTerminal() {
             <p>
               <span className="text-white">Focus:</span> {t.hero.description}
             </p>
+          </div>
+        );
+        break;
+
+      case "education":
+        outputNode = (
+          <div className="space-y-2 text-[#cccccc] font-mono text-xs sm:text-[12.5px]">
+            <p className="text-white font-bold border-b border-white/20 pb-1">
+              {language === "fr" ? "CURSUS UNIVERSITAIRE (UMBB) :" : "ACADEMIC CURRICULUM (UMBB):"}
+            </p>
+            <div>
+              <p className="text-white font-semibold">[2023 — Présent] Master Spécialité I2A</p>
+              <p className="text-purple-300">Intelligence Artificielle et Applications — Université M&apos;Hamed Bougara de Boumerdès</p>
+              <p className="text-[#a0a0a0]">Modules : Deep Learning, Computer Vision, Systèmes Distribués, NLP</p>
+            </div>
+            <div className="pt-1">
+              <p className="text-white font-semibold">[2020 — 2023] Licence Informatique Générale</p>
+              <p className="text-cyan-300">Université M&apos;Hamed Bougara de Boumerdès (UMBB)</p>
+              <p className="text-[#a0a0a0]">Modules : Algorithmique Avancée, Structures de Données, POO Java/C++, Bases de Données SQL</p>
+            </div>
           </div>
         );
         break;
@@ -369,11 +696,6 @@ export function CodeTerminal() {
                 </p>
               </div>
             </div>
-            <p className="text-[#888888] text-[11px]">
-              {language === "fr"
-                ? "Astuce : Tapez 'cd projects' puis 'dir' pour explorer les dossiers de projets."
-                : "Tip: Type 'cd projects' then 'dir' to navigate project subdirectories."}
-            </p>
           </div>
         );
         break;
@@ -402,6 +724,20 @@ export function CodeTerminal() {
                 <span className="text-[#a0a0a0]">Git, GitHub, VS Code, Docker</span>
               </div>
             </div>
+          </div>
+        );
+        break;
+
+      case "social":
+      case "profiles":
+        outputNode = (
+          <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px]">
+            <p className="text-white font-bold">PROFILS & RÉSEAUX OFFICIELS :</p>
+            <p>• GitHub:    https://github.com/djeddiouael</p>
+            <p>• LinkedIn:  https://linkedin.com/in/ouael-djeddi</p>
+            <p>• Facebook:  https://facebook.com/djeddiouael</p>
+            <p>• Instagram: https://instagram.com/djeddiouael</p>
+            <p>• YouTube:   https://www.youtube.com/@djeddiouael</p>
           </div>
         );
         break;
@@ -449,10 +785,16 @@ export function CodeTerminal() {
               <span className="text-white">GitHub:</span> https://github.com/djeddiouael
             </p>
             <p>
-              <span className="text-white">YouTube:</span> https://www.youtube.com/@djeddiouael
+              <span className="text-white">LinkedIn:</span> https://linkedin.com/in/ouael-djeddi
             </p>
             <p>
-              <span className="text-white">LinkedIn:</span> https://linkedin.com/in/ouael-djeddi
+              <span className="text-white">Facebook:</span> https://facebook.com/djeddiouael
+            </p>
+            <p>
+              <span className="text-white">Instagram:</span> https://instagram.com/djeddiouael
+            </p>
+            <p>
+              <span className="text-white">YouTube:</span> https://www.youtube.com/@djeddiouael
             </p>
             <p>
               <span className="text-white">Location:</span> Boumerdes / Algiers, Algeria
@@ -497,8 +839,8 @@ export function CodeTerminal() {
           <p className="text-[#cccccc] font-mono">
             &apos;{trimmed}&apos;{" "}
             {language === "fr"
-              ? "n'est pas reconnu en tant que commande interne ou externe, un programme exécutable ou un fichier de commandes. Tapez 'help' pour la liste des commandes."
-              : "is not recognized as an internal or external command, operable program or batch file. Type 'help' for available commands."}
+              ? "n'est pas reconnu en tant que commande interne ou externe. Tapez 'help' ou utilisez 'ai <question>' pour discuter avec l'assistant."
+              : "is not recognized as an internal or external command. Type 'help' or use 'ai <question>' to chat with the assistant."}
           </p>
         );
         break;
@@ -544,6 +886,7 @@ export function CodeTerminal() {
     } else if (e.key === "Tab") {
       e.preventDefault();
       const available = [
+        "ai",
         "help",
         "dir",
         "cd",
@@ -552,10 +895,15 @@ export function CodeTerminal() {
         "about",
         "projects",
         "skills",
+        "education",
+        "social",
         "github",
         "contact",
         "python",
         "git",
+        "systeminfo",
+        "date",
+        "time",
       ];
       const match = available.find((c) => c.startsWith(inputVal.toLowerCase().trim()));
       if (match) {
@@ -574,7 +922,7 @@ export function CodeTerminal() {
       ref={containerRef}
       onClick={focusInput}
       className={`w-full max-w-xl mx-auto rounded-lg overflow-hidden border border-[#333333] bg-[#0c0c0c] shadow-2xl text-left font-mono transition-all duration-300 ${
-        isExpanded ? "max-h-[580px]" : "max-h-[440px]"
+        isExpanded ? "max-h-[620px]" : "max-h-[460px]"
       } flex flex-col`}
     >
       {/* Authentic Windows CMD Title Bar */}
@@ -585,10 +933,15 @@ export function CodeTerminal() {
           <div className="w-4 h-3.5 bg-black border border-slate-500 flex items-center justify-center text-[9px] font-bold text-white leading-none">
             &gt;_
           </div>
-          <span className="font-sans text-[12px] text-slate-200 truncate">
-            {language === "fr"
-              ? "Invite de commandes - [Espace Travail Ouael]"
-              : "Command Prompt - [Ouael AI Workspace]"}
+          <span className="font-sans text-[12px] text-slate-200 truncate flex items-center gap-1.5">
+            <span>
+              {language === "fr"
+                ? "Invite de commandes - [Ouael AI Workspace]"
+                : "Command Prompt - [Ouael AI Workspace]"}
+            </span>
+            <span className="text-[10px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              AI Powered
+            </span>
           </span>
         </div>
 
@@ -658,6 +1011,9 @@ export function CodeTerminal() {
         <div className="text-[#cccccc] select-text">
           <p>Microsoft Windows [Version 10.0.22631.4317]</p>
           <p>(c) Microsoft Corporation. All rights reserved.</p>
+          <p className="text-purple-400 font-semibold pt-1">
+            [AI Assistant Ready] {language === "fr" ? "Tapez 'ai <question>' pour discuter, ou 'help'." : "Type 'ai <question>' to chat, or 'help'."}
+          </p>
         </div>
 
         {/* Command History Outputs */}
@@ -698,9 +1054,20 @@ export function CodeTerminal() {
       <div className="px-3 py-2 bg-[#141414] border-t border-[#222222] flex items-center justify-between text-[11px] text-slate-400 select-none">
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
           <span className="text-[10px] text-slate-500 font-mono uppercase mr-1 hidden sm:inline">
-            {language === "fr" ? "Commandes :" : "Quick :"}
+            {language === "fr" ? "Raccourcis :" : "Quick :"}
           </span>
-          {["help", "dir", "whoami", "projects", "skills", "python", "git", "cls"].map((c) => (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              runQuickCommand("ai help");
+            }}
+            className="px-2 py-0.5 rounded bg-purple-900/40 hover:bg-purple-800/60 text-purple-300 border border-purple-500/40 font-mono text-[11px] transition-colors flex items-center gap-1"
+          >
+            <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+            ai
+          </button>
+          {["help", "dir", "whoami", "projects", "skills", "education", "social", "cls"].map((c) => (
             <button
               key={c}
               type="button"

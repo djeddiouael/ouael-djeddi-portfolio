@@ -17,148 +17,155 @@ export function TechIcon({
   const norm = name.toLowerCase().replace(/[\s\-_.]/g, "");
 
   switch (norm) {
-    // Python - Official Simple Icons
+    // Python - Official dual tone (Blue #3776AB & Yellow #FFD438)
     case "python":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
-          <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.748h5.813v.824H3.844S0 5.674 0 11.826c0 6.154 3.398 5.952 3.398 5.952h2.03v-2.85s-.11-3.398 3.342-3.398h5.753s3.232.052 3.232-3.23V3.23S18.066 0 11.914 0zm-3.11 1.76a1.144 1.144 0 1 1 0 2.288 1.144 1.144 0 0 1 0-2.288zM12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.748h-5.813v-.824h8.176S24 18.326 24 12.174c0-6.154-3.398-5.952-3.398-5.952h-2.03v2.85s.11 3.398-3.342 3.398H9.477s-3.232-.052-3.232 3.23v5.108S5.934 24 12.086 24zm3.11-1.76a1.144 1.144 0 1 1 0-2.288 1.144 1.144 0 0 1 0 2.288z" />
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className}>
+          <path
+            d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.748h5.813v.824H3.844S0 5.674 0 11.826c0 6.154 3.398 5.952 3.398 5.952h2.03v-2.85s-.11-3.398 3.342-3.398h5.753s3.232.052 3.232-3.23V3.23S18.066 0 11.914 0zm-3.11 1.76a1.144 1.144 0 1 1 0 2.288 1.144 1.144 0 0 1 0-2.288z"
+            fill="#3776AB"
+          />
+          <path
+            d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.748h-5.813v-.824h8.176S24 18.326 24 12.174c0-6.154-3.398-5.952-3.398-5.952h-2.03v2.85s.11 3.398-3.342 3.398H9.477s-3.232-.052-3.232 3.23v5.108S5.934 24 12.086 24zm3.11-1.76a1.144 1.144 0 1 1 0-2.288 1.144 1.144 0 0 1 0 2.288z"
+            fill="#FFD438"
+          />
         </svg>
       );
 
-    // PyTorch - Official Simple Icons
+    // PyTorch - Official Fiery Orange-Red (#EE4C2C)
     case "pytorch":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#EE4C2C" className={className}>
           <path d="M13.593 0a.673.673 0 0 0-.47.197L9.932 3.388a.674.674 0 0 0 0 .954l1.458 1.458-2.646 2.646a7.485 7.485 0 1 0 10.584 0l-4.103-4.103a.673.673 0 0 0-.954 0l-.822.822 1.458 1.458a.674.674 0 0 0 .954 0l1.792-1.792a6.136 6.136 0 1 1-8.678 0l2.747-2.747a.674.674 0 0 0 0-.954L14.063.197A.673.673 0 0 0 13.593 0z" />
         </svg>
       );
 
-    // TensorFlow - Official Simple Icons
+    // TensorFlow - Official Orange (#FF6F00)
     case "tensorflow":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#FF6F00" className={className}>
           <path d="M1.292 5.856L11.54 0v24l-4.092-2.385V7.93l-6.156 3.59v-5.664zm21.416 0L12.46 0v24l4.092-2.385V7.93l6.156 3.59v-5.664z" />
         </svg>
       );
 
-    // Scikit-learn - Official Simple Icons
+    // Scikit-learn - Official Orange & Cyan (#F7931E / #3499CD)
     case "scikitlearn":
     case "sklearn":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#F7931E" className={className}>
           <path d="M14.992 0a5.996 5.996 0 0 0-4.887 2.528A5.997 5.997 0 0 0 5.218 0C2.336 0 0 2.336 0 5.218c0 2.115 1.258 3.935 3.064 4.747a5.986 5.986 0 0 0-.074.945c0 3.312 2.688 6 6 6 .319 0 .633-.025.941-.074.812 1.806 2.632 3.064 4.747 3.064 2.882 0 5.218-2.336 5.218-5.218 0-.319-.029-.633-.084-.941 1.776-.826 2.986-2.624 2.986-4.706C22.798 4.096 19.324 0 14.992 0zm-9.774 8.528a3.31 3.31 0 1 1 0-6.62 3.31 3.31 0 0 1 0 6.62zm9.774 8.528a3.31 3.31 0 1 1 0-6.62 3.31 3.31 0 0 1 0 6.62zm1.696-6.62a3.31 3.31 0 1 1 0-6.62 3.31 3.31 0 0 1 0 6.62z" />
         </svg>
       );
 
-    // NumPy - Official Simple Icons
+    // NumPy - Official Blue (#013243 / #4DABCF)
     case "numpy":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#4DABCF" className={className}>
           <path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm-.985 4.884h1.97v3.082h3.94v-3.082h1.97v14.232h-1.97v-3.082h-3.94v3.082h-1.97V4.884zm1.97 4.966h3.94v4.3h-3.94V9.85z" />
         </svg>
       );
 
-    // Pandas - Official Simple Icons
+    // Pandas - Official Dark Blue / Indigo (#150458 / #130654)
     case "pandas":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#E70488" className={className}>
           <path d="M14.615 0h-5.23v6.092h5.23V0zm-6.262 0H3.123v14.862h5.23V0zm12.524 0h-5.23v14.862h5.23V0zM8.353 16.954H3.123V24h5.23v-7.046zm6.262-8.862h-5.23v15.908h5.23V8.092zm6.262 8.862h-5.23V24h5.23v-7.046z" />
         </svg>
       );
 
-    // OpenCV / Computer Vision - Official Simple Icons OpenCV
+    // OpenCV / Computer Vision - Official Vibrant Purple/Blue (#5C3EE8)
     case "vision":
     case "computervision":
     case "opencv":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#5C3EE8" className={className}>
           <path d="M12 0C8.686 0 6 2.686 6 6c0 1.258.388 2.426 1.05 3.388A5.952 5.952 0 0 0 6 12a5.952 5.952 0 0 0 1.05 3.388C6.388 16.35 6 17.518 6 18.776 6 22.09 8.686 24 12 24s6-1.91 6-5.224c0-1.258-.388-2.426-1.05-3.388A5.952 5.952 0 0 0 18 12a5.952 5.952 0 0 0-1.05-3.388C17.612 7.65 18 6.482 18 5.224 18 1.91 15.314 0 12 0zm0 2.4c1.988 0 3.6 1.612 3.6 3.6s-1.612 3.6-3.6 3.6-3.6-1.612-3.6-3.6 1.612-3.6 3.6-3.6zm-3.6 7.2a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2zm7.2 0a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2zm-3.6 3.6a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z" />
         </svg>
       );
 
-    // React - Official Simple Icons
+    // React - Official Electric Cyan (#61DAFB)
     case "react":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#61DAFB" className={className}>
           <path d="M12 9.07c-1.62 0-2.93 1.31-2.93 2.93s1.31 2.93 2.93 2.93 2.93-1.31 2.93-2.93c0-1.62-1.31-2.93-2.93-2.93zm0-8.07c-3.1 0-6.07 1.05-8.2 2.96-.3.27-.58.56-.84.86C1.12 7.08 0 9.44 0 12c0 2.56 1.12 4.92 2.96 7.18.26.3.54.59.84.86 2.13 1.91 5.1 2.96 8.2 2.96 3.1 0 6.07-1.05 8.2-2.96.3-.27.58-.56.84-.86C22.88 16.92 24 14.56 24 12c0-2.56-1.12-4.92-2.96-7.18-.26-.3-.54-.59-.84-.86C18.07 2.05 15.1 1 12 1zm0 1.8c2.4 0 4.7.74 6.44 2.14-1.28 1.4-3.1 2.9-5.18 4.2-1.68-.86-3.37-1.54-5.02-2.02C9.43 5.48 10.68 4.8 12 4.8zm-7.6 3.24c1.55.45 3.14 1.1 4.72 1.91-1.39 1.4-2.6 2.92-3.58 4.46-1.06-.92-1.93-2-2.53-3.17.38-1.21.94-2.28 1.67-3.2zm-.3 7.92c.6 1.17 1.47 2.25 2.53 3.17.98-1.54 2.19-3.06 3.58-4.46-1.58-.81-3.17-1.46-4.72-1.91-.73.92-1.29 1.99-1.67 3.2zm6.64 4.84c-1.32-.68-2.57-1.36-3.76-2.32 1.65-.48 3.34-1.16 5.02-2.02 2.08 1.3 3.9 2.8 5.18 4.2-1.74 1.4-4.04 2.14-6.44 2.14zm7.6-3.24c-.6-1.17-1.47-2.25-2.53-3.17-.98 1.54-2.19 3.06-3.58 4.46 1.58.81 3.17 1.46 4.72 1.91.73-.92 1.29-1.99 1.67-3.2zm.3-7.92c-.6-1.17-1.47-2.25-2.53-3.17-.98-1.54-2.19-3.06-3.58-4.46 1.58.81 3.17 1.46 4.72 1.91.73.92 1.29 1.99 1.67 3.2z" />
         </svg>
       );
 
-    // Next.js - Official Simple Icons
+    // Next.js - Sleek Dark / White (#000000 in light, #FFFFFF in dark)
     case "nextjs":
     case "next":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={`${className} text-slate-900 dark:text-white`}>
           <path d="M18.665 21.978C16.687 23.24 14.37 24 11.999 24 5.373 24 0 18.627 0 12S5.373 0 11.999 0s12 5.373 12 12c0 3.125-1.196 6.002-3.155 8.163l-10.744-13.88h-2.15v15.433h2.15v-10.96l9.96 12.822zM17.85 7.714h2.15v8.572h-2.15V7.714z" />
         </svg>
       );
 
-    // Node.js - Official Simple Icons
+    // Node.js - Official Node Green (#5FA04E)
     case "nodejs":
     case "node":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#5FA04E" className={className}>
           <path d="M12 0a1.2 1.2 0 0 0-.6.16L1.8 5.76a1.2 1.2 0 0 0-.6 1.04v10.4a1.2 1.2 0 0 0 .6 1.04l9.6 5.6a1.2 1.2 0 0 0 1.2 0l9.6-5.6a1.2 1.2 0 0 0 .6-1.04V6.8a1.2 1.2 0 0 0-.6-1.04l-9.6-5.6A1.2 1.2 0 0 0 12 0zm0 2.45 8.4 4.9-8.4 4.9-8.4-4.9 8.4-4.9zm-9.6 6.55 8.4 4.9v9.8l-8.4-4.9V9zm19.2 0v9.8l-8.4 4.9v-9.8l8.4-4.9z" />
         </svg>
       );
 
-    // Tailwind CSS - Official Simple Icons
+    // Tailwind CSS - Official Sky Cyan (#06B6D4)
     case "tailwind":
     case "tailwindcss":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#06B6D4" className={className}>
           <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
         </svg>
       );
 
-    // TypeScript - Official Simple Icons
+    // TypeScript - Official Blue (#3178C6)
     case "typescript":
     case "ts":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#3178C6" className={className}>
           <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zM12.38 8.04h-3.9v1.94h1.95v7.98h2.05v-7.98h1.9v-1.94h-2zm4.33 3.65c-.75-.43-1.63-.64-2.48-.6-.62.03-1.24.28-1.55.83-.34.62-.22 1.45.28 1.95.83.82 1.93 1.25 2.92 1.83.74.45 1.47 1.02 1.54 1.92.08 1.02-.63 1.96-1.6 2.25-1.05.3-2.19.16-3.18-.32v2.16c.92.38 1.93.57 2.94.55 1.5-.02 3-.8 3.55-2.22.48-1.23.18-2.73-.72-3.62-.83-.82-1.93-1.25-2.92-1.83-.72-.44-1.44-.98-1.53-1.85-.09-.94.57-1.8 1.48-2.06.94-.27 1.96-.15 2.85.29v-2.14z" />
         </svg>
       );
 
-    // JavaScript - Official Simple Icons
+    // JavaScript - Official Yellow (#F7DF1E)
     case "javascript":
     case "js":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#F7DF1E" className={className}>
           <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.017-.888-1.798-2.876-2.607l-.744-.316c-.76-.328-.97-.66-.97-1.12 0-.48.375-.85 1.01-.85.655 0 1.04.28 1.344.825l1.62-.99c-.66-1.15-1.64-1.64-2.964-1.64-1.77 0-3 1.08-3 2.7 0 1.25.75 2.05 2.37 2.73l.75.32c.98.42 1.31.78 1.31 1.36 0 .61-.55 1-1.37 1-.95 0-1.5-.54-1.86-1.32l-1.68.96c.64 1.39 1.84 2.1 3.54 2.1 2.04 0 3.37-1.07 3.37-2.81zm-9.366-5.83h-2.18v6.78c0 1.45-.63 2.05-1.81 2.05-.62 0-1.12-.13-1.47-.35l-.46 1.76c.49.27 1.29.43 2.18.43 2.22 0 3.74-1.18 3.74-3.79v-6.88z" />
         </svg>
       );
 
-    // HTML5 - Official Simple Icons
+    // HTML5 - Official Orange (#E34F26)
     case "html":
     case "html5":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#E34F26" className={className}>
           <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.234-2.625H5.438l.688 7.875h9.187l-.375 4.125-3.469.938-3.469-.938-.219-2.438H5.156l.438 4.875 6.383 1.77 6.383-1.77.89-9.887H8.531z" />
         </svg>
       );
 
-    // CSS3 - Official Simple Icons
+    // CSS3 - Official Blue (#1572B6)
     case "css":
     case "css3":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#1572B6" className={className}>
           <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.5H5.41l.23 2.63h11.2l-.23 2.62H5.87l.23 2.63h10.33l-.86 9.53-3.6 1-3.6-1-.23-2.63H5.51l.46 5.25 6 1.66 6-1.66 1.12-12.4v-.01l.5-5.63z" />
         </svg>
       );
 
-    // Git - Official Simple Icons
+    // Git - Official Orange-Red (#F05032)
     case "git":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#F05032" className={className}>
           <path d="M23.546 10.93L13.067.452a1.5 1.5 0 0 0-2.122 0L8.835 2.56l2.673 2.673a1.78 1.78 0 0 1 1.769.438c.692.693.738 1.782.138 2.527l2.57 2.57a1.78 1.78 0 0 1 2.528.138 1.785 1.785 0 0 1 0 2.523 1.784 1.784 0 0 1-2.524 0 1.785 1.785 0 0 1-.137-2.528l-2.49-2.49a1.78 1.78 0 0 1-.58.103 1.78 1.78 0 0 1-1.26-.523 1.79 1.79 0 0 1-.444-1.787L8.41 6.007l-7.958 7.96a1.5 1.5 0 0 0 0 2.12l10.48 10.48a1.5 1.5 0 0 0 2.12 0l10.494-10.48a1.5 1.5 0 0 0 0-2.157z" />
         </svg>
       );
 
-    // GitHub - Official Simple Icons
+    // GitHub - Pure Dark / Light Contrast
     case "github":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={`${className} text-slate-900 dark:text-white`}>
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -167,51 +174,87 @@ export function TechIcon({
         </svg>
       );
 
-    // VS Code - Official Simple Icons
+    // VS Code - Official Blue (#007ACC)
     case "vscode":
     case "visualstudiocode":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#007ACC" className={className}>
           <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z" />
         </svg>
       );
 
-    // Docker - Official Simple Icons
+    // Docker - Official Blue (#2496ED)
     case "docker":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#2496ED" className={className}>
           <path d="M13.983 11.078h2.119a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.119a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 0 0 .186-.186V3.574a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 0 0 .186-.186V6.29a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 0 0 .184-.186V6.29a.185.185 0 0 0-.185-.185H8.1a.185.185 0 0 0-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 0 0 .185-.186V6.29a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m-2.929 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.185-.186H8.1a.185.185 0 0 0-.185.186v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.185-.186H5.136a.186.186 0 0 0-.186.186v1.888c0 .102.084.185.186.185m-2.928 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.186v1.888c0 .102.082.185.185.185M23.77 12.01c-.13-.095-1.378-.802-3.473-.59-1.28.13-2.316.59-3.082 1.365a.187.187 0 0 1-.26.002c-.896-.757-2.146-1.127-3.708-1.097H.482a.482.482 0 0 0-.482.482c0 2.227.603 4.38 1.745 6.223 1.637 2.64 4.34 4.298 7.42 4.55 7.74.636 14.184-4.52 14.61-9.923.018-.23.024-.46.024-.69a.187.187 0 0 0-.03-.122" />
         </svg>
       );
 
-    // BeautifulSoup / Scraping
+    // BeautifulSoup / Scraping - Emerald (#10B981)
     case "beautifulsoup":
     case "bs4":
     case "requests":
     case "scraping":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="#10B981" strokeWidth="2" className={className}>
           <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" strokeLinecap="round" />
           <circle cx="12" cy="12" r="4" strokeLinecap="round" />
         </svg>
       );
 
-    // IoT / Embedded / Wokwi / Microcontroller
+    // IoT / Embedded / Wokwi - Vibrant Cyan-Teal (#14B8A6)
     case "iot":
     case "wokwi":
     case "embedded":
     case "microcontroller":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="#14B8A6" strokeWidth="2" className={className}>
           <rect x="4" y="4" width="16" height="16" rx="2" strokeLinecap="round" strokeLinejoin="round" />
           <rect x="9" y="9" width="6" height="6" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
 
+    // Facebook - Official Blue (#1877F2)
+    case "facebook":
+    case "fb":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#1877F2" className={className}>
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      );
+
+    // Instagram - Official Gradient/Pink (#E4405F)
+    case "instagram":
+    case "insta":
+    case "ig":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#E4405F" className={className}>
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+      );
+
+    // YouTube - Official Red (#FF0000)
+    case "youtube":
+    case "yt":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#FF0000" className={className}>
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      );
+
+    // LinkedIn - Official Blue (#0A66C2)
+    case "linkedin":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#0A66C2" className={className}>
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.729V1.73C24 .774 23.205 0 22.225 0z" />
+        </svg>
+      );
+
     default:
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="#A855F7" strokeWidth="2" className={className}>
           <circle cx="12" cy="12" r="9" strokeLinecap="round" />
           <path d="M12 8v8M8 12h8" strokeLinecap="round" />
         </svg>

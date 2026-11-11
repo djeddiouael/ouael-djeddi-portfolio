@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Eye, Github, Terminal, Youtube } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { CodeTerminal } from "@/components/ui/CodeTerminal";
+import { TechIcon } from "@/components/icons/TechIcons";
 import { useLanguage } from "@/context/LanguageContext";
-import { AVAILABILITY_CONFIG } from "@/config/availability";
 
 interface HeroProps {
   onOpenCVModal?: () => void;
@@ -14,6 +14,57 @@ interface HeroProps {
 
 export function Hero({ onOpenCVModal }: HeroProps) {
   const { t, language } = useLanguage();
+
+  // Dynamic Typewriter Animation for writing text
+  const titles = useMemo(
+    () =>
+      language === "fr"
+        ? [
+            "Développeur Full Stack & IA",
+            "Vision par Ordinateur & Deep Learning",
+            "Master Intelligence Artificielle (I2A) @ UMBB",
+            "Architecte d'Applications Intelligentes",
+          ]
+        : [
+            "Full Stack & AI Developer",
+            "Computer Vision & Deep Learning Specialist",
+            "AI Master Student (I2A) @ UMBB",
+            "Intelligent Web & ML Systems Architect",
+          ],
+    [language]
+  );
+
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const currentFullTitle = titles[currentTitleIndex % titles.length];
+
+    if (!isDeleting) {
+      if (displayText.length < currentFullTitle.length) {
+        timer = setTimeout(() => {
+          setDisplayText(currentFullTitle.slice(0, displayText.length + 1));
+        }, 65);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2200);
+      }
+    } else {
+      if (displayText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayText(currentFullTitle.slice(0, displayText.length - 1));
+        }, 35);
+      } else {
+        setIsDeleting(false);
+        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentTitleIndex, titles]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,57 +86,78 @@ export function Hero({ onOpenCVModal }: HeroProps) {
     },
   };
 
-  const activeAvailability = AVAILABILITY_CONFIG.statusOptions[AVAILABILITY_CONFIG.currentStatus];
-  const availabilityBadgeText = activeAvailability.badgeText[language];
-
   return (
     <section
       id="home"
       className="relative min-h-screen pt-28 pb-20 sm:pt-36 sm:pb-28 flex items-center justify-center overflow-hidden"
     >
-      {/* Background ambient radial spotlights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 dark:bg-purple-600/15 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-cyan-500/10 dark:bg-cyan-600/10 rounded-full blur-[130px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      {/* Background Animated Glowing Ambient Lights */}
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.15, 0.25, 0.15],
+          x: [0, 20, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none -z-10"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.1, 0.2, 0.1],
+          x: [0, -30, 0],
+          y: [0, 30, 0],
+        }}
+        transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: 1 }}
+        className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[130px] pointer-events-none -z-10"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none -z-10"
+      />
 
-      {/* Modern grid background overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
+      {/* Modern kinetic grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Heading, Bio, CTAs */}
+          {/* Left Column: Heading, Animated Typewriter Title, Bio, CTAs */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="lg:col-span-7 space-y-6 text-left"
           >
-            {/* Status Pills Row */}
+            {/* Academic Master Badge */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono tracking-wide backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(168,85,247,0.15)] bg-purple-50 border-purple-200 text-purple-700 dark:bg-purple-500/10 dark:border-purple-500/25 dark:text-purple-300">
-                <span className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400 animate-ping" />
+                <span className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400 animate-pulse" />
                 <span>{t.hero.statusBadge}</span>
-              </div>
-
-              {/* Centralized Availability Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-mono tracking-wide bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-                <span>{availabilityBadgeText}</span>
               </div>
             </motion.div>
 
             {/* Main Greeting Heading */}
-            <motion.div variants={itemVariants} className="space-y-2">
+            <motion.div variants={itemVariants} className="space-y-3">
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
                 {t.hero.greetingPre}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 dark:from-purple-400 dark:via-violet-300 dark:to-cyan-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 dark:from-purple-400 dark:via-violet-300 dark:to-cyan-400">
                   {t.hero.greetingName}
                 </span>
                 .
               </h1>
-              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-700 dark:text-slate-300 tracking-tight">
-                {t.hero.title}
-              </p>
+
+              {/* Dynamic Typewriter Writing Animation */}
+              <div className="h-10 sm:h-12 flex items-center">
+                <span className="text-xl sm:text-2xl lg:text-3xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-600 dark:from-purple-300 dark:via-cyan-300 dark:to-emerald-300">
+                  {displayText}
+                </span>
+                <span className="inline-block w-0.5 h-6 sm:h-8 bg-purple-600 dark:bg-cyan-400 ml-1 animate-pulse" />
+              </div>
             </motion.div>
 
             {/* Description */}
@@ -96,15 +168,15 @@ export function Hero({ onOpenCVModal }: HeroProps) {
               {t.hero.description}
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons & Vibrant Social Channels */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-3.5 pt-2"
+              className="flex flex-wrap items-center gap-3 pt-2"
             >
               {/* View My Projects Button */}
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 bg-size-200 hover:bg-pos-100 transition-all duration-300 shadow-md shadow-purple-500/20 hover:shadow-lg hover:shadow-purple-500/35 hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 bg-size-200 hover:bg-pos-100 transition-all duration-300 shadow-md shadow-purple-500/20 hover:shadow-lg hover:shadow-purple-500/35 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>{t.hero.viewProjects}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -114,7 +186,7 @@ export function Hero({ onOpenCVModal }: HeroProps) {
               {onOpenCVModal && (
                 <button
                   onClick={onOpenCVModal}
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Download className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   <span>{t.hero.downloadCV}</span>
@@ -124,34 +196,73 @@ export function Hero({ onOpenCVModal }: HeroProps) {
               {/* Contact Me Button */}
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>{t.hero.contactMe}</span>
               </a>
 
-              {/* GitHub Link Button */}
-              <a
-                href={PERSONAL_INFO.contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3.5 rounded-xl text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 hover:scale-105 shadow-sm"
-                aria-label={t.hero.githubAria}
-                title={t.hero.githubAria}
-              >
-                <Github className="w-5 h-5" />
-              </a>
+              {/* Social Channels with Colorful Brand Icons */}
+              <div className="flex items-center gap-2 pl-1">
+                {/* GitHub */}
+                <a
+                  href={PERSONAL_INFO.contact.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"
+                  aria-label="GitHub Profile"
+                  title="GitHub Profile"
+                >
+                  <TechIcon name="github" size={20} className="w-5 h-5 text-slate-900 dark:text-white" />
+                </a>
 
-              {/* YouTube Link Button */}
-              <a
-                href={PERSONAL_INFO.contact.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3.5 rounded-xl text-slate-700 dark:text-slate-300 hover:text-red-500 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-red-400/50 transition-all duration-300 hover:scale-105 shadow-sm"
-                aria-label={t.hero.youtubeAria}
-                title={t.hero.youtubeAria}
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
+                {/* YouTube */}
+                <a
+                  href={PERSONAL_INFO.contact.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"
+                  aria-label="YouTube Channel"
+                  title="YouTube Channel"
+                >
+                  <TechIcon name="youtube" size={20} className="w-5 h-5" />
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href={PERSONAL_INFO.contact.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"
+                  aria-label="LinkedIn Profile"
+                  title="LinkedIn Profile"
+                >
+                  <TechIcon name="linkedin" size={20} className="w-5 h-5" />
+                </a>
+
+                {/* Facebook */}
+                <a
+                  href="https://facebook.com/djeddiouael"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"
+                  aria-label="Facebook Profile"
+                  title="Facebook Profile"
+                >
+                  <TechIcon name="facebook" size={20} className="w-5 h-5" />
+                </a>
+
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com/djeddiouael"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"
+                  aria-label="Instagram Profile"
+                  title="Instagram Profile"
+                >
+                  <TechIcon name="instagram" size={20} className="w-5 h-5" />
+                </a>
+              </div>
             </motion.div>
 
             {/* Quick Tech Highlights Badge Bar */}
@@ -160,21 +271,21 @@ export function Hero({ onOpenCVModal }: HeroProps) {
               className="pt-6 border-t border-slate-200 dark:border-white/[0.08] flex flex-wrap items-center gap-6 text-xs text-slate-600 dark:text-slate-400 font-mono"
             >
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-purple-500" />
+                <div className="w-2 h-2 rounded-full bg-orange-500" />
                 <span>{t.hero.highlights.pytorch}</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-cyan-500" />
+                <div className="w-2 h-2 rounded-full bg-purple-500" />
                 <span>{t.hero.highlights.vision}</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                <div className="w-2 h-2 rounded-full bg-cyan-500" />
                 <span>{t.hero.highlights.nextjs}</span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Futuristic Terminal & Visual Cards */}
+          {/* Right Column: Futuristic Windows CMD Terminal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -184,7 +295,7 @@ export function Hero({ onOpenCVModal }: HeroProps) {
             {/* Glowing neon halo */}
             <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 opacity-20 dark:opacity-30 blur-xl -z-10 animate-pulse-slow" />
 
-            {/* The Code Terminal */}
+            {/* The Windows CMD Terminal */}
             <CodeTerminal />
 
             {/* Floating Badges */}

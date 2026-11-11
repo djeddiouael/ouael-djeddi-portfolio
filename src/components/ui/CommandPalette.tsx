@@ -31,6 +31,7 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { TechIcon } from "@/components/icons/TechIcons";
 import { trackEvent } from "@/lib/analytics";
 
 interface CommandItem {
@@ -127,15 +128,6 @@ export function CommandPalette({ isOpen, onClose, onOpenCVModal }: CommandPalett
       icon: <Milestone className="w-4 h-4 text-amber-500" />,
       action: () => scrollToSection("journey"),
       keywords: ["journey", "parcours", "roadmap", "timeline", "milestones", "history"],
-    },
-    {
-      id: "nav-capabilities",
-      category: "navigation",
-      title: t.commandPalette.items.capabilities,
-      subtitle: "#capabilities",
-      icon: <Sparkles className="w-4 h-4 text-purple-400" />,
-      action: () => scrollToSection("capabilities"),
-      keywords: ["capabilities", "capacites", "architecture", "deep learning", "cv", "embedded", "engineering"],
     },
     {
       id: "nav-projects",
@@ -311,12 +303,36 @@ export function CommandPalette({ isOpen, onClose, onOpenCVModal }: CommandPalett
       category: "social",
       title: t.commandPalette.items.linkedin,
       subtitle: "https://linkedin.com/in/ouael-djeddi",
-      icon: <Linkedin className="w-4 h-4 text-blue-500" />,
+      icon: <TechIcon name="linkedin" size={16} className="w-4 h-4" />,
       action: () => {
         window.open(PERSONAL_INFO.contact.linkedin, "_blank", "noopener,noreferrer");
         onClose();
       },
       keywords: ["linkedin", "network", "profile", "pro"],
+    },
+    {
+      id: "soc-facebook",
+      category: "social",
+      title: language === "fr" ? "Ouvrir le Profil Facebook" : "Open Facebook Profile",
+      subtitle: "https://facebook.com/djeddiouael",
+      icon: <TechIcon name="facebook" size={16} className="w-4 h-4" />,
+      action: () => {
+        window.open("https://facebook.com/djeddiouael", "_blank", "noopener,noreferrer");
+        onClose();
+      },
+      keywords: ["facebook", "fb", "social", "reseau"],
+    },
+    {
+      id: "soc-instagram",
+      category: "social",
+      title: language === "fr" ? "Ouvrir le Profil Instagram" : "Open Instagram Profile",
+      subtitle: "https://instagram.com/djeddiouael",
+      icon: <TechIcon name="instagram" size={16} className="w-4 h-4" />,
+      action: () => {
+        window.open("https://instagram.com/djeddiouael", "_blank", "noopener,noreferrer");
+        onClose();
+      },
+      keywords: ["instagram", "ig", "insta", "social", "photos"],
     },
   ];
 

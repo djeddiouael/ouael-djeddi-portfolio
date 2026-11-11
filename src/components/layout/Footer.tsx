@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { ArrowUp, Github, Linkedin, Mail, Youtube } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/data/portfolioData";
+import { TechIcon } from "@/components/icons/TechIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function Footer() {
@@ -11,21 +12,6 @@ export function Footer() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const getSocialIcon = (name: string) => {
-    switch (name.toLowerCase()) {
-      case "github":
-        return <Github className="w-4 h-4" />;
-      case "youtube":
-        return <Youtube className="w-4 h-4" />;
-      case "linkedin":
-        return <Linkedin className="w-4 h-4" />;
-      case "email":
-        return <Mail className="w-4 h-4" />;
-      default:
-        return null;
-    }
   };
 
   const navLinks = [
@@ -74,7 +60,11 @@ export function Footer() {
                   className="w-9 h-9 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-white flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm dark:shadow-none"
                   aria-label={link.name}
                 >
-                  {getSocialIcon(link.name)}
+                  {link.name.toLowerCase() === "email" ? (
+                    <span className="text-cyan-500 font-bold text-xs">@</span>
+                  ) : (
+                    <TechIcon name={link.name} size={18} className="w-4.5 h-4.5" />
+                  )}
                 </a>
               ))}
             </div>
