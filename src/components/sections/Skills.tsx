@@ -7,30 +7,62 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SKILL_CATEGORIES } from "@/data/portfolioData";
 import { TechIcon } from "@/components/icons/TechIcons";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Skills() {
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<string>("All");
 
   const filterTabs = [
-    { label: "All Technologies", id: "All" },
-    { label: "AI & Machine Learning", id: "AI & Machine Learning" },
-    { label: "Programming", id: "Programming" },
-    { label: "Web Development", id: "Web Development" },
-    { label: "Tools & Infrastructure", id: "Tools & Infrastructure" },
+    { label: t.skills.filters.all, id: "All" },
+    { label: t.skills.filters.ai, id: "AI & Machine Learning" },
+    { label: t.skills.filters.programming, id: "Programming" },
+    { label: t.skills.filters.web, id: "Web Development" },
+    { label: t.skills.filters.tools, id: "Tools & Infrastructure" },
   ];
 
   const getCategoryIcon = (categoryName: string) => {
     switch (categoryName) {
       case "Programming":
-        return <Code2 className="w-5 h-5 text-purple-400" />;
+        return <Code2 className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
       case "AI & Machine Learning":
-        return <BrainCircuit className="w-5 h-5 text-cyan-400" />;
+        return <BrainCircuit className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />;
       case "Web Development":
-        return <Globe2 className="w-5 h-5 text-indigo-400" />;
+        return <Globe2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
       case "Tools & Infrastructure":
-        return <TerminalSquare className="w-5 h-5 text-emerald-400" />;
+        return <TerminalSquare className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
       default:
-        return <Sparkles className="w-5 h-5 text-purple-400" />;
+        return <Sparkles className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
+    }
+  };
+
+  const getTranslatedCategoryTitle = (catKey: string) => {
+    switch (catKey) {
+      case "Programming":
+        return t.skills.categories.programming.title;
+      case "AI & Machine Learning":
+        return t.skills.categories.ai.title;
+      case "Web Development":
+        return t.skills.categories.web.title;
+      case "Tools & Infrastructure":
+        return t.skills.categories.tools.title;
+      default:
+        return catKey;
+    }
+  };
+
+  const getTranslatedCategoryDesc = (catKey: string) => {
+    switch (catKey) {
+      case "Programming":
+        return t.skills.categories.programming.desc;
+      case "AI & Machine Learning":
+        return t.skills.categories.ai.desc;
+      case "Web Development":
+        return t.skills.categories.web.desc;
+      case "Tools & Infrastructure":
+        return t.skills.categories.tools.desc;
+      default:
+        return "";
     }
   };
 
@@ -38,26 +70,26 @@ export function Skills() {
   const allSkills = SKILL_CATEGORIES.flatMap((category) =>
     category.skills.map((skill) => ({
       ...skill,
-      categoryName: category.title,
+      categoryKey: category.title,
     }))
   );
 
   const displayedSkills =
     activeFilter === "All"
       ? allSkills
-      : allSkills.filter((s) => s.categoryName === activeFilter);
+      : allSkills.filter((s) => s.categoryKey === activeFilter);
 
   return (
     <section id="skills" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background glow orbs */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-cyan-500/10 dark:bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-purple-500/10 dark:bg-purple-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="02 // SKILLS & TECH STACK"
-          title="Technologies, Frameworks & Tooling"
-          subtitle="A comprehensive toolkit spanning deep learning, machine learning algorithms, modern frontend frameworks, and software engineering infrastructure."
+          badge={t.skills.badge}
+          title={t.skills.title}
+          subtitle={t.skills.subtitle}
         />
 
         {/* Filter Tabs */}
@@ -70,8 +102,8 @@ export function Skills() {
                 onClick={() => setActiveFilter(tab.id)}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 border ${
                   isActive
-                    ? "bg-purple-600/20 text-white border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.25)] font-semibold"
-                    : "bg-[#0c1024]/60 text-slate-400 border-white/[0.08] hover:text-white hover:bg-white/[0.04]"
+                    ? "bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-500/25 font-semibold"
+                    : "bg-white/80 dark:bg-[#0c1024]/60 text-slate-700 dark:text-slate-400 border-slate-200 dark:border-white/[0.08] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.04]"
                 }`}
               >
                 {tab.label}
@@ -94,11 +126,11 @@ export function Skills() {
               >
                 <GlassCard
                   glowColor={
-                    skill.categoryName.includes("AI")
+                    skill.categoryKey.includes("AI")
                       ? "cyan"
-                      : skill.categoryName.includes("Programming")
+                      : skill.categoryKey.includes("Programming")
                       ? "purple"
-                      : skill.categoryName.includes("Web")
+                      : skill.categoryKey.includes("Web")
                       ? "blue"
                       : "default"
                   }
@@ -107,33 +139,33 @@ export function Skills() {
                   <div className="space-y-3">
                     {/* Header: Icon + Category Badge */}
                     <div className="flex items-center justify-between">
-                      <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center p-2.5 text-white group-hover:scale-110 transition-transform duration-200">
-                        <TechIcon name={skill.icon} className="w-6 h-6 text-slate-200 group-hover:text-purple-300" />
+                      <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center p-2.5 text-slate-800 dark:text-white group-hover:scale-110 transition-transform duration-200">
+                        <TechIcon name={skill.icon} className="w-6 h-6 text-slate-700 dark:text-slate-200 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] border border-white/[0.06] text-slate-400">
-                        {skill.categoryName}
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
+                        {getTranslatedCategoryTitle(skill.categoryKey)}
                       </span>
                     </div>
 
-                    {/* Skill Name */}
+                    {/* Skill Name & Translated Description */}
                     <div>
-                      <h4 className="text-base font-bold text-white group-hover:text-purple-300 transition-colors">
+                      <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
                         {skill.name}
                       </h4>
-                      <p className="mt-1 text-xs text-slate-400 leading-relaxed">
-                        {skill.description}
+                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {t.skills.skillItems[skill.name] || skill.description}
                       </p>
                     </div>
                   </div>
 
                   {/* Bottom indicator tag */}
-                  <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-500">
+                  <div className="mt-4 pt-3 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-500">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400/80" />
-                      Active Stack
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500 dark:bg-purple-400" />
+                      {t.skills.activeStack}
                     </span>
-                    <span className="text-purple-400/60 group-hover:text-purple-300 transition-colors">
-                      Verified
+                    <span className="text-purple-600 dark:text-purple-400/80 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors font-medium">
+                      {t.skills.verified}
                     </span>
                   </div>
                 </GlassCard>
@@ -147,17 +179,17 @@ export function Skills() {
           {SKILL_CATEGORIES.map((cat) => (
             <div
               key={cat.title}
-              className="p-4 rounded-xl border border-white/[0.06] bg-[#070b1c]/80 backdrop-blur-md flex items-start gap-3"
+              className="p-4 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-white/70 dark:bg-[#070b1c]/80 backdrop-blur-md flex items-start gap-3 shadow-sm dark:shadow-none"
             >
-              <div className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0 mt-0.5">
+              <div className="p-2 rounded-lg bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.06] shrink-0 mt-0.5">
                 {getCategoryIcon(cat.title)}
               </div>
               <div>
-                <h5 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
-                  {cat.title}
+                <h5 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
+                  {getTranslatedCategoryTitle(cat.title)}
                 </h5>
-                <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                  {cat.description}
+                <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 leading-snug">
+                  {getTranslatedCategoryDesc(cat.title)}
                 </p>
               </div>
             </div>

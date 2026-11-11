@@ -28,19 +28,14 @@ export function ParticleBackground() {
 
     window.addEventListener("resize", handleResize);
 
-    // Particle nodes for neural-like ambient mesh
-    const particleCount = Math.min(Math.floor((width * height) / 22000), 55);
+    const particleCount = Math.min(Math.floor((width * height) / 22000), 50);
     const particles: Array<{
       x: number;
       y: number;
       vx: number;
       vy: number;
       radius: number;
-      color: string;
-      alpha: number;
     }> = [];
-
-    const colors = ["#8b5cf6", "#6366f1", "#06b6d4", "#3b82f6"];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -49,8 +44,6 @@ export function ParticleBackground() {
         vx: (Math.random() - 0.5) * 0.35,
         vy: (Math.random() - 0.5) * 0.35,
         radius: Math.random() * 1.5 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.5 + 0.2,
       });
     }
 
@@ -67,6 +60,11 @@ export function ParticleBackground() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      const isDark = document.documentElement.classList.contains("dark");
+      const lineColor = isDark ? "rgba(139, 92, 246, " : "rgba(99, 102, 241, ";
+      const dotColor = isDark ? "#8b5cf6" : "#6366f1";
+      const maxDist = 130;
+
       // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -74,9 +72,9 @@ export function ParticleBackground() {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
-            const alpha = (1 - dist / 130) * 0.15;
-            ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
+          if (dist < maxDist) {
+            const alpha = (1 - dist / maxDist) * (isDark ? 0.15 : 0.08);
+            ctx.strokeStyle = `${lineColor}${alpha})`;
             ctx.lineWidth = 0.75;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -93,13 +91,11 @@ export function ParticleBackground() {
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap around bounds
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
 
-        // Gentle reaction to cursor
         const dx = mouseX - p.x;
         const dy = mouseY - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -111,8 +107,8 @@ export function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = dotColor;
+        ctx.globalAlpha = isDark ? 0.45 : 0.25;
         ctx.fill();
         ctx.globalAlpha = 1.0;
       }
@@ -132,7 +128,7 @@ export function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 opacity-40 transition-opacity duration-1000"
+      className="pointer-events-none fixed inset-0 z-0 opacity-40 dark:opacity-40 transition-opacity duration-700"
       aria-hidden="true"
     />
   );

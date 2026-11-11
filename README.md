@@ -1,6 +1,6 @@
 # DJEDDI Ouael — Full Stack & AI Developer Portfolio
 
-> A futuristic, premium personal developer portfolio engineered with Next.js (App Router), React, TypeScript, Tailwind CSS, and Framer Motion.
+> A futuristic, international developer portfolio with **Multilingual Support (EN / FR)** and an **Adaptive Theme System (System / Dark / Light)** engineered with Next.js (App Router), React, TypeScript, Tailwind CSS, and Framer Motion.
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://react.dev/)
@@ -17,22 +17,34 @@
 - **GitHub:** [@djeddiouael](https://github.com/djeddiouael)
 - **YouTube:** [@djeddiouael](https://www.youtube.com/@djeddiouael)
 - **LinkedIn:** [DJEDDI Ouael](https://linkedin.com/in/ouael-djeddi)
+- **Repository:** [ouael-djeddi-portfolio](https://github.com/djeddiouael/ouael-djeddi-portfolio)
 
 ---
 
-## ✨ Design & Architectural Highlights
+## ✨ Key Features & Architectural Improvements
 
-- **Aesthetic:** Dark cyberpunk & AI laboratory theme (`#030712`), neon purple and cyan accents, subtle glow effects, and modern glassmorphism.
-- **Interactive Particle Neural Canvas:** Ambient background nodes with particle connections reacting smoothly to cursor movement and respecting accessibility (`prefers-reduced-motion`).
+### 1. 🌐 Complete Multilingual System (EN / FR)
+- Full bilingual coverage across every UI section: navigation, hero, terminal, about narrative, focus cards, skills descriptions, project details, academic timeline, contact form, validation feedback, and footer.
+- Centralized i18n architecture located in `src/i18n/translations.ts` and managed via `LanguageContext`.
+- Instant language switching with `EN / FR` switcher in the navbar.
+- Automatic browser language detection and `localStorage` persistence across page reloads.
+
+### 2. 🌗 Adaptive Theme System (System / Dark / Light)
+- **System Mode (Default):** Automatically detects OS preference (`prefers-color-scheme`) and responds to system changes in real time.
+- **Dark Mode:** Deep cyberpunk/AI laboratory aesthetic (`#030712`), neon purple and cyan accents, and glowing glassmorphic cards.
+- **Light Mode:** Crisp, high-contrast palette with soft lavender/indigo accents, clean white cards, subtle shadows, and excellent legibility.
+- **Zero Flash:** Pre-render inline script guarantees instant theme and language application with no FOUC (flash of unstyled content).
+
+### 3. 🎨 UI/UX & Component Showcase
+- **Particle Neural Mesh:** Ambient canvas that smoothly adapts its color scheme and respects `prefers-reduced-motion`.
 - **Interactive Code Terminal:** Multi-tab developer console (`developer.ts`, `super_resolution.py`, `scraper.py`) with syntax highlighting and one-click copy.
-- **Featured Projects with Custom Visual Showcases:**
-  1. **Single Image Super-Resolution:** Generative AI / Computer Vision interactive before/after split slider demonstrating 4x spatial restoration with PSNR telemetry.
-  2. **Python Books Web Scraper:** Automated crawling pipeline with simulated live HTTP logs and structured tabular extraction.
-  3. **University Transfer Platform:** Full-stack administrative dashboard mockup with real-time transfer dossier statuses.
-  4. **SEI IoT Project:** Virtualized microcontroller simulation powered by Wokwi with sensor telemetry and serial monitoring.
-- **Categorized Skills Matrix:** Interactive filtering tabs (All, AI & Machine Learning, Programming, Web Development, Tools & Infrastructure) with verified technology badges and no invented proficiency percentages.
-- **Academic Timeline:** Highlighted educational trajectory including Master's studies in Specialty I2A (Intelligent Computer Science & Applications) at University of Boumerdes (UMBB) and previous computer science studies at University of Tebessa.
-- **Validated Contact System:** Full Next.js App Router API endpoint (`/api/contact`) with client and server validation, structured JSON responses, copy email helper, and direct mailto fallback.
+- **Featured Project Showcases:**
+  1. **Single Image Super-Resolution:** Interactive before/after split slider comparing degraded input with 4x neural reconstruction.
+  2. **Python Books Web Scraper:** Automated crawling console with simulated live HTTP logs and structured schema.
+  3. **University Transfer Platform:** Full-stack administrative dashboard mockup with transfer request statuses.
+  4. **SEI IoT Project:** Microcontroller simulation powered by Wokwi with sensor telemetry and serial monitoring.
+- **Academic Timeline:** Highlighted educational trajectory including Master's studies in Specialty I2A at University of Boumerdes (UMBB) and foundational studies at University of Tebessa.
+- **Validated Contact System:** Next.js App Router API endpoint (`/api/contact`) with full validation and direct mailto fallback.
 
 ---
 
@@ -48,59 +60,11 @@
 
 ---
 
-## 📁 Repository Structure
-
-```plaintext
-ouael-djeddi-ai-portfolio/
-├── public/
-│   └── icon.svg                   # Brand favicon & vector icon
-├── src/
-│   ├── app/
-│   │   ├── api/
-│   │   │   └── contact/
-│   │   │       └── route.ts       # Secure Next.js contact API endpoint
-│   │   ├── globals.css            # Custom glow utilities, scrollbar & theme tokens
-│   │   ├── layout.tsx             # Root layout with SEO metadata & OpenGraph tags
-│   │   └── page.tsx               # Primary single-page portfolio layout
-│   ├── components/
-│   │   ├── icons/
-│   │   │   └── TechIcons.tsx      # Custom vector brand icons
-│   │   ├── layout/
-│   │   │   ├── Footer.tsx         # Comprehensive footer with dynamic copyright
-│   │   │   └── Navbar.tsx         # Glassmorphic header with scroll spy & mobile drawer
-│   │   ├── sections/
-│   │   │   ├── About.tsx          # Academic narrative & focus areas
-│   │   │   ├── Contact.tsx        # Validated interactive inquiry form
-│   │   │   ├── Education.tsx      # Formal academic trajectory timeline
-│   │   │   ├── Hero.tsx           # Futuristic hero with terminal & CTAs
-│   │   │   ├── Projects.tsx       # Featured engineering projects
-│   │   │   └── Skills.tsx         # Filterable tech stack matrix
-│   │   └── ui/
-│   │       ├── CodeTerminal.tsx   # Interactive developer code snippet terminal
-│   │       ├── GlassCard.tsx      # Radial spotlight glass card component
-│   │       ├── ParticleBackground.tsx # Neural mesh particle canvas
-│   │       ├── ProjectVisual.tsx  # Bespoke project interactive graphics
-│   │       └── SectionHeading.tsx # Section title badge & gradient typography
-│   ├── data/
-│   │   └── portfolioData.ts       # Centralized, type-safe portfolio data
-│   ├── lib/
-│   │   └── utils.ts               # Class merging utilities (clsx + twMerge)
-│   └── types/
-│       └── index.ts               # Shared TypeScript interfaces & types
-├── next.config.mjs
-├── package.json
-├── postcss.config.js
-├── tailwind.config.ts
-└── tsconfig.json
-```
-
----
-
 ## ⚡ Getting Started Locally
 
 ### Prerequisites
 
-Ensure you have [Node.js](https://nodejs.org/) (v18.17 or higher recommended) and npm installed:
+Ensure you have [Node.js](https://nodejs.org/) (v18.17+ recommended) and npm installed:
 
 ```bash
 node -v
@@ -110,8 +74,8 @@ npm -v
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/djeddiouael/ouael-djeddi-ai-portfolio.git
-cd ouael-djeddi-ai-portfolio
+git clone https://github.com/djeddiouael/ouael-djeddi-portfolio.git
+cd ouael-djeddi-portfolio
 ```
 
 ### 2. Install Dependencies
@@ -126,7 +90,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application with Hot Module Replacement (HMR).
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### 4. Create Production Build
 
@@ -139,30 +103,16 @@ npm run start
 
 ## 🚢 Deploying to Vercel
 
-The portfolio is fully optimized for one-click deployment on [Vercel](https://vercel.com):
-
-1. Push your repository to your GitHub account:
+1. Push your repository to GitHub:
    ```bash
    git add .
-   git commit -m "feat: complete futuristic AI developer portfolio"
+   git commit -m "feat: multilingual and adaptive theme updates"
    git push origin main
    ```
-2. Go to [Vercel](https://vercel.com) and click **"Add New..." > "Project"**.
-3. Import the `ouael-djeddi-ai-portfolio` repository.
-4. Framework Preset will automatically detect **Next.js**.
-5. Click **Deploy**. Vercel will build the production bundle and assign a high-speed CDN domain.
+2. In [Vercel](https://vercel.com), import `ouael-djeddi-portfolio` and click **Deploy**. Next.js App Router will be detected automatically.
 
 ---
 
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-## 📬 Contact & Inquiries
-
-- **DJEDDI Ouael** — Full Stack & AI Developer
-- **Email:** [ouael.djeddi.contact@gmail.com](mailto:ouael.djeddi.contact@gmail.com)
-- **GitHub:** [https://github.com/djeddiouael](https://github.com/djeddiouael)
-- **YouTube:** [https://www.youtube.com/@djeddiouael](https://www.youtube.com/@djeddiouael)

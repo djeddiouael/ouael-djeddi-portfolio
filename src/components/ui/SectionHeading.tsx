@@ -26,11 +26,11 @@ export function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5 }}
-        className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider uppercase mb-4 border border-purple-500/20 bg-purple-500/10 text-purple-300 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)] ${
-          isCenter ? "mx-auto" : ""
-        }`}
+        className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider uppercase mb-4 border transition-colors ${
+          "border-purple-200 bg-purple-50 text-purple-700 dark:border-purple-500/20 dark:bg-purple-500/10 dark:text-purple-300 backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+        } ${isCenter ? "mx-auto" : ""}`}
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-purple-500 dark:bg-purple-400 animate-pulse" />
         {badge}
       </motion.div>
 
@@ -40,19 +40,36 @@ export function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4 leading-tight"
       >
         {title.split(" ").map((word, i) => {
-          // Highlight key words with vibrant purple/cyan gradient
-          const isAccent = ["AI", "Applications", "Projects", "Skills", "Education", "Together", "Full", "Stack"].includes(
-            word.replace(/[^a-zA-Z]/g, "")
-          );
+          // Highlight accent keywords in both languages
+          const cleanWord = word.replace(/[^a-zA-ZÀ-ÿ]/g, "");
+          const isAccent = [
+            "AI",
+            "IA",
+            "Applications",
+            "Projects",
+            "Projets",
+            "Skills",
+            "Compétences",
+            "Education",
+            "Formation",
+            "Together",
+            "Ensemble",
+            "Full",
+            "Stack",
+            "Solutions",
+            "Intelligente",
+            "Intelligence",
+          ].includes(cleanWord);
+
           return (
             <span
               key={i}
               className={
                 isAccent
-                  ? "bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-300 to-cyan-400 font-extrabold"
+                  ? "bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 dark:from-purple-400 dark:via-violet-300 dark:to-cyan-400 font-extrabold"
                   : ""
               }
             >
@@ -69,7 +86,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-base sm:text-lg text-slate-400 leading-relaxed"
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
         >
           {subtitle}
         </motion.p>

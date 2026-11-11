@@ -30,18 +30,11 @@ export function GlassCard({
     });
   };
 
-  const glowColors = {
+  const glowColorsDark = {
     purple: "rgba(168, 85, 247, 0.15)",
     cyan: "rgba(6, 182, 212, 0.15)",
     blue: "rgba(59, 130, 246, 0.15)",
     default: "rgba(255, 255, 255, 0.08)",
-  };
-
-  const borderGlowColors = {
-    purple: "hover:border-purple-500/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.18)]",
-    cyan: "hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.18)]",
-    blue: "hover:border-blue-500/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.18)]",
-    default: "hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.06)]",
   };
 
   return (
@@ -51,8 +44,14 @@ export function GlassCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "relative rounded-2xl border border-white/[0.08] bg-[#0c1024]/70 backdrop-blur-xl transition-all duration-300 overflow-hidden",
-        interactive && borderGlowColors[glowColor],
+        "relative rounded-2xl transition-all duration-300 overflow-hidden backdrop-blur-xl",
+        // Light mode styling
+        "bg-white/80 border border-slate-200/90 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] text-slate-900",
+        // Dark mode styling
+        "dark:bg-[#0c1024]/75 dark:border-white/[0.08] dark:shadow-none dark:text-slate-100",
+        // Hover interactive borders
+        interactive &&
+          "hover:border-purple-400/50 hover:shadow-[0_12px_35px_-8px_rgba(139,92,246,0.15)] dark:hover:border-purple-500/40 dark:hover:shadow-[0_0_30px_rgba(168,85,247,0.18)]",
         className
       )}
       {...props}
@@ -60,9 +59,9 @@ export function GlassCard({
       {/* Interactive spotlight follow effect */}
       {interactive && isHovered && (
         <div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300"
+          className="pointer-events-none absolute -inset-px transition-opacity duration-300 hidden dark:block"
           style={{
-            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, ${glowColors[glowColor]}, transparent 70%)`,
+            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, ${glowColorsDark[glowColor]}, transparent 70%)`,
           }}
         />
       )}

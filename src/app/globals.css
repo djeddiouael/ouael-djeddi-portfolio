@@ -9,34 +9,60 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
   color-scheme: dark;
 }
 
 body {
-  background-color: #030712;
-  color: #f8fafc;
   font-family: var(--font-inter);
   overflow-x: hidden;
-  selection-background-color: #8b5cf6;
-  selection-color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar */
+/* Light theme default */
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Dark theme overrides */
+html.dark body {
+  background-color: #030712;
+  color: #f8fafc;
+}
+
+/* Custom Scrollbar - Light */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e1b4b;
+  background: #cbd5e1;
   border-radius: 4px;
-  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Custom Scrollbar - Dark */
+html.dark ::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1e1b4b;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: #4338ca;
 }
 
@@ -51,6 +77,19 @@ body {
 
 .bg-pos-100 {
   background-position: 100% 50%;
+}
+
+/* Glassmorphism custom helpers */
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel-dark {
+  background: rgba(12, 16, 36, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.7);
 }
 
 /* Respect user's reduced-motion preference */

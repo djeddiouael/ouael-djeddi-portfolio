@@ -1,19 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import { Activity, ArrowRight, CheckCircle2, Cpu, Database, Eye, FileText, Layers, RefreshCw, Terminal } from "lucide-react";
+import { Activity, CheckCircle2, Cpu, Database, Eye, FileText, Layers, RefreshCw, Terminal } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ProjectVisualProps {
   type: "super-resolution" | "scraper" | "university-platform" | "iot-simulation";
 }
 
 export function ProjectVisual({ type }: ProjectVisualProps) {
-  // Slider state for Super-Resolution
+  const { t } = useLanguage();
   const [sliderPos, setSliderPos] = useState(55);
 
   if (type === "super-resolution") {
     return (
-      <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#060919] border border-purple-500/20 select-none group">
+      <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#060919] border border-slate-300 dark:border-purple-500/20 select-none group shadow-inner">
         {/* Background neural grid */}
         <div className="absolute inset-0 bg-[radial-gradient(#8b5cf6_1px,transparent_1px)] [background-size:16px_16px] opacity-20" />
 
@@ -25,11 +26,11 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
               <div className="w-full h-full rounded-2xl bg-[#090d24] flex flex-col items-center justify-center p-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.3)_0%,transparent_70%)]" />
                 <Eye className="w-12 h-12 text-cyan-300 mb-2 relative z-10 filter drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                <span className="text-xs font-mono font-bold text-white tracking-widest relative z-10">
-                  4X RECONSTRUCTION
+                <span className="text-xs font-mono font-bold text-white tracking-widest relative z-10 text-center">
+                  {t.projects.visuals.fourXReconstruction}
                 </span>
-                <span className="text-[10px] font-mono text-cyan-300/80 relative z-10">
-                  High-Frequency Restored
+                <span className="text-[10px] font-mono text-cyan-300/80 relative z-10 text-center">
+                  {t.projects.visuals.highFreqRestored}
                 </span>
               </div>
             </div>
@@ -54,11 +55,11 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
                   />
                 ))}
               </div>
-              <span className="text-xs font-mono text-slate-400 tracking-wider">
-                LOW-RES INPUT
+              <span className="text-xs font-mono text-slate-300 tracking-wider text-center">
+                {t.projects.visuals.lowResInput}
               </span>
-              <span className="text-[10px] font-mono text-slate-500">
-                Degraded Bicubic
+              <span className="text-[10px] font-mono text-slate-500 text-center">
+                {t.projects.visuals.degradedBicubic}
               </span>
             </div>
           </div>
@@ -85,7 +86,7 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
         </div>
 
         {/* Floating Metrics Badge */}
-        <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
+        <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
           <span className="text-purple-400 font-bold">PSNR: 33.8 dB</span>
           <span className="text-slate-600">•</span>
           <span className="text-cyan-400">Scale: 4x SR</span>
@@ -96,7 +97,7 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
 
   if (type === "scraper") {
     return (
-      <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#060817] border border-cyan-500/20 p-4 font-mono text-xs flex flex-col justify-between">
+      <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#060817] border border-slate-300 dark:border-cyan-500/20 p-4 font-mono text-xs flex flex-col justify-between shadow-inner">
         {/* Terminal Header */}
         <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
           <div className="flex items-center gap-2 text-cyan-400">
@@ -114,7 +115,7 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
             <span className="text-slate-500">$</span> python books_scraper.py --target-all
           </div>
           <div className="text-slate-400 text-[10.5px]">
-            [19:34:02] Initializing Requests session with custom User-Agent...
+            [20:00:12] Initializing Requests session with custom User-Agent...
           </div>
           <div className="text-cyan-300 text-[10.5px] flex items-center gap-1">
             <span>↳ Crawling Page 01..12:</span>
@@ -150,17 +151,17 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
 
   if (type === "university-platform") {
     return (
-      <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#070b1e] border border-blue-500/20 p-4 flex flex-col justify-between">
+      <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#070b1e] border border-slate-300 dark:border-blue-500/20 p-4 flex flex-col justify-between shadow-inner">
         {/* Mockup Header */}
         <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-blue-500" />
             <span className="text-xs font-semibold text-white tracking-wide">
-              Academic Transfer Portal
+              {t.projects.visuals.transferPortal}
             </span>
           </div>
           <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">
-            Full-Stack Admin
+            {t.projects.visuals.adminDossier}
           </span>
         </div>
 
@@ -178,7 +179,7 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
               </div>
             </div>
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-medium flex items-center gap-1">
-              <CheckCircle2 className="w-2.5 h-2.5" /> Approved
+              <CheckCircle2 className="w-2.5 h-2.5" /> Validated
             </span>
           </div>
 
@@ -210,16 +211,16 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
 
   // type === "iot-simulation"
   return (
-    <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#060a17] border border-emerald-500/20 p-4 font-mono text-xs flex flex-col justify-between">
+    <div className="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-[#060a17] border border-slate-300 dark:border-emerald-500/20 p-4 font-mono text-xs flex flex-col justify-between shadow-inner">
       {/* Simulation Header */}
       <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
         <div className="flex items-center gap-2 text-emerald-400">
           <Cpu className="w-3.5 h-3.5" />
-          <span className="text-xs font-semibold">Wokwi Virtual Hardware</span>
+          <span className="text-xs font-semibold">{t.projects.visuals.wokwiHardware}</span>
         </div>
         <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          SIMULATION ACTIVE
+          {t.projects.visuals.simulationActive}
         </span>
       </div>
 
@@ -248,7 +249,7 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
 
         {/* Telemetry sensor readouts */}
         <div className="rounded-lg bg-[#0a1127] p-2.5 border border-white/[0.08] flex flex-col justify-between">
-          <div className="text-[11px] font-bold text-white">Sensor Telemetry</div>
+          <div className="text-[11px] font-bold text-white">{t.projects.visuals.sensorTelemetry}</div>
           <div className="space-y-1.5 text-[10px]">
             <div className="flex justify-between items-center">
               <span className="text-slate-400">Temp:</span>

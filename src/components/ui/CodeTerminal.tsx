@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { Check, Copy, Terminal } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TabCode {
   filename: string;
-  language: string;
   badge: string;
   lines: Array<{
     num: number;
@@ -13,203 +13,201 @@ interface TabCode {
   }>;
 }
 
-const TABS: TabCode[] = [
-  {
-    filename: "developer.ts",
-    language: "typescript",
-    badge: "TS",
-    lines: [
-      {
-        num: 1,
-        tokens: [
-          { text: "interface ", color: "text-purple-400" },
-          { text: "DeveloperProfile ", color: "text-cyan-300" },
-          { text: "{", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 2,
-        tokens: [
-          { text: "  name: ", color: "text-slate-400" },
-          { text: '"DJEDDI Ouael"', color: "text-emerald-400" },
-          { text: ";", color: "text-slate-400" },
-        ],
-      },
-      {
-        num: 3,
-        tokens: [
-          { text: "  title: ", color: "text-slate-400" },
-          { text: '"Full Stack & AI Developer"', color: "text-emerald-400" },
-          { text: ";", color: "text-slate-400" },
-        ],
-      },
-      {
-        num: 4,
-        tokens: [
-          { text: "  education: ", color: "text-slate-400" },
-          { text: '"Master Specialty I2A @ UMBB"', color: "text-emerald-400" },
-          { text: ";", color: "text-slate-400" },
-        ],
-      },
-      {
-        num: 5,
-        tokens: [
-          { text: "  focus: [", color: "text-slate-400" },
-          { text: '"Artificial Intelligence"', color: "text-cyan-300" },
-          { text: ", ", color: "text-slate-400" },
-          { text: '"Deep Learning"', color: "text-purple-300" },
-          { text: ", ", color: "text-slate-400" },
-          { text: '"Full Stack"', color: "text-emerald-300" },
-          { text: "];", color: "text-slate-400" },
-        ],
-      },
-      {
-        num: 6,
-        tokens: [
-          { text: "  passion: ", color: "text-slate-400" },
-          { text: '"Transforming ideas into modern digital experiences"', color: "text-amber-300" },
-          { text: ";", color: "text-slate-400" },
-        ],
-      },
-      {
-        num: 7,
-        tokens: [
-          { text: "  status: ", color: "text-slate-400" },
-          { text: '"Ready to build & innovate"', color: "text-emerald-400" },
-          { text: ";", color: "text-slate-400" },
-        ],
-      },
-      {
-        num: 8,
-        tokens: [{ text: "}", color: "text-slate-300" }],
-      },
-    ],
-  },
-  {
-    filename: "super_resolution.py",
-    language: "python",
-    badge: "PY",
-    lines: [
-      {
-        num: 1,
-        tokens: [
-          { text: "import ", color: "text-purple-400" },
-          { text: "torch", color: "text-cyan-300" },
-          { text: "\nimport ", color: "text-purple-400" },
-          { text: "torch.nn ", color: "text-cyan-300" },
-          { text: "as ", color: "text-purple-400" },
-          { text: "nn", color: "text-slate-200" },
-        ],
-      },
-      {
-        num: 2,
-        tokens: [
-          { text: "class ", color: "text-purple-400" },
-          { text: "SuperResolutionNet", color: "text-amber-300" },
-          { text: "(nn.Module):", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 3,
-        tokens: [
-          { text: "    def ", color: "text-purple-400" },
-          { text: "forward", color: "text-blue-400" },
-          { text: "(self, lr_image):", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 4,
-        tokens: [
-          { text: "        # Reconstruct high-frequency features", color: "text-slate-500 italic" },
-        ],
-      },
-      {
-        num: 5,
-        tokens: [
-          { text: "        features = self.feature_extractor(lr_image)", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 6,
-        tokens: [
-          { text: "        hr_reconstruction = self.upsampler(features)", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 7,
-        tokens: [
-          { text: "        return ", color: "text-purple-400" },
-          { text: "hr_reconstruction  # 4x Sharpness", color: "text-emerald-400" },
-        ],
-      },
-    ],
-  },
-  {
-    filename: "scraper.py",
-    language: "python",
-    badge: "BS4",
-    lines: [
-      {
-        num: 1,
-        tokens: [
-          { text: "from ", color: "text-purple-400" },
-          { text: "bs4 ", color: "text-cyan-300" },
-          { text: "import ", color: "text-purple-400" },
-          { text: "BeautifulSoup", color: "text-slate-200" },
-        ],
-      },
-      {
-        num: 2,
-        tokens: [
-          { text: "import ", color: "text-purple-400" },
-          { text: "requests, pandas as pd", color: "text-slate-200" },
-        ],
-      },
-      {
-        num: 3,
-        tokens: [
-          { text: "def ", color: "text-purple-400" },
-          { text: "crawl_catalog", color: "text-blue-400" },
-          { text: "(url_pattern, max_pages):", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 4,
-        tokens: [
-          { text: "    dataset = []", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 5,
-        tokens: [
-          { text: "    for page in range(1, max_pages + 1):", color: "text-purple-400" },
-        ],
-      },
-      {
-        num: 6,
-        tokens: [
-          { text: "        res = requests.get(url_pattern.format(page))", color: "text-slate-300" },
-        ],
-      },
-      {
-        num: 7,
-        tokens: [
-          { text: "        dataset.extend(parse_page_items(res.text))", color: "text-emerald-400" },
-        ],
-      },
-      {
-        num: 8,
-        tokens: [
-          { text: "    return pd.DataFrame(dataset)", color: "text-cyan-300" },
-        ],
-      },
-    ],
-  },
-];
-
 export function CodeTerminal() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
   const [copied, setCopied] = useState(false);
+
+  const TABS: TabCode[] = [
+    {
+      filename: "developer.ts",
+      badge: "TS",
+      lines: [
+        {
+          num: 1,
+          tokens: [
+            { text: "interface ", color: "text-purple-400" },
+            { text: "DeveloperProfile ", color: "text-cyan-300" },
+            { text: "{", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 2,
+          tokens: [
+            { text: "  name: ", color: "text-slate-400" },
+            { text: '"DJEDDI Ouael"', color: "text-emerald-400" },
+            { text: ";", color: "text-slate-400" },
+          ],
+        },
+        {
+          num: 3,
+          tokens: [
+            { text: "  title: ", color: "text-slate-400" },
+            { text: `"${t.hero.title}"`, color: "text-emerald-400" },
+            { text: ";", color: "text-slate-400" },
+          ],
+        },
+        {
+          num: 4,
+          tokens: [
+            { text: "  education: ", color: "text-slate-400" },
+            { text: '"Master Specialty I2A @ UMBB"', color: "text-emerald-400" },
+            { text: ";", color: "text-slate-400" },
+          ],
+        },
+        {
+          num: 5,
+          tokens: [
+            { text: "  focus: [", color: "text-slate-400" },
+            { text: '"Artificial Intelligence"', color: "text-cyan-300" },
+            { text: ", ", color: "text-slate-400" },
+            { text: '"Deep Learning"', color: "text-purple-300" },
+            { text: ", ", color: "text-slate-400" },
+            { text: '"Full Stack"', color: "text-emerald-300" },
+            { text: "];", color: "text-slate-400" },
+          ],
+        },
+        {
+          num: 6,
+          tokens: [
+            { text: "  passion: ", color: "text-slate-400" },
+            { text: `"${t.hero.terminal.passion}"`, color: "text-amber-300" },
+            { text: ";", color: "text-slate-400" },
+          ],
+        },
+        {
+          num: 7,
+          tokens: [
+            { text: "  status: ", color: "text-slate-400" },
+            { text: `"${t.hero.terminal.devStatus}"`, color: "text-emerald-400" },
+            { text: ";", color: "text-slate-400" },
+          ],
+        },
+        {
+          num: 8,
+          tokens: [{ text: "}", color: "text-slate-300" }],
+        },
+      ],
+    },
+    {
+      filename: "super_resolution.py",
+      badge: "PY",
+      lines: [
+        {
+          num: 1,
+          tokens: [
+            { text: "import ", color: "text-purple-400" },
+            { text: "torch", color: "text-cyan-300" },
+            { text: "\nimport ", color: "text-purple-400" },
+            { text: "torch.nn ", color: "text-cyan-300" },
+            { text: "as ", color: "text-purple-400" },
+            { text: "nn", color: "text-slate-200" },
+          ],
+        },
+        {
+          num: 2,
+          tokens: [
+            { text: "class ", color: "text-purple-400" },
+            { text: "SuperResolutionNet", color: "text-amber-300" },
+            { text: "(nn.Module):", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 3,
+          tokens: [
+            { text: "    def ", color: "text-purple-400" },
+            { text: "forward", color: "text-blue-400" },
+            { text: "(self, lr_image):", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 4,
+          tokens: [
+            { text: "        # Reconstruct high-frequency features", color: "text-slate-500 italic" },
+          ],
+        },
+        {
+          num: 5,
+          tokens: [
+            { text: "        features = self.feature_extractor(lr_image)", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 6,
+          tokens: [
+            { text: "        hr_reconstruction = self.upsampler(features)", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 7,
+          tokens: [
+            { text: "        return ", color: "text-purple-400" },
+            { text: "hr_reconstruction  # 4x Sharpness", color: "text-emerald-400" },
+          ],
+        },
+      ],
+    },
+    {
+      filename: "scraper.py",
+      badge: "BS4",
+      lines: [
+        {
+          num: 1,
+          tokens: [
+            { text: "from ", color: "text-purple-400" },
+            { text: "bs4 ", color: "text-cyan-300" },
+            { text: "import ", color: "text-purple-400" },
+            { text: "BeautifulSoup", color: "text-slate-200" },
+          ],
+        },
+        {
+          num: 2,
+          tokens: [
+            { text: "import ", color: "text-purple-400" },
+            { text: "requests, pandas as pd", color: "text-slate-200" },
+          ],
+        },
+        {
+          num: 3,
+          tokens: [
+            { text: "def ", color: "text-purple-400" },
+            { text: "crawl_catalog", color: "text-blue-400" },
+            { text: "(url_pattern, max_pages):", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 4,
+          tokens: [
+            { text: "    dataset = []", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 5,
+          tokens: [
+            { text: "    for page in range(1, max_pages + 1):", color: "text-purple-400" },
+          ],
+        },
+        {
+          num: 6,
+          tokens: [
+            { text: "        res = requests.get(url_pattern.format(page))", color: "text-slate-300" },
+          ],
+        },
+        {
+          num: 7,
+          tokens: [
+            { text: "        dataset.extend(parse_page_items(res.text))", color: "text-emerald-400" },
+          ],
+        },
+        {
+          num: 8,
+          tokens: [
+            { text: "    return pd.DataFrame(dataset)", color: "text-cyan-300" },
+          ],
+        },
+      ],
+    },
+  ];
 
   const currentTab = TABS[activeTab];
 
@@ -223,7 +221,7 @@ export function CodeTerminal() {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto rounded-2xl overflow-hidden border border-white/[0.12] bg-[#070b1a]/90 backdrop-blur-2xl shadow-2xl shadow-purple-950/40 text-left font-mono text-xs sm:text-sm">
+    <div className="w-full max-w-xl mx-auto rounded-2xl overflow-hidden border border-slate-300 dark:border-white/[0.12] bg-[#070b1a] shadow-xl shadow-slate-900/10 dark:shadow-2xl dark:shadow-purple-950/40 text-left font-mono text-xs sm:text-sm">
       {/* Terminal Title Bar */}
       <div className="flex items-center justify-between px-4 py-3 bg-[#0a0f24] border-b border-white/[0.08]">
         {/* Window controls */}
@@ -245,7 +243,7 @@ export function CodeTerminal() {
               onClick={() => setActiveTab(idx)}
               className={`px-2.5 py-1 rounded text-[11px] transition-all flex items-center gap-1.5 ${
                 activeTab === idx
-                  ? "bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold"
+                  ? "bg-purple-500/25 text-purple-300 border border-purple-500/30 font-semibold"
                   : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
               }`}
             >
@@ -261,8 +259,8 @@ export function CodeTerminal() {
         <button
           onClick={handleCopy}
           className="p-1.5 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-          title="Copy snippet"
-          aria-label="Copy snippet"
+          title={t.hero.terminal.copyTitle}
+          aria-label={t.hero.terminal.copyTitle}
         >
           {copied ? (
             <Check className="w-3.5 h-3.5 text-emerald-400" />
@@ -273,7 +271,7 @@ export function CodeTerminal() {
       </div>
 
       {/* Terminal Code Body */}
-      <div className="p-4 sm:p-5 overflow-x-auto bg-[#050816]/95 leading-relaxed selection:bg-purple-500/30 selection:text-white">
+      <div className="p-4 sm:p-5 overflow-x-auto bg-[#050816] leading-relaxed selection:bg-purple-500/30 selection:text-white">
         <div className="space-y-1">
           {currentTab.lines.map((line) => (
             <div key={line.num} className="flex items-start gap-4">
@@ -295,7 +293,7 @@ export function CodeTerminal() {
         <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="text-emerald-400 font-semibold">Active Session</span>
+            <span className="text-emerald-400 font-semibold">{t.hero.terminal.activeSession}</span>
             <span className="text-slate-600">|</span>
             <span>UTF-8</span>
           </div>
