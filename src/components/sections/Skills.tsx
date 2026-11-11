@@ -2,14 +2,18 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BrainCircuit, Code2, Globe2, Sparkles, TerminalSquare } from "lucide-react";
+import { ArrowUpRight, BrainCircuit, Code2, Globe2, Sparkles, TerminalSquare } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SKILL_CATEGORIES } from "@/data/portfolioData";
 import { TechIcon } from "@/components/icons/TechIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
-export function Skills() {
+interface SkillsProps {
+  onSelectTech?: (tech: string) => void;
+}
+
+export function Skills({ onSelectTech }: SkillsProps) {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<string>("All");
 
@@ -79,6 +83,16 @@ export function Skills() {
       ? allSkills
       : allSkills.filter((s) => s.categoryKey === activeFilter);
 
+  const handleSkillClick = (skillName: string) => {
+    if (onSelectTech) {
+      onSelectTech(skillName);
+      const proj = document.getElementById("projects");
+      if (proj) {
+        proj.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <section id="skills" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background glow orbs */}
@@ -134,7 +148,9 @@ export function Skills() {
                       ? "blue"
                       : "default"
                   }
-                  className="p-5 h-full flex flex-col justify-between group hover:-translate-y-1 transition-transform"
+                  onClick={() => handleSkillClick(skill.name)}
+                  className="p-5 h-full flex flex-col justify-between group hover:-translate-y-1 transition-transform cursor-pointer"
+                  title={t.skills.clickToFilter}
                 >
                   <div className="space-y-3">
                     {/* Header: Icon + Category Badge */}
@@ -149,9 +165,12 @@ export function Skills() {
 
                     {/* Skill Name & Translated Description */}
                     <div>
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
-                        {skill.name}
-                      </h4>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                          {skill.name}
+                        </h4>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-500 opacity-0 group-hover:opacity-100 transition-all" />
+                      </div>
                       <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                         {t.skills.skillItems[skill.name] || skill.description}
                       </p>
@@ -165,7 +184,7 @@ export function Skills() {
                       {t.skills.activeStack}
                     </span>
                     <span className="text-purple-600 dark:text-purple-400/80 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors font-medium">
-                      {t.skills.verified}
+                      Explore Projects →
                     </span>
                   </div>
                 </GlassCard>

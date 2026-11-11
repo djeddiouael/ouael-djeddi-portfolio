@@ -5,6 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { UIModalProvider } from "@/context/UIModalContext";
+import { PrivacyAnalytics } from "@/components/analytics/PrivacyAnalytics";
 
 export const metadata: Metadata = {
   title: "DJEDDI Ouael | Full Stack & AI Developer",
@@ -97,10 +99,13 @@ export default function RootLayout({
       <body className="min-h-screen antialiased relative selection:bg-purple-600/30 selection:text-purple-200 dark:selection:bg-purple-500/30 dark:selection:text-purple-200 transition-colors duration-300">
         <LanguageProvider>
           <ThemeProvider>
-            <ParticleBackground />
-            <Navbar />
-            <main className="relative z-10 flex flex-col">{children}</main>
-            <Footer />
+            <UIModalProvider>
+              <PrivacyAnalytics />
+              <ParticleBackground />
+              <Navbar />
+              <main className="relative z-10 flex flex-col">{children}</main>
+              <Footer />
+            </UIModalProvider>
           </ThemeProvider>
         </LanguageProvider>
       </body>

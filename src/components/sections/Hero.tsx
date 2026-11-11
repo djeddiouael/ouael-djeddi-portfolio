@@ -2,13 +2,18 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Eye, Github, Terminal, Youtube } from "lucide-react";
+import { ArrowRight, Download, Eye, Github, Terminal, Youtube } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { CodeTerminal } from "@/components/ui/CodeTerminal";
 import { useLanguage } from "@/context/LanguageContext";
+import { AVAILABILITY_CONFIG } from "@/config/availability";
 
-export function Hero() {
-  const { t } = useLanguage();
+interface HeroProps {
+  onOpenCVModal?: () => void;
+}
+
+export function Hero({ onOpenCVModal }: HeroProps) {
+  const { t, language } = useLanguage();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,6 +34,9 @@ export function Hero() {
       transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
+
+  const activeAvailability = AVAILABILITY_CONFIG.statusOptions[AVAILABILITY_CONFIG.currentStatus];
+  const availabilityBadgeText = activeAvailability.badgeText[language];
 
   return (
     <section
@@ -52,11 +60,17 @@ export function Hero() {
             animate="visible"
             className="lg:col-span-7 space-y-6 text-left"
           >
-            {/* Status Pill */}
-            <motion.div variants={itemVariants} className="inline-flex">
+            {/* Status Pills Row */}
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono tracking-wide backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(168,85,247,0.15)] bg-purple-50 border-purple-200 text-purple-700 dark:bg-purple-500/10 dark:border-purple-500/25 dark:text-purple-300">
                 <span className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400 animate-ping" />
                 <span>{t.hero.statusBadge}</span>
+              </div>
+
+              {/* Centralized Availability Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-mono tracking-wide bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                <span>{availabilityBadgeText}</span>
               </div>
             </motion.div>
 
@@ -85,7 +99,7 @@ export function Hero() {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-3.5 pt-2"
             >
               {/* View My Projects Button */}
               <a
@@ -96,10 +110,21 @@ export function Hero() {
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
+              {/* Download CV CTA */}
+              {onOpenCVModal && (
+                <button
+                  onClick={onOpenCVModal}
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <Download className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                  <span>{t.hero.downloadCV}</span>
+                </button>
+              )}
+
               {/* Contact Me Button */}
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] hover:border-purple-400/50 transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>{t.hero.contactMe}</span>
               </a>

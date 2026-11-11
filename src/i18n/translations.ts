@@ -5,13 +5,15 @@ export interface TranslationSchema {
     home: string;
     about: string;
     skills: string;
+    journey: string;
     projects: string;
     education: string;
     contact: string;
-    status: string;
+    smartCV: string;
     getInTouch: string;
     openMenu: string;
     closeMenu: string;
+    cmdShortcut: string;
     themeSystem: string;
     themeDark: string;
     themeLight: string;
@@ -24,6 +26,7 @@ export interface TranslationSchema {
     description: string;
     viewProjects: string;
     contactMe: string;
+    downloadCV: string;
     githubAria: string;
     youtubeAria: string;
     highlights: {
@@ -43,6 +46,90 @@ export interface TranslationSchema {
       superRes: string;
       fullstack: string;
     };
+  };
+  commandPalette: {
+    placeholder: string;
+    noResults: string;
+    keyboardHint: string;
+    categories: {
+      navigation: string;
+      interactive: string;
+      preferences: string;
+      social: string;
+    };
+    items: {
+      home: string;
+      about: string;
+      skills: string;
+      journey: string;
+      projects: string;
+      education: string;
+      contact: string;
+      smartCV: string;
+      superResDemo: string;
+      iotSimulation: string;
+      terminal: string;
+      copyEmail: string;
+      emailCopied: string;
+      themeDark: string;
+      themeLight: string;
+      themeSystem: string;
+      langEn: string;
+      langFr: string;
+      github: string;
+      youtube: string;
+      linkedin: string;
+    };
+  };
+  journey: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    filters: {
+      all: string;
+      academic: string;
+      ai: string;
+      engineering: string;
+    };
+    milestones: Array<{
+      id: string;
+      category: "academic" | "ai" | "engineering";
+      categoryLabel: string;
+      title: string;
+      period: string;
+      institutionOrContext: string;
+      description: string;
+      tags: string[];
+    }>;
+  };
+  smartCV: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    buttonLabel: string;
+    modalTitle: string;
+    modalSubtitle: string;
+    profiles: {
+      fullstack: {
+        title: string;
+        tagline: string;
+        description: string;
+        competencies: string[];
+        filename: string;
+      };
+      ai: {
+        title: string;
+        tagline: string;
+        description: string;
+        competencies: string[];
+        filename: string;
+      };
+    };
+    downloadPdf: string;
+    noticeTitle: string;
+    noticeMessage: string;
+    contactInstead: string;
+    close: string;
   };
   about: {
     badge: string;
@@ -109,11 +196,15 @@ export interface TranslationSchema {
     skillItems: Record<string, string>;
     activeStack: string;
     verified: string;
+    clickToFilter: string;
   };
   projects: {
     badge: string;
     title: string;
     subtitle: string;
+    explorerHint: string;
+    activeTechFilter: string;
+    clearFilter: string;
     filters: {
       all: string;
       ai: string;
@@ -131,6 +222,7 @@ export interface TranslationSchema {
       viewRepo: string;
       simulationDemo: string;
       localPrototype: string;
+      matchingProjects: string;
     };
     visuals: {
       lowResInput: string;
@@ -249,13 +341,15 @@ export const translations: Record<Language, TranslationSchema> = {
       home: "Home",
       about: "About",
       skills: "Skills",
+      journey: "Journey",
       projects: "Projects",
       education: "Education",
       contact: "Contact",
-      status: "Open to AI Collab",
+      smartCV: "CV Center",
       getInTouch: "Get In Touch",
       openMenu: "Open menu",
       closeMenu: "Close menu",
+      cmdShortcut: "Cmd+K",
       themeSystem: "System",
       themeDark: "Dark",
       themeLight: "Light",
@@ -269,6 +363,7 @@ export const translations: Record<Language, TranslationSchema> = {
         "I build intelligent applications, explore artificial intelligence, and transform ideas into modern digital experiences.",
       viewProjects: "View My Projects",
       contactMe: "Contact Me",
+      downloadCV: "Download CV",
       githubAria: "GitHub Profile",
       youtubeAria: "YouTube Channel",
       highlights: {
@@ -288,6 +383,153 @@ export const translations: Record<Language, TranslationSchema> = {
         superRes: "Super-Resolution AI",
         fullstack: "Full Stack & Automation",
       },
+    },
+    commandPalette: {
+      placeholder: "Type a command or search (e.g. projects, cv, python)...",
+      noResults: "No matching commands or projects found.",
+      keyboardHint: "Press ESC to close, ↑↓ to navigate, ENTER to select",
+      categories: {
+        navigation: "Navigation & Sections",
+        interactive: "Developer Tools & AI Lab",
+        preferences: "Preferences & Actions",
+        social: "External Profiles",
+      },
+      items: {
+        home: "Go to Home / Hero",
+        about: "Go to About Me",
+        skills: "Go to Skills & Tech Stack",
+        journey: "Go to Developer Journey",
+        projects: "Go to Featured Projects",
+        education: "Go to Academic Background",
+        contact: "Go to Contact Section",
+        smartCV: "Open Smart CV Center (PDFs)",
+        superResDemo: "Launch Super-Resolution AI Demo",
+        iotSimulation: "Inspect SEI IoT Wokwi Circuit",
+        terminal: "Open Interactive Code Terminal",
+        copyEmail: "Copy Direct Email Address",
+        emailCopied: "Email copied to clipboard!",
+        themeDark: "Set Theme to Dark",
+        themeLight: "Set Theme to Light",
+        themeSystem: "Set Theme to System (Auto)",
+        langEn: "Switch Language to English",
+        langFr: "Passer la langue en Français",
+        github: "Open GitHub Profile (@djeddiouael)",
+        youtube: "Open YouTube Channel (@djeddiouael)",
+        linkedin: "Open LinkedIn Profile (DJEDDI Ouael)",
+      },
+    },
+    journey: {
+      badge: "03 // DEVELOPER JOURNEY",
+      title: "Academic Path & Engineering Milestones",
+      subtitle:
+        "A chronological overview of authentic academic foundations, research experiments, and practical software engineering projects.",
+      filters: {
+        all: "All Milestones",
+        academic: "Academic Path",
+        ai: "AI & Research",
+        engineering: "Software Engineering",
+      },
+      milestones: [
+        {
+          id: "m1",
+          category: "academic",
+          categoryLabel: "Academic Foundation",
+          title: "Foundations of Computer Science & Algorithmic Rigor",
+          period: "Undergraduate Studies",
+          institutionOrContext: "University of Tebessa",
+          description:
+            "Built a disciplined foundation in theoretical computer science, advanced algorithmic analysis, discrete mathematics, relational database design, and object-oriented software engineering.",
+          tags: ["Algorithms", "Data Structures", "OOP", "Relational Databases", "Software Engineering"],
+        },
+        {
+          id: "m2",
+          category: "engineering",
+          categoryLabel: "Data Engineering",
+          title: "Automated Data Mining & Crawling Architectures",
+          period: "Engineering Project",
+          institutionOrContext: "Python Books Web Scraper",
+          description:
+            "Engineered automated crawling architectures in Python. Handled paginated catalog requests, HTTP session persistence, error resilience, and structured export pipelines using BeautifulSoup and Requests.",
+          tags: ["Python", "Web Scraping", "Requests", "BeautifulSoup", "Data Pipelines"],
+        },
+        {
+          id: "m3",
+          category: "engineering",
+          categoryLabel: "Systems & IoT",
+          title: "Embedded Microcontroller & IoT Virtual Telemetry",
+          period: "Hardware Simulation",
+          institutionOrContext: "SEI IoT Project (Wokwi)",
+          description:
+            "Implemented microcontroller logic and virtualized sensor telemetry in the Wokwi embedded simulator, processing temperature, ultrasonic distance, and actuator control in real time.",
+          tags: ["IoT", "Embedded C", "Wokwi", "Sensors", "Telemetry"],
+        },
+        {
+          id: "m4",
+          category: "engineering",
+          categoryLabel: "Full Stack Web",
+          title: "Academic Management & Transfer Platform",
+          period: "Full-Stack System",
+          institutionOrContext: "University Transfer Platform",
+          description:
+            "Architected an end-to-end university management platform designed to streamline student dossier submission, departmental document review, and status tracking with role-based access.",
+          tags: ["Node.js", "Full Stack", "REST APIs", "Modern UI", "Database Architecture"],
+        },
+        {
+          id: "m5",
+          category: "academic",
+          categoryLabel: "Specialized Master's",
+          title: "Master's Studies — Specialty I2A (Intelligent Computer Science)",
+          period: "Current Master's Program",
+          institutionOrContext: "University of Boumerdes (UMBB)",
+          description:
+            "Enrolled in the competitive Master's program in Informatique Intelligente & Applications (I2A), focusing on neural network architectures, machine learning theory, computer vision, and applied intelligence.",
+          tags: ["Artificial Intelligence", "Machine Learning", "Neural Networks", "Applied Computing"],
+        },
+        {
+          id: "m6",
+          category: "ai",
+          categoryLabel: "Computer Vision Research",
+          title: "Single Image Super-Resolution via Deep Learning",
+          period: "Deep Learning Research",
+          institutionOrContext: "PyTorch & Computer Vision",
+          description:
+            "Researched and trained deep convolutional neural models for 4x spatial image reconstruction from degraded inputs, analyzing perceptual loss formulations against bicubic baselines.",
+          tags: ["PyTorch", "Computer Vision", "Super-Resolution", "Deep Learning", "Convolutional Networks"],
+        },
+      ],
+    },
+    smartCV: {
+      badge: "SMART CV CENTER",
+      title: "Professional Curriculum Vitae",
+      subtitle:
+        "Select and review tailored profiles aligned with Full Stack Engineering or Artificial Intelligence & Computer Vision.",
+      buttonLabel: "Download CV",
+      modalTitle: "Select Curriculum Vitae Profile",
+      modalSubtitle: "Choose the version that best matches your opportunity or technical requirements.",
+      profiles: {
+        fullstack: {
+          title: "Full Stack Software Engineer",
+          tagline: "Web Architecture, APIs & Modern Frontend",
+          description:
+            "Focused on full-stack web applications, TypeScript, Next.js, Node.js backends, RESTful APIs, and responsive design systems.",
+          competencies: ["Next.js & React", "TypeScript & Node.js", "Tailwind CSS", "Database Design", "Git & Docker"],
+          filename: "DJEDDI_Ouael_FullStack_CV.pdf",
+        },
+        ai: {
+          title: "AI & Computer Vision Developer",
+          tagline: "Deep Learning, PyTorch & Intelligent Systems",
+          description:
+            "Focused on neural network development, PyTorch, computer vision reconstruction, machine learning algorithms, and Python data pipelines.",
+          competencies: ["PyTorch & Deep Learning", "Computer Vision", "TensorFlow & Scikit-learn", "NumPy & Pandas", "Automation Pipelines"],
+          filename: "DJEDDI_Ouael_AI_CV.pdf",
+        },
+      },
+      downloadPdf: "Download PDF",
+      noticeTitle: "CV Document Preparation Notice",
+      noticeMessage:
+        "The static PDF document for this profile is currently being compiled for the current semester. You can explore all verified projects and education details directly on this portfolio or request the latest PDF directly via email.",
+      contactInstead: "Contact Ouael Directly",
+      close: "Close",
     },
     about: {
       badge: "01 // ABOUT ME",
@@ -376,12 +618,16 @@ export const translations: Record<Language, TranslationSchema> = {
       },
       activeStack: "Active Stack",
       verified: "Verified",
+      clickToFilter: "Click to view related projects",
     },
     projects: {
-      badge: "03 // FEATURED PROJECTS",
+      badge: "04 // FEATURED PROJECTS",
       title: "Engineered Solutions & Research Prototypes",
       subtitle:
         "Explore selected works across generative computer vision, automated data pipelines, full stack academic management systems, and IoT embedded simulations.",
+      explorerHint: "Interactive Tech Stack Explorer: Filter projects by clicking technology tags below or on any project card.",
+      activeTechFilter: "Active Tech Filter",
+      clearFilter: "Clear Tech Filter",
       filters: {
         all: "All",
         ai: "AI & Deep Learning",
@@ -399,6 +645,7 @@ export const translations: Record<Language, TranslationSchema> = {
         viewRepo: "View Repository",
         simulationDemo: "Simulation Demo",
         localPrototype: "Local prototype / Model weights",
+        matchingProjects: "matching projects",
       },
       visuals: {
         lowResInput: "LOW-RES INPUT",
@@ -456,7 +703,7 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     education: {
-      badge: "04 // ACADEMIC BACKGROUND",
+      badge: "05 // ACADEMIC BACKGROUND",
       title: "Education & Academic Path",
       subtitle:
         "Formal academic training specializing in Intelligent Computer Science, Machine Learning architectures, and foundational software engineering principles.",
@@ -484,7 +731,7 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     contact: {
-      badge: "05 // CONTACT & CONNECT",
+      badge: "06 // CONTACT & CONNECT",
       title: "Let's Build Something Together",
       subtitle:
         "Interested in AI collaboration, research discussions, full-stack web engineering, or project inquiries? Reach out through the form below or via direct channels.",
@@ -536,13 +783,15 @@ export const translations: Record<Language, TranslationSchema> = {
       home: "Accueil",
       about: "À propos",
       skills: "Compétences",
+      journey: "Parcours",
       projects: "Projets",
       education: "Formation",
       contact: "Contact",
-      status: "Disponible pour projets IA",
+      smartCV: "Espace CV",
       getInTouch: "Me contacter",
       openMenu: "Ouvrir le menu",
       closeMenu: "Fermer le menu",
+      cmdShortcut: "Cmd+K",
       themeSystem: "Système",
       themeDark: "Sombre",
       themeLight: "Clair",
@@ -556,6 +805,7 @@ export const translations: Record<Language, TranslationSchema> = {
         "Je conçois des applications intelligentes, explore l'intelligence artificielle et transforme les idées en expériences numériques modernes.",
       viewProjects: "Voir mes projets",
       contactMe: "Me contacter",
+      downloadCV: "Télécharger CV",
       githubAria: "Profil GitHub",
       youtubeAria: "Chaîne YouTube",
       highlights: {
@@ -575,6 +825,153 @@ export const translations: Record<Language, TranslationSchema> = {
         superRes: "IA Super-Résolution",
         fullstack: "Full Stack & Automatisation",
       },
+    },
+    commandPalette: {
+      placeholder: "Tapez une commande ou cherchez (ex. projets, cv, python)...",
+      noResults: "Aucune commande ou technologie correspondante trouvée.",
+      keyboardHint: "ESC pour fermer, ↑↓ pour naviguer, ENTRÉE pour exécuter",
+      categories: {
+        navigation: "Navigation & Rubriques",
+        interactive: "Outils Développeur & Lab IA",
+        preferences: "Préférences & Actions",
+        social: "Profils Externes",
+      },
+      items: {
+        home: "Aller à l'Accueil",
+        about: "Aller à À Propos",
+        skills: "Aller aux Compétences & Stack",
+        journey: "Aller au Parcours Développeur",
+        projects: "Aller aux Projets Vedettes",
+        education: "Aller au Parcours Académique",
+        contact: "Aller à la Section Contact",
+        smartCV: "Ouvrir l'Espace CV Intelligent (PDF)",
+        superResDemo: "Lancer la Démo Super-Résolution IA",
+        iotSimulation: "Inspecter le Circuit IoT Wokwi",
+        terminal: "Ouvrir le Terminal de Code Interactif",
+        copyEmail: "Copier l'Email Direct",
+        emailCopied: "Adresse email copiée dans le presse-papiers !",
+        themeDark: "Activer le Thème Sombre",
+        themeLight: "Activer le Thème Clair",
+        themeSystem: "Activer le Thème Système (Auto)",
+        langEn: "Switch Language to English",
+        langFr: "Passer la langue en Français",
+        github: "Ouvrir le Profil GitHub (@djeddiouael)",
+        youtube: "Ouvrir la Chaîne YouTube (@djeddiouael)",
+        linkedin: "Ouvrir le Profil LinkedIn (DJEDDI Ouael)",
+      },
+    },
+    journey: {
+      badge: "03 // PARCOURS DÉVELOPPEUR",
+      title: "Parcours Académique & Étapes d'Ingénierie",
+      subtitle:
+        "Une chronologie fidèle des fondements universitaires, des expérimentations de recherche et des réalisations logicielles concrètes.",
+      filters: {
+        all: "Toutes les étapes",
+        academic: "Cursus Académique",
+        ai: "IA & Recherche",
+        engineering: "Génie Logiciel",
+      },
+      milestones: [
+        {
+          id: "m1",
+          category: "academic",
+          categoryLabel: "Fondations Académiques",
+          title: "Fondements de l'Informatique & Rigueur Algorithmique",
+          period: "Cursus Universitaire",
+          institutionOrContext: "Université de Tébessa",
+          description:
+            "Acquisition d'un socle solide en informatique théorique, algorithmique avancée, structures de données, conception orientée objet, bases de données relationnelles et mathématiques appliquées.",
+          tags: ["Algorithmes", "Structures de données", "POO", "Bases de données", "Génie logiciel"],
+        },
+        {
+          id: "m2",
+          category: "engineering",
+          categoryLabel: "Ingénierie de Données",
+          title: "Architectures d'Extraction & Crawling Automatisé",
+          period: "Projet d'Ingénierie",
+          institutionOrContext: "Python Books Web Scraper",
+          description:
+            "Conception d'une architecture de scraping automatisée en Python avec gestion de requêtes paginées, persistance de sessions HTTP, gestion d'erreurs et export vers des pipelines structurés.",
+          tags: ["Python", "Web Scraping", "Requests", "BeautifulSoup", "Pipelines de données"],
+        },
+        {
+          id: "m3",
+          category: "engineering",
+          categoryLabel: "Systèmes & IoT",
+          title: "Programmation Microcontrôleur & Télémétrie Virtuelle IoT",
+          period: "Simulation Matérielle",
+          institutionOrContext: "Projet SEI IoT (Wokwi)",
+          description:
+            "Mise en œuvre d'une logique embarquée et simulation de capteurs dans l'environnement virtuel Wokwi, intégrant l'acquisition de température, de distance ultrasonique et le contrôle d'actionneurs.",
+          tags: ["IoT", "C Embarqué", "Wokwi", "Capteurs", "Télémétrie"],
+        },
+        {
+          id: "m4",
+          category: "engineering",
+          categoryLabel: "Web Full Stack",
+          title: "Plateforme de Gestion des Transferts Universitaires",
+          period: "Système Full Stack",
+          institutionOrContext: "Plateforme de Transfert Universitaire",
+          description:
+            "Conception d'une plateforme web complète pour fluidifier le dépôt des dossiers étudiants, la validation des pièces administratives et le suivi pédagogique avec gestion des rôles.",
+          tags: ["Node.js", "Full Stack", "API REST", "UI Moderne", "Architecture Base de Données"],
+        },
+        {
+          id: "m5",
+          category: "academic",
+          categoryLabel: "Master Spécialisé",
+          title: "Études de Master — Spécialité I2A (Informatique Intelligente)",
+          period: "Programme de Master en cours",
+          institutionOrContext: "Université de Boumerdès (UMBB)",
+          description:
+            "Spécialisation approfondie en Informatique Intelligente & Applications (I2A), axée sur les réseaux de neurones profonds, la théorie du machine learning, la vision par ordinateur et les systèmes intelligents.",
+          tags: ["Intelligence Artificielle", "Machine Learning", "Réseaux Neuronaux", "Informatique Appliquée"],
+        },
+        {
+          id: "m6",
+          category: "ai",
+          categoryLabel: "Recherche en Vision IA",
+          title: "Reconstruction par Super-Résolution d'Image Unique",
+          period: "Projet de Recherche Deep Learning",
+          institutionOrContext: "PyTorch & Vision par Ordinateur",
+          description:
+            "Recherche et entraînement de modèles neuronaux convolutifs profonds pour la reconstruction haute définition 4x à partir d'images dégradées, avec analyse de fonctions de perte perceptuelle.",
+          tags: ["PyTorch", "Vision par ordinateur", "Super-Résolution", "Deep Learning", "Réseaux Convolutifs"],
+        },
+      ],
+    },
+    smartCV: {
+      badge: "ESPACE CV INTELLIGENT",
+      title: "Curriculum Vitae Professionnels",
+      subtitle:
+        "Consultez et téléchargez les profils ciblés en Ingénierie Full Stack ou Intelligence Artificielle & Deep Learning.",
+      buttonLabel: "Télécharger CV",
+      modalTitle: "Sélectionnez le Profil CV",
+      modalSubtitle: "Choisissez la déclinaison adaptée à vos besoins ou opportunités professionnelles.",
+      profiles: {
+        fullstack: {
+          title: "Ingénieur Logiciel Full Stack",
+          tagline: "Architecture Web, API & Frontend Réactif",
+          description:
+            "Axé sur les applications web modernes, TypeScript, Next.js, les backends Node.js, les API RESTful et les architectures logicielles évolutives.",
+          competencies: ["Next.js & React", "TypeScript & Node.js", "Tailwind CSS", "Architecture Base de Données", "Git & Docker"],
+          filename: "DJEDDI_Ouael_FullStack_CV.pdf",
+        },
+        ai: {
+          title: "Développeur IA & Vision par Ordinateur",
+          tagline: "Deep Learning, PyTorch & Systèmes Intelligents",
+          description:
+            "Axé sur l'entraînement de réseaux de neurones, PyTorch, la restauration d'images par vision artificielle et les pipelines d'automatisation de données en Python.",
+          competencies: ["PyTorch & Deep Learning", "Vision par ordinateur", "TensorFlow & Scikit-learn", "NumPy & Pandas", "Pipelines de Données"],
+          filename: "DJEDDI_Ouael_AI_CV.pdf",
+        },
+      },
+      downloadPdf: "Télécharger le PDF",
+      noticeTitle: "Note de Préparation des Documents",
+      noticeMessage:
+        "La version PDF statique de ce profil est actuellement en cours de finalisation pour le semestre universitaire courant. Vous pouvez consulter l'ensemble des projets vérifiés et formations directement sur ce portfolio ou contacter Ouael par email.",
+      contactInstead: "Contacter Ouael Directement",
+      close: "Fermer",
     },
     about: {
       badge: "01 // À PROPOS",
@@ -663,12 +1060,16 @@ export const translations: Record<Language, TranslationSchema> = {
       },
       activeStack: "Stack Active",
       verified: "Vérifié",
+      clickToFilter: "Cliquer pour voir les projets associés",
     },
     projects: {
-      badge: "03 // PROJETS VEDETTES",
+      badge: "04 // PROJETS VEDETTES",
       title: "Solutions Développées & Prototypes de Recherche",
       subtitle:
         "Découvrez une sélection de projets en vision générative par ordinateur, pipelines de données automatisés, plateformes universitaires et simulations IoT.",
+      explorerHint: "Explorateur de Technologies : Filtrez les projets en cliquant sur les technologies ci-dessous ou sur n'importe quelle carte de projet.",
+      activeTechFilter: "Filtre Technologie Actif",
+      clearFilter: "Effacer le filtre",
       filters: {
         all: "Tous",
         ai: "IA & Deep Learning",
@@ -686,6 +1087,7 @@ export const translations: Record<Language, TranslationSchema> = {
         viewRepo: "Voir le dépôt",
         simulationDemo: "Démo simulation",
         localPrototype: "Prototype local / Poids du modèle",
+        matchingProjects: "projets correspondants",
       },
       visuals: {
         lowResInput: "ENTRÉE BASSE DÉF.",
@@ -743,7 +1145,7 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     education: {
-      badge: "04 // PARCOURS ACADÉMIQUE",
+      badge: "05 // PARCOURS ACADÉMIQUE",
       title: "Formation & Cursus Académique",
       subtitle:
         "Formation universitaire formelle spécialisée en informatique intelligente, architectures de machine learning et principes fondamentaux du génie logiciel.",
@@ -771,7 +1173,7 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     contact: {
-      badge: "05 // CONTACT & ÉCHANGE",
+      badge: "06 // CONTACT & ÉCHANGE",
       title: "Construisons Quelque Chose Ensemble",
       subtitle:
         "Intéressé par une collaboration en intelligence artificielle, un échange sur la recherche, du développement web full stack ou une opportunité ? Écrivez-moi via le formulaire ci-dessous ou directement par email.",

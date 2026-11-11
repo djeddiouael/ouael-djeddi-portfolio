@@ -32,6 +32,7 @@ export function Footer() {
     { label: t.nav.home, href: "#home" },
     { label: t.nav.about, href: "#about" },
     { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.journey, href: "#journey" },
     { label: t.nav.projects, href: "#projects" },
     { label: t.nav.education, href: "#education" },
     { label: t.nav.contact, href: "#contact" },

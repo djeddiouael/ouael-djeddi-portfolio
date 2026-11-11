@@ -19,9 +19,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { useLanguage } from "@/context/LanguageContext";
+import { AVAILABILITY_CONFIG } from "@/config/availability";
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -171,10 +172,18 @@ export function Contact() {
                 </button>
               </div>
 
-              {/* Status */}
-              <div className="pt-2 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300 font-mono">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-                <span>{t.contact.responseWindow}</span>
+              {/* Status & Availability */}
+              <div className="pt-2 space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">
+                    {AVAILABILITY_CONFIG.statusOptions[AVAILABILITY_CONFIG.currentStatus].label[language]}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-[11px] text-slate-500">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                  <span>{t.contact.responseWindow}</span>
+                </div>
               </div>
             </GlassCard>
 
