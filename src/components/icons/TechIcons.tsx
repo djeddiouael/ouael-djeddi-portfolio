@@ -5,197 +5,214 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export function TechIcon({ name, className = "w-6 h-6", size = 24 }: { name: string; className?: string; size?: number }) {
-  const norm = name.toLowerCase();
+export function TechIcon({
+  name,
+  className = "w-6 h-6",
+  size = 24,
+}: {
+  name: string;
+  className?: string;
+  size?: number;
+}) {
+  const norm = name.toLowerCase().replace(/[\s\-_.]/g, "");
 
   switch (norm) {
+    // Python - Official Simple Icons
     case "python":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" className={className}>
-          <path
-            d="M11.91 2c-5.4 0-5.06 2.34-5.06 2.34l.01 2.42h5.13v.73H4.75S2 7.18 2 12.62c0 5.43 2.4 5.25 2.4 5.25h1.43v-2.02s-.08-2.4 2.37-2.4h5.12s2.3.04 2.3-2.28V4.32S16.03 2 11.91 2zm-2.78 1.54a.8.8 0 110 1.6.8.8 0 010-1.6z"
-            fill="currentColor"
-            className="text-blue-400"
-          />
-          <path
-            d="M12.09 22c5.4 0 5.06-2.34 5.06-2.34l-.01-2.42h-5.13v-.73h7.24S22 16.82 22 11.38c0-5.43-2.4-5.25-2.4-5.25h-1.43v2.02s.08 2.4-2.37 2.4h-5.12s-2.3-.04-2.3 2.28v6.85S7.97 22 12.09 22zm2.78-1.54a.8.8 0 110-1.6.8.8 0 010 1.6z"
-            fill="currentColor"
-            className="text-yellow-400"
-          />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.748h5.813v.824H3.844S0 5.674 0 11.826c0 6.154 3.398 5.952 3.398 5.952h2.03v-2.85s-.11-3.398 3.342-3.398h5.753s3.232.052 3.232-3.23V3.23S18.066 0 11.914 0zm-3.11 1.76a1.144 1.144 0 1 1 0 2.288 1.144 1.144 0 0 1 0-2.288zM12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.748h-5.813v-.824h8.176S24 18.326 24 12.174c0-6.154-3.398-5.952-3.398-5.952h-2.03v2.85s.11 3.398-3.342 3.398H9.477s-3.232-.052-3.232 3.23v5.108S5.934 24 12.086 24zm3.11-1.76a1.144 1.144 0 1 1 0-2.288 1.144 1.144 0 0 1 0 2.288z" />
         </svg>
       );
 
+    // PyTorch - Official Simple Icons
     case "pytorch":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M13.5 3L11 6.5l2 2-5 5a6 6 0 108.5 0l-3-3" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="15.5" cy="4.5" r="1.5" fill="currentColor" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M13.593 0a.673.673 0 0 0-.47.197L9.932 3.388a.674.674 0 0 0 0 .954l1.458 1.458-2.646 2.646a7.485 7.485 0 1 0 10.584 0l-4.103-4.103a.673.673 0 0 0-.954 0l-.822.822 1.458 1.458a.674.674 0 0 0 .954 0l1.792-1.792a6.136 6.136 0 1 1-8.678 0l2.747-2.747a.674.674 0 0 0 0-.954L14.063.197A.673.673 0 0 0 13.593 0z" />
         </svg>
       );
 
+    // TensorFlow - Official Simple Icons
     case "tensorflow":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12 22V12" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M21 7l-9 5L3 7" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M7.5 9.5l4.5 2.5 4.5-2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M1.292 5.856L11.54 0v24l-4.092-2.385V7.93l-6.156 3.59v-5.664zm21.416 0L12.46 0v24l4.092-2.385V7.93l6.156 3.59v-5.664z" />
         </svg>
       );
 
+    // Scikit-learn - Official Simple Icons
     case "scikitlearn":
+    case "sklearn":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <circle cx="7" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="17" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="12" cy="17" r="4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M9.5 9.5L14.5 14.5M14.5 9.5L9.5 14.5" strokeLinecap="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M14.992 0a5.996 5.996 0 0 0-4.887 2.528A5.997 5.997 0 0 0 5.218 0C2.336 0 0 2.336 0 5.218c0 2.115 1.258 3.935 3.064 4.747a5.986 5.986 0 0 0-.074.945c0 3.312 2.688 6 6 6 .319 0 .633-.025.941-.074.812 1.806 2.632 3.064 4.747 3.064 2.882 0 5.218-2.336 5.218-5.218 0-.319-.029-.633-.084-.941 1.776-.826 2.986-2.624 2.986-4.706C22.798 4.096 19.324 0 14.992 0zm-9.774 8.528a3.31 3.31 0 1 1 0-6.62 3.31 3.31 0 0 1 0 6.62zm9.774 8.528a3.31 3.31 0 1 1 0-6.62 3.31 3.31 0 0 1 0 6.62zm1.696-6.62a3.31 3.31 0 1 1 0-6.62 3.31 3.31 0 0 1 0 6.62z" />
         </svg>
       );
 
+    // NumPy - Official Simple Icons
     case "numpy":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <rect x="3" y="3" width="7" height="7" rx="1.5" />
-          <rect x="14" y="3" width="7" height="7" rx="1.5" />
-          <rect x="3" y="14" width="7" height="7" rx="1.5" />
-          <rect x="14" y="14" width="7" height="7" rx="1.5" />
-          <path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4" strokeLinecap="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm-.985 4.884h1.97v3.082h3.94v-3.082h1.97v14.232h-1.97v-3.082h-3.94v3.082h-1.97V4.884zm1.97 4.966h3.94v4.3h-3.94V9.85z" />
         </svg>
       );
 
+    // Pandas - Official Simple Icons
     case "pandas":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M4 4h4v6H4zM10 8h4v12h-4zM16 12h4v8h-4zM4 14h4v6H4z" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M14.615 0h-5.23v6.092h5.23V0zm-6.262 0H3.123v14.862h5.23V0zm12.524 0h-5.23v14.862h5.23V0zM8.353 16.954H3.123V24h5.23v-7.046zm6.262-8.862h-5.23v15.908h5.23V8.092zm6.262 8.862h-5.23V24h5.23v-7.046z" />
         </svg>
       );
 
+    // OpenCV / Computer Vision - Official Simple Icons OpenCV
     case "vision":
-    case "computer vision":
+    case "computervision":
+    case "opencv":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12 9v1m0 4v1m-3-3h1m4 0h1" strokeLinecap="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M12 0C8.686 0 6 2.686 6 6c0 1.258.388 2.426 1.05 3.388A5.952 5.952 0 0 0 6 12a5.952 5.952 0 0 0 1.05 3.388C6.388 16.35 6 17.518 6 18.776 6 22.09 8.686 24 12 24s6-1.91 6-5.224c0-1.258-.388-2.426-1.05-3.388A5.952 5.952 0 0 0 18 12a5.952 5.952 0 0 0-1.05-3.388C17.612 7.65 18 6.482 18 5.224 18 1.91 15.314 0 12 0zm0 2.4c1.988 0 3.6 1.612 3.6 3.6s-1.612 3.6-3.6 3.6-3.6-1.612-3.6-3.6 1.612-3.6 3.6-3.6zm-3.6 7.2a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2zm7.2 0a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2zm-3.6 3.6a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z" />
         </svg>
       );
 
+    // React - Official Simple Icons
     case "react":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(30 12 12)" strokeLinecap="round" />
-          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(90 12 12)" strokeLinecap="round" />
-          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(150 12 12)" strokeLinecap="round" />
-          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M12 9.07c-1.62 0-2.93 1.31-2.93 2.93s1.31 2.93 2.93 2.93 2.93-1.31 2.93-2.93c0-1.62-1.31-2.93-2.93-2.93zm0-8.07c-3.1 0-6.07 1.05-8.2 2.96-.3.27-.58.56-.84.86C1.12 7.08 0 9.44 0 12c0 2.56 1.12 4.92 2.96 7.18.26.3.54.59.84.86 2.13 1.91 5.1 2.96 8.2 2.96 3.1 0 6.07-1.05 8.2-2.96.3-.27.58-.56.84-.86C22.88 16.92 24 14.56 24 12c0-2.56-1.12-4.92-2.96-7.18-.26-.3-.54-.59-.84-.86C18.07 2.05 15.1 1 12 1zm0 1.8c2.4 0 4.7.74 6.44 2.14-1.28 1.4-3.1 2.9-5.18 4.2-1.68-.86-3.37-1.54-5.02-2.02C9.43 5.48 10.68 4.8 12 4.8zm-7.6 3.24c1.55.45 3.14 1.1 4.72 1.91-1.39 1.4-2.6 2.92-3.58 4.46-1.06-.92-1.93-2-2.53-3.17.38-1.21.94-2.28 1.67-3.2zm-.3 7.92c.6 1.17 1.47 2.25 2.53 3.17.98-1.54 2.19-3.06 3.58-4.46-1.58-.81-3.17-1.46-4.72-1.91-.73.92-1.29 1.99-1.67 3.2zm6.64 4.84c-1.32-.68-2.57-1.36-3.76-2.32 1.65-.48 3.34-1.16 5.02-2.02 2.08 1.3 3.9 2.8 5.18 4.2-1.74 1.4-4.04 2.14-6.44 2.14zm7.6-3.24c-.6-1.17-1.47-2.25-2.53-3.17-.98 1.54-2.19 3.06-3.58 4.46 1.58.81 3.17 1.46 4.72 1.91.73-.92 1.29-1.99 1.67-3.2zm.3-7.92c-.6-1.17-1.47-2.25-2.53-3.17-.98-1.54-2.19-3.06-3.58-4.46 1.58.81 3.17 1.46 4.72 1.91.73.92 1.29 1.99 1.67 3.2z" />
         </svg>
       );
 
+    // Next.js - Official Simple Icons
     case "nextjs":
+    case "next":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <circle cx="12" cy="12" r="9.5" strokeLinecap="round" />
-          <path d="M9 8v8M15 8v4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M9 8.5l7 8.5" strokeLinecap="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M18.665 21.978C16.687 23.24 14.37 24 11.999 24 5.373 24 0 18.627 0 12S5.373 0 11.999 0s12 5.373 12 12c0 3.125-1.196 6.002-3.155 8.163l-10.744-13.88h-2.15v15.433h2.15v-10.96l9.96 12.822zM17.85 7.714h2.15v8.572h-2.15V7.714z" />
         </svg>
       );
 
+    // Node.js - Official Simple Icons
     case "nodejs":
+    case "node":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M12 2.5l8 4.6v9.2l-8 4.6-8-4.6V7.1l8-4.6z" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12 7v5l4 2.3M12 12l-4 2.3" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M12 0a1.2 1.2 0 0 0-.6.16L1.8 5.76a1.2 1.2 0 0 0-.6 1.04v10.4a1.2 1.2 0 0 0 .6 1.04l9.6 5.6a1.2 1.2 0 0 0 1.2 0l9.6-5.6a1.2 1.2 0 0 0 .6-1.04V6.8a1.2 1.2 0 0 0-.6-1.04l-9.6-5.6A1.2 1.2 0 0 0 12 0zm0 2.45 8.4 4.9-8.4 4.9-8.4-4.9 8.4-4.9zm-9.6 6.55 8.4 4.9v9.8l-8.4-4.9V9zm19.2 0v9.8l-8.4 4.9v-9.8l8.4-4.9z" />
         </svg>
       );
 
+    // Tailwind CSS - Official Simple Icons
     case "tailwind":
+    case "tailwindcss":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path
-            d="M6 9c1.5-2 3.5-3 6-3 3.5 0 5 2 6.5 3.5C20 11 21.5 12 23 12c-1.5 2-3.5 3-6 3-3.5 0-5-2-6.5-3.5C9 10 7.5 9 6 9z"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M1 15c1.5-2 3.5-3 6-3 3.5 0 5 2 6.5 3.5C15 17 16.5 18 18 18c-1.5 2-3.5 3-6 3-3.5 0-5-2-6.5-3.5C4 16 2.5 15 1 15z"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
         </svg>
       );
 
+    // TypeScript - Official Simple Icons
     case "typescript":
+    case "ts":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <rect x="3" y="3" width="18" height="18" rx="3" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M7 9h6M10 9v8M14 13.5c.5-.5 1.5-.7 2.2-.3.7.4.8 1.2.3 1.8-.8 1-2.5.5-2.5 2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zM12.38 8.04h-3.9v1.94h1.95v7.98h2.05v-7.98h1.9v-1.94h-2zm4.33 3.65c-.75-.43-1.63-.64-2.48-.6-.62.03-1.24.28-1.55.83-.34.62-.22 1.45.28 1.95.83.82 1.93 1.25 2.92 1.83.74.45 1.47 1.02 1.54 1.92.08 1.02-.63 1.96-1.6 2.25-1.05.3-2.19.16-3.18-.32v2.16c.92.38 1.93.57 2.94.55 1.5-.02 3-.8 3.55-2.22.48-1.23.18-2.73-.72-3.62-.83-.82-1.93-1.25-2.92-1.83-.72-.44-1.44-.98-1.53-1.85-.09-.94.57-1.8 1.48-2.06.94-.27 1.96-.15 2.85.29v-2.14z" />
         </svg>
       );
 
+    // JavaScript - Official Simple Icons
     case "javascript":
+    case "js":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <rect x="3" y="3" width="18" height="18" rx="3" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M9 13.5v2a1.5 1.5 0 01-3 0M14 13.5c.5-.5 1.5-.7 2.2-.3.7.4.8 1.2.3 1.8-.8 1-2.5.5-2.5 2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.017-.888-1.798-2.876-2.607l-.744-.316c-.76-.328-.97-.66-.97-1.12 0-.48.375-.85 1.01-.85.655 0 1.04.28 1.344.825l1.62-.99c-.66-1.15-1.64-1.64-2.964-1.64-1.77 0-3 1.08-3 2.7 0 1.25.75 2.05 2.37 2.73l.75.32c.98.42 1.31.78 1.31 1.36 0 .61-.55 1-1.37 1-.95 0-1.5-.54-1.86-1.32l-1.68.96c.64 1.39 1.84 2.1 3.54 2.1 2.04 0 3.37-1.07 3.37-2.81zm-9.366-5.83h-2.18v6.78c0 1.45-.63 2.05-1.81 2.05-.62 0-1.12-.13-1.47-.35l-.46 1.76c.49.27 1.29.43 2.18.43 2.22 0 3.74-1.18 3.74-3.79v-6.88z" />
         </svg>
       );
 
+    // HTML5 - Official Simple Icons
     case "html":
+    case "html5":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M4 3l1.5 16L12 21l6.5-2L20 3H4z" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M16 7H8l.5 5h7l-.5 5-3 1-3-1-.2-2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.234-2.625H5.438l.688 7.875h9.187l-.375 4.125-3.469.938-3.469-.938-.219-2.438H5.156l.438 4.875 6.383 1.77 6.383-1.77.89-9.887H8.531z" />
         </svg>
       );
 
+    // CSS3 - Official Simple Icons
     case "css":
+    case "css3":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M4 3l1.5 16L12 21l6.5-2L20 3H4z" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M16.5 7.5h-9l.4 4.5h8l-.5 5.2-3.4 1-3.4-1-.2-2.2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.5H5.41l.23 2.63h11.2l-.23 2.62H5.87l.23 2.63h10.33l-.86 9.53-3.6 1-3.6-1-.23-2.63H5.51l.46 5.25 6 1.66 6-1.66 1.12-12.4v-.01l.5-5.63z" />
         </svg>
       );
 
+    // Git - Official Simple Icons
     case "git":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M18 11.5a3 3 0 100-6 3 3 0 000 6zM6 18.5a3 3 0 100-6 3 3 0 000 6zM6 5.5a3 3 0 100-6 3 3 0 000 6z" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M6 8.5v4M8.5 14l7-4" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M23.546 10.93L13.067.452a1.5 1.5 0 0 0-2.122 0L8.835 2.56l2.673 2.673a1.78 1.78 0 0 1 1.769.438c.692.693.738 1.782.138 2.527l2.57 2.57a1.78 1.78 0 0 1 2.528.138 1.785 1.785 0 0 1 0 2.523 1.784 1.784 0 0 1-2.524 0 1.785 1.785 0 0 1-.137-2.528l-2.49-2.49a1.78 1.78 0 0 1-.58.103 1.78 1.78 0 0 1-1.26-.523 1.79 1.79 0 0 1-.444-1.787L8.41 6.007l-7.958 7.96a1.5 1.5 0 0 0 0 2.12l10.48 10.48a1.5 1.5 0 0 0 2.12 0l10.494-10.48a1.5 1.5 0 0 0 0-2.157z" />
         </svg>
       );
 
+    // GitHub - Official Simple Icons
     case "github":
       return (
         <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
-          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+          />
         </svg>
       );
 
+    // VS Code - Official Simple Icons
     case "vscode":
+    case "visualstudiocode":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M16 2l5 3v14l-5 3L8 15l8-3V2z" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M3 8.5l5 3.5-5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z" />
         </svg>
       );
 
+    // Docker - Official Simple Icons
     case "docker":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <path d="M4 12h16c0 4-3 7-8 7s-8-3-8-7z" strokeLinecap="round" strokeLinejoin="round" />
-          <rect x="5" y="8" width="2.5" height="2.5" rx="0.5" />
-          <rect x="8.5" y="8" width="2.5" height="2.5" rx="0.5" />
-          <rect x="12" y="8" width="2.5" height="2.5" rx="0.5" />
-          <rect x="8.5" y="5" width="2.5" height="2.5" rx="0.5" />
-          <rect x="12" y="5" width="2.5" height="2.5" rx="0.5" />
-          <path d="M18.5 11c1-1 2.5-.5 3 0" strokeLinecap="round" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className}>
+          <path d="M13.983 11.078h2.119a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.119a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 0 0 .186-.186V3.574a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 0 0 .186-.186V6.29a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 0 0 .184-.186V6.29a.185.185 0 0 0-.185-.185H8.1a.185.185 0 0 0-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 0 0 .185-.186V6.29a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m-2.929 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.185-.186H8.1a.185.185 0 0 0-.185.186v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.185-.186H5.136a.186.186 0 0 0-.186.186v1.888c0 .102.084.185.186.185m-2.928 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.186v1.888c0 .102.082.185.185.185M23.77 12.01c-.13-.095-1.378-.802-3.473-.59-1.28.13-2.316.59-3.082 1.365a.187.187 0 0 1-.26.002c-.896-.757-2.146-1.127-3.708-1.097H.482a.482.482 0 0 0-.482.482c0 2.227.603 4.38 1.745 6.223 1.637 2.64 4.34 4.298 7.42 4.55 7.74.636 14.184-4.52 14.61-9.923.018-.23.024-.46.024-.69a.187.187 0 0 0-.03-.122" />
+        </svg>
+      );
+
+    // BeautifulSoup / Scraping
+    case "beautifulsoup":
+    case "bs4":
+    case "requests":
+    case "scraping":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+          <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" strokeLinecap="round" />
+          <circle cx="12" cy="12" r="4" strokeLinecap="round" />
+        </svg>
+      );
+
+    // IoT / Embedded / Wokwi / Microcontroller
+    case "iot":
+    case "wokwi":
+    case "embedded":
+    case "microcontroller":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+          <rect x="4" y="4" width="16" height="16" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="9" y="9" width="6" height="6" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
 
     default:
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-          <circle cx="12" cy="12" r="9" />
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+          <circle cx="12" cy="12" r="9" strokeLinecap="round" />
           <path d="M12 8v8M8 12h8" strokeLinecap="round" />
         </svg>
       );

@@ -6,6 +6,7 @@ export interface TranslationSchema {
     about: string;
     skills: string;
     journey: string;
+    capabilities: string;
     projects: string;
     education: string;
     contact: string;
@@ -62,6 +63,7 @@ export interface TranslationSchema {
       about: string;
       skills: string;
       journey: string;
+      capabilities: string;
       projects: string;
       education: string;
       contact: string;
@@ -342,6 +344,7 @@ export const translations: Record<Language, TranslationSchema> = {
       about: "About",
       skills: "Skills",
       journey: "Journey",
+      capabilities: "Capabilities",
       projects: "Projects",
       education: "Education",
       contact: "Contact",
@@ -399,6 +402,7 @@ export const translations: Record<Language, TranslationSchema> = {
         about: "Go to About Me",
         skills: "Go to Skills & Tech Stack",
         journey: "Go to Developer Journey",
+        capabilities: "Go to Technical Capabilities & Architecture",
         projects: "Go to Featured Projects",
         education: "Go to Academic Background",
         contact: "Go to Contact Section",
@@ -784,6 +788,7 @@ export const translations: Record<Language, TranslationSchema> = {
       about: "À propos",
       skills: "Compétences",
       journey: "Parcours",
+      capabilities: "Capacités",
       projects: "Projets",
       education: "Formation",
       contact: "Contact",
@@ -841,6 +846,7 @@ export const translations: Record<Language, TranslationSchema> = {
         about: "Aller à À Propos",
         skills: "Aller aux Compétences & Stack",
         journey: "Aller au Parcours Développeur",
+        capabilities: "Aller aux Capacités Techniques & Architectures",
         projects: "Aller aux Projets Vedettes",
         education: "Aller au Parcours Académique",
         contact: "Aller à la Section Contact",

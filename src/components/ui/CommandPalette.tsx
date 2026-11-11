@@ -129,6 +129,15 @@ export function CommandPalette({ isOpen, onClose, onOpenCVModal }: CommandPalett
       keywords: ["journey", "parcours", "roadmap", "timeline", "milestones", "history"],
     },
     {
+      id: "nav-capabilities",
+      category: "navigation",
+      title: t.commandPalette.items.capabilities,
+      subtitle: "#capabilities",
+      icon: <Sparkles className="w-4 h-4 text-purple-400" />,
+      action: () => scrollToSection("capabilities"),
+      keywords: ["capabilities", "capacites", "architecture", "deep learning", "cv", "embedded", "engineering"],
+    },
+    {
       id: "nav-projects",
       category: "navigation",
       title: t.commandPalette.items.projects,

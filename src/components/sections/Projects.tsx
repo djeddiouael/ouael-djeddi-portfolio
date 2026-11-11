@@ -52,7 +52,7 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
       highlights: t.projects.items.superRes.highlights,
       githubUrl: "https://github.com/djeddiouael",
       visualType: "super-resolution" as const,
-      stats: [
+      specs: [
         { label: t.projects.labels.domain, value: "Computer Vision" },
         { label: t.projects.labels.coreTool, value: "PyTorch & Python" },
       ],
@@ -69,7 +69,7 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
       highlights: t.projects.items.scraper.highlights,
       githubUrl: "https://github.com/djeddiouael",
       visualType: "scraper" as const,
-      stats: [
+      specs: [
         { label: t.projects.labels.type, value: "Web Scraping" },
         { label: t.projects.labels.coreTool, value: "Requests / BS4" },
       ],
@@ -86,7 +86,7 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
       highlights: t.projects.items.university.highlights,
       githubUrl: "https://github.com/djeddiouael",
       visualType: "university-platform" as const,
-      stats: [
+      specs: [
         { label: t.projects.labels.domain, value: "Higher Education" },
         { label: t.projects.labels.scope, value: "Full Stack App" },
       ],
@@ -105,7 +105,7 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
       liveUrl: "https://wokwi.com",
       demoNote: "Interactive circuit simulation on Wokwi",
       visualType: "iot-simulation" as const,
-      stats: [
+      specs: [
         { label: t.projects.labels.field, value: "Embedded Systems" },
         { label: t.projects.labels.simulator, value: "Wokwi" },
       ],
@@ -263,9 +263,9 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
                         <span className="text-[11px] font-mono uppercase tracking-wider text-purple-700 dark:text-purple-400 font-semibold px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20">
                           {project.categoryDisplay}
                         </span>
-                        {project.stats && (
+                        {project.specs && (
                           <div className="flex items-center gap-2 text-[10px] font-mono text-slate-500 dark:text-slate-400">
-                            {project.stats.map((s, i) => (
+                            {project.specs.map((s, i) => (
                               <span key={i} className="px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
                                 {s.value}
                               </span>
