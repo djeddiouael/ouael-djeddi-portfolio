@@ -87,21 +87,27 @@ export interface TranslationSchema {
     badge: string;
     title: string;
     subtitle: string;
+    contextLabel: string;
+    placeholderLabel: string;
     filters: {
       all: string;
       academic: string;
       ai: string;
       engineering: string;
+      internship: string;
+      freelance: string;
     };
     milestones: Array<{
       id: string;
-      category: "academic" | "ai" | "engineering";
+      category: "academic" | "ai" | "engineering" | "internship" | "freelance";
       categoryLabel: string;
       title: string;
       period: string;
       institutionOrContext: string;
       description: string;
       tags: string[];
+      /** Marks scaffold entries that still need to be replaced with real data. */
+      isPlaceholder?: boolean;
     }>;
   };
   smartCV: {
@@ -430,14 +436,42 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "03 // DEVELOPER JOURNEY",
       title: "Academic Path & Engineering Milestones",
       subtitle:
-        "A chronological overview of authentic academic foundations, research experiments, and practical software engineering projects.",
+        "A chronological overview of authentic academic foundations, research experiments, internships, freelance work, and practical software engineering projects.",
+      contextLabel: "Context",
+      placeholderLabel: "To complete",
       filters: {
         all: "All Milestones",
         academic: "Academic Path",
         ai: "AI & Research",
         engineering: "Software Engineering",
+        internship: "Internships",
+        freelance: "Freelance",
       },
       milestones: [
+        {
+          id: "m7",
+          category: "internship",
+          categoryLabel: "Internship",
+          title: "Internship — [Company Name]",
+          period: "[Start Month Year] — [End Month Year]",
+          institutionOrContext: "[Company · City / Remote]",
+          description:
+            "Placeholder to complete: describe the internship mission, the team you joined, your daily responsibilities, and the technical stack you used. Replace this text with your real experience.",
+          tags: ["[Your Role]", "[Main Stack]", "[Key Mission]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m8",
+          category: "freelance",
+          categoryLabel: "Freelance",
+          title: "Freelance Project — [Client / Project Name]",
+          period: "[Month Year] — [Month Year]",
+          institutionOrContext: "[Client · Remote]",
+          description:
+            "Placeholder to complete: describe the solution you delivered, your responsibilities from scoping to deployment, and the measurable outcome for the client. Replace this text with your real mission.",
+          tags: ["[Service]", "[Stack]", "[Result]"],
+          isPlaceholder: true,
+        },
         {
           id: "m1",
           category: "academic",
@@ -880,14 +914,42 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "03 // PARCOURS DÉVELOPPEUR",
       title: "Parcours Académique & Étapes d'Ingénierie",
       subtitle:
-        "Une chronologie fidèle des fondements universitaires, des expérimentations de recherche et des réalisations logicielles concrètes.",
+        "Une chronologie fidèle des fondements universitaires, des expérimentations de recherche, des stages, des missions freelance et des réalisations logicielles concrètes.",
+      contextLabel: "Contexte",
+      placeholderLabel: "À compléter",
       filters: {
         all: "Toutes les étapes",
         academic: "Cursus Académique",
         ai: "IA & Recherche",
         engineering: "Génie Logiciel",
+        internship: "Stages",
+        freelance: "Freelance",
       },
       milestones: [
+        {
+          id: "m7",
+          category: "internship",
+          categoryLabel: "Stage",
+          title: "Stage — [Nom de l'entreprise]",
+          period: "[Mois Année] — [Mois Année]",
+          institutionOrContext: "[Entreprise · Ville / À distance]",
+          description:
+            "Emplacement à compléter : décrivez la mission du stage, l'équipe rejointe, vos responsabilités quotidiennes et la stack technique utilisée. Remplacez ce texte par votre expérience réelle.",
+          tags: ["[Votre rôle]", "[Stack principale]", "[Mission clé]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m8",
+          category: "freelance",
+          categoryLabel: "Freelance",
+          title: "Projet Freelance — [Client / Nom du projet]",
+          period: "[Mois Année] — [Mois Année]",
+          institutionOrContext: "[Client · À distance]",
+          description:
+            "Emplacement à compléter : décrivez la solution livrée, vos responsabilités du cadrage au déploiement et le résultat mesurable pour le client. Remplacez ce texte par votre mission réelle.",
+          tags: ["[Service]", "[Stack]", "[Résultat]"],
+          isPlaceholder: true,
+        },
         {
           id: "m1",
           category: "academic",

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ExternalLink, Filter, Github, Sparkles, X } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { ProjectVisual } from "@/components/ui/ProjectVisual";
+import { ProjectVisual } from "@/features/projects/ProjectVisual";
 import { useLanguage } from "@/context/LanguageContext";
 import { trackEvent } from "@/lib/analytics";
 

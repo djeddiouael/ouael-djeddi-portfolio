@@ -60,6 +60,31 @@
 
 ---
 
+## 📁 Project Structure
+
+The codebase is organized **by feature**: every portfolio section owns its
+component inside `src/features/`, while shared primitives stay in
+`src/components/`.
+
+```text
+src/
+├── app/          # Routing, metadata, API route, sitemap/robots, fonts
+├── features/     # hero, about, skills, journey, projects, education,
+│                 # contact, ai-agent, command-palette, cv-center
+├── components/   # Shared only: ui/, layout/, icons/, analytics/
+├── config/       # App configuration (availability status)
+├── context/      # Language, theme and UI-modal providers
+├── data/         # Identity & contact details (locale-independent)
+├── i18n/         # Bilingual EN / FR copy + schema types
+├── lib/          # Utilities (site URL, analytics, cn)
+└── types/        # Shared TypeScript interfaces
+```
+
+👉 Full conventions, “how to add a section”, and how to replace the internship /
+freelance placeholders: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+---
+
 ## ⚡ Getting Started Locally
 
 ### Prerequisites

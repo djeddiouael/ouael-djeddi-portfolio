@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Eye, Github, Terminal, Youtube } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import { CodeTerminal } from "@/components/ui/CodeTerminal";
+import { CodeTerminal } from "@/features/hero/CodeTerminal";
 import { TechIcon } from "@/components/icons/TechIcons";
 import { useLanguage } from "@/context/LanguageContext";
 

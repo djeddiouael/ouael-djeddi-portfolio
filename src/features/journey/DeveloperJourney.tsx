@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  BookOpen,
-  Calendar,
-  Cpu,
+  Briefcase,
   GraduationCap,
+  Laptop,
   Layers,
   Milestone,
+  PencilLine,
   Sparkles,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,6 +24,8 @@ export function DeveloperJourney() {
     { id: "academic", label: t.journey.filters.academic },
     { id: "ai", label: t.journey.filters.ai },
     { id: "engineering", label: t.journey.filters.engineering },
+    { id: "internship", label: t.journey.filters.internship },
+    { id: "freelance", label: t.journey.filters.freelance },
   ];
 
   const getMilestoneIcon = (category: string) => {
@@ -34,6 +36,10 @@ export function DeveloperJourney() {
         return <Sparkles className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />;
       case "engineering":
         return <Layers className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
+      case "internship":
+        return <Briefcase className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
+      case "freelance":
+        return <Laptop className="w-5 h-5 text-rose-600 dark:text-rose-400" />;
       default:
         return <Milestone className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
     }
@@ -99,6 +105,10 @@ export function DeveloperJourney() {
                           ? "bg-cyan-500 dark:bg-cyan-400"
                           : milestone.category === "engineering"
                           ? "bg-emerald-500 dark:bg-emerald-400"
+                          : milestone.category === "internship"
+                          ? "bg-amber-500 dark:bg-amber-400"
+                          : milestone.category === "freelance"
+                          ? "bg-rose-500 dark:bg-rose-400"
                           : "bg-purple-500 dark:bg-purple-400"
                       }`}
                     />
@@ -112,6 +122,10 @@ export function DeveloperJourney() {
                       ? "cyan"
                       : milestone.category === "engineering"
                       ? "blue"
+                      : milestone.category === "internship"
+                      ? "amber"
+                      : milestone.category === "freelance"
+                      ? "rose"
                       : "purple"
                   }
                   className="p-6 sm:p-7"
@@ -133,6 +147,12 @@ export function DeveloperJourney() {
                     </div>
 
                     <div className="flex items-center gap-2 self-start sm:self-auto">
+                      {milestone.isPlaceholder && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10.5px] font-mono font-bold bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30">
+                          <PencilLine className="w-3 h-3" />
+                          {t.journey.placeholderLabel}
+                        </span>
+                      )}
                       <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
                         {milestone.period}
                       </span>
@@ -142,7 +162,7 @@ export function DeveloperJourney() {
                   {/* Context & Description */}
                   <div className="pt-3 space-y-2">
                     <div className="text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-300">
-                      Context: {milestone.institutionOrContext}
+                      {t.journey.contextLabel}: {milestone.institutionOrContext}
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {milestone.description}

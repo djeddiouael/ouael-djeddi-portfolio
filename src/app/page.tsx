@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
-import { Skills } from "@/components/sections/Skills";
-import { DeveloperJourney } from "@/components/sections/DeveloperJourney";
-import { Projects } from "@/components/sections/Projects";
-import { Education } from "@/components/sections/Education";
-import { Contact } from "@/components/sections/Contact";
-import { CommandPalette } from "@/components/ui/CommandPalette";
-import { SmartCVCenter } from "@/components/ui/SmartCVCenter";
-import { AIAgentWidget } from "@/components/ui/AIAgentWidget";
+import { Hero } from "@/features/hero/Hero";
+import { About } from "@/features/about/About";
+import { Skills } from "@/features/skills/Skills";
+import { DeveloperJourney } from "@/features/journey/DeveloperJourney";
+import { Projects } from "@/features/projects/Projects";
+import { Education } from "@/features/education/Education";
+import { Contact } from "@/features/contact/Contact";
+import { CommandPalette } from "@/features/command-palette/CommandPalette";
+import { SmartCVCenter } from "@/features/cv-center/SmartCVCenter";
+import { AIAgentWidget } from "@/features/ai-agent/AIAgentWidget";
 import { useUIModals } from "@/context/UIModalContext";
 
 export default function Home() {

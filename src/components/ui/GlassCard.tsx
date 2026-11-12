@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  glowColor?: "purple" | "cyan" | "blue" | "default";
+  glowColor?: "purple" | "cyan" | "blue" | "amber" | "rose" | "default";
   interactive?: boolean;
 }
 
@@ -34,6 +34,8 @@ export function GlassCard({
     purple: "rgba(168, 85, 247, 0.15)",
     cyan: "rgba(6, 182, 212, 0.15)",
     blue: "rgba(59, 130, 246, 0.15)",
+    amber: "rgba(245, 158, 11, 0.15)",
+    rose: "rgba(244, 63, 94, 0.15)",
     default: "rgba(255, 255, 255, 0.08)",
   };
 
