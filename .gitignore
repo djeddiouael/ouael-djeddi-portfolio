@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 build-output.log
 start-output.log
+dev-output.log
 
 # local env files
 .env*.local
