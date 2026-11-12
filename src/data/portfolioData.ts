@@ -41,7 +41,7 @@ export const PERSONAL_INFO = {
     ],
   },
   contact: {
-    email: "ouael.djeddi.contact@gmail.com",
+    email: "djeddi.ouael@gmail.com",
     github: "https://github.com/djeddiouael",
     youtube: "https://www.youtube.com/@djeddiouael",
     linkedin: "https://linkedin.com/in/ouael-djeddi",
@@ -90,9 +90,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: "Email",
-    url: "mailto:ouael.djeddi.contact@gmail.com",
+    url: "mailto:djeddi.ouael@gmail.com",
     icon: "Mail",
-    display: "ouael.djeddi.contact@gmail.com",
+    display: "djeddi.ouael@gmail.com",
     color: "hover:text-cyan-400 hover:border-cyan-500/50",
   },
 ];

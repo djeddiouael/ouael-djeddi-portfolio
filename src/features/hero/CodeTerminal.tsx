@@ -232,7 +232,7 @@ export function CodeTerminal() {
         <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-blue-400 pl-2.5 my-1">
           <p className="text-blue-400 font-bold">[Ouael-AI Assistant — Coordonnées & Réseaux]</p>
           <p className="text-white">
-            📧 <span className="font-semibold">Email :</span> ouael.djeddi.contact@gmail.com
+            📧 <span className="font-semibold">Email :</span> djeddi.ouael@gmail.com
           </p>
           <p className="text-white">
             💻 <span className="font-semibold">GitHub :</span> https://github.com/djeddiouael
@@ -286,8 +286,8 @@ export function CodeTerminal() {
         <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
         <p className="text-white">
           {language === "fr"
-            ? `Concernant "${prompt}" : En tant qu'assistant de DJEDDI Ouael (Master I2A @ UMBB), je peux vous renseigner en détail sur ses projets en vision par ordinateur et web full stack, ses compétences (Python, PyTorch, React, Next.js), ou vous mettre en contact direct avec lui par email à ouael.djeddi.contact@gmail.com.`
-            : `Regarding "${prompt}": As Ouael's AI assistant (Master I2A @ UMBB), I can provide detailed insights into his computer vision and full-stack projects, core tech stack (Python, PyTorch, Next.js), or connect you directly via email at ouael.djeddi.contact@gmail.com.`}
+            ? `Concernant "${prompt}" : En tant qu'assistant de DJEDDI Ouael (Master I2A @ UMBB), je peux vous renseigner en détail sur ses projets en vision par ordinateur et web full stack, ses compétences (Python, PyTorch, React, Next.js), ou vous mettre en contact direct avec lui par email à djeddi.ouael@gmail.com.`
+            : `Regarding "${prompt}": As Ouael's AI assistant (Master I2A @ UMBB), I can provide detailed insights into his computer vision and full-stack projects, core tech stack (Python, PyTorch, Next.js), or connect you directly via email at djeddi.ouael@gmail.com.`}
         </p>
       </div>
     );
@@ -511,7 +511,7 @@ export function CodeTerminal() {
         } else if (arg.toLowerCase() === "contact.txt") {
           outputNode = (
             <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12px] bg-[#141414] p-2 rounded">
-              <p>Email:    ouael.djeddi.contact@gmail.com</p>
+              <p>Email:    djeddi.ouael@gmail.com</p>
               <p>GitHub:   https://github.com/djeddiouael</p>
               <p>LinkedIn: https://linkedin.com/in/ouael-djeddi</p>
               <p>Facebook: https://facebook.com/djeddiouael</p>
@@ -804,7 +804,7 @@ export function CodeTerminal() {
               {language === "fr" ? "COORDONNÉES DE CONTACT :" : "CONTACT CHANNELS:"}
             </p>
             <p>
-              <span className="text-white">Email:</span> ouael.djeddi.contact@gmail.com
+              <span className="text-white">Email:</span> djeddi.ouael@gmail.com
             </p>
             <p>
               <span className="text-white">GitHub:</span> https://github.com/djeddiouael
