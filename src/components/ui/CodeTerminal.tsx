@@ -60,8 +60,16 @@ export function CodeTerminal() {
   // AI Assistant natural language responder
   const handleAIChat = (prompt: string): React.ReactNode => {
     const q = prompt.toLowerCase().trim();
+    const hours = new Date().getHours();
+    const isDay = hours >= 5 && hours < 18;
+    const timeGreetingFR = isDay ? "Bonjour" : "Bonsoir";
+    const timeGreetingEN = hours >= 5 && hours < 12 ? "Good morning" : hours < 18 ? "Good afternoon" : "Good evening";
+    const timeGreetingAR = isDay ? "صباح الخير" : "مساء الخير";
 
-    if (!q || q === "help" || q === "aide") {
+    // Arabic language detection
+    const isArabic = /[\u0600-\u06FF]/.test(prompt);
+
+    if (!q || q === "help" || q === "aide" || q === "مساعدة") {
       return (
         <div className="space-y-1.5 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-purple-500 pl-2.5 my-1">
           <div className="flex items-center gap-1.5 text-purple-400 font-bold">
@@ -69,12 +77,14 @@ export function CodeTerminal() {
             <span>[Ouael-AI Assistant]</span>
           </div>
           <p className="text-white">
-            {language === "fr"
-              ? "Bonjour ! Je suis l'assistant IA intégré de DJEDDI Ouael. Posez-moi n'importe quelle question :"
-              : "Hello! I am Ouael's portfolio AI assistant. Ask me anything in natural language:"}
+            {isArabic
+              ? `${timeGreetingAR}! أنا المساعد الذكي الممثل لـ DJEDDI Ouael. يمكنك سؤالي عن مساره، مشاريعه، أو مهاراته:`
+              : language === "fr"
+              ? `${timeGreetingFR} ! Je suis l'assistant IA intégré de DJEDDI Ouael. Posez-moi n'importe quelle question :`
+              : `${timeGreetingEN}! I am Ouael's portfolio AI assistant. Ask me anything in natural language:`}
           </p>
           <div className="space-y-1 text-cyan-300 pt-1 text-[11.5px]">
-            <p>• &quot;ai qui est Ouael ?&quot; / &quot;ai who is Ouael?&quot;</p>
+            <p>• &quot;ai qui est Ouael ?&quot; / &quot;ai who is Ouael?&quot; / &quot;ai من هو وائل؟&quot;</p>
             <p>• &quot;ai parle-moi de tes projets&quot; / &quot;ai what projects did you build?&quot;</p>
             <p>• &quot;ai que fais-tu en Super-Résolution ?&quot; / &quot;ai tell me about super-resolution&quot;</p>
             <p>• &quot;ai quelles sont tes compétences ?&quot; / &quot;ai what is your tech stack?&quot;</p>
@@ -86,19 +96,26 @@ export function CodeTerminal() {
 
     if (
       q.includes("bonjour") ||
+      q.includes("bonsoir") ||
       q.includes("salut") ||
       q.includes("hello") ||
       q.includes("hi") ||
       q.includes("hey") ||
-      q.includes("coucou")
+      q.includes("coucou") ||
+      q.includes("سلام") ||
+      q.includes("مرحبا") ||
+      q.includes("صباح") ||
+      q.includes("مساء")
     ) {
       return (
         <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-purple-500 pl-2.5 my-1">
           <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
           <p className="text-white">
-            {language === "fr"
-              ? "Bonjour et bienvenue sur mon portfolio ! Je suis DJEDDI Ouael, étudiant en Master I2A à l'UMBB et développeur Full Stack & IA passionné par le Deep Learning, la vision par ordinateur et les applications web modernes. Que souhaitez-vous découvrir ?"
-              : "Hello and welcome to my portfolio! I am DJEDDI Ouael, Master I2A student at UMBB and Full Stack & AI Developer passionate about Deep Learning, Computer Vision, and modern web applications. What would you like to explore?"}
+            {isArabic
+              ? `${timeGreetingAR} ومرحباً بك في موقعي! أنا DJEDDI Ouael (طالب ماستر I2A بجامعة بومرداس UMBB ومطور Full Stack & ذكاء اصطناعي). يسعدني الإجابة على أي استفسار!`
+              : language === "fr"
+              ? `${timeGreetingFR} et bienvenue sur mon portfolio ! Je suis DJEDDI Ouael, étudiant en Master I2A à l'UMBB et développeur Full Stack & IA passionné par le Deep Learning, la vision par ordinateur et les applications web modernes. Que souhaitez-vous découvrir ?`
+              : `${timeGreetingEN} and welcome to my portfolio! I am DJEDDI Ouael, Master I2A student at UMBB and Full Stack & AI Developer passionate about Deep Learning, Computer Vision, and modern web applications. What would you like to explore?`}
           </p>
         </div>
       );

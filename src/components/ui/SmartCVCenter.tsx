@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AlertCircle,
@@ -27,6 +27,16 @@ export function SmartCVCenter({ isOpen, onClose }: SmartCVCenterProps) {
   const [selectedProfile, setSelectedProfile] = useState<"fullstack" | "ai">("fullstack");
   const [noticeOpen, setNoticeOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  // Close with Escape for keyboard users.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

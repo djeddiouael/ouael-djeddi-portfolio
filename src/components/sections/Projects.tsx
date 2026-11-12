@@ -40,7 +40,23 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
     "Wokwi Simulation",
   ];
 
-  const projectList = [
+  type ProjectCard = {
+    id: string;
+    title: string;
+    tagline: string;
+    description: string;
+    categoryKey: string;
+    categoryDisplay: string;
+    tags: string[];
+    highlights: string[];
+    githubUrl: string;
+    liveUrl?: string;
+    visualType: "super-resolution" | "scraper" | "university-platform" | "iot-simulation";
+    specs: { label: string; value: string }[];
+    glowColor: "purple" | "cyan" | "blue";
+  };
+
+  const projectList: ProjectCard[] = [
     {
       id: "single-image-super-resolution",
       title: t.projects.items.superRes.title,
@@ -101,9 +117,8 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
       categoryDisplay: t.projects.filters.iot,
       tags: ["IoT", "Embedded Systems", "Wokwi Simulation", "Sensors", "Microcontroller"],
       highlights: t.projects.items.iot.highlights,
+      // Only link to the GitHub profile until a public repository exists.
       githubUrl: "https://github.com/djeddiouael",
-      liveUrl: "https://wokwi.com",
-      demoNote: "Interactive circuit simulation on Wokwi",
       visualType: "iot-simulation" as const,
       specs: [
         { label: t.projects.labels.field, value: "Embedded Systems" },
@@ -321,7 +336,7 @@ export function Projects({ selectedTechFilter: externalTechFilter, onClearTechFi
 
                   {/* Bottom Actions */}
                   <div className="mt-6 pt-5 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between gap-3">
-                    {/* GitHub Button */}
+                    {/* GitHub Profile Button (repo links land here until a public repo exists) */}
                     <a
                       href={project.githubUrl}
                       target="_blank"

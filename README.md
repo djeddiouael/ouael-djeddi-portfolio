@@ -44,7 +44,7 @@
   3. **University Transfer Platform:** Full-stack administrative dashboard mockup with transfer request statuses.
   4. **SEI IoT Project:** Microcontroller simulation powered by Wokwi with sensor telemetry and serial monitoring.
 - **Academic Timeline:** Highlighted educational trajectory including Master's studies in Specialty I2A at University of Boumerdes (UMBB) and foundational studies at University of Tebessa.
-- **Validated Contact System:** Next.js App Router API endpoint (`/api/contact`) with full validation and direct mailto fallback.
+- **Validated Contact System:** Next.js App Router API endpoint (`/api/contact`) with server-side validation, honeypot spam protection, per-IP rate limiting, and real email delivery through [Resend](https://resend.com). When delivery is not configured, the form offers a prefilled `mailto` fallback instead of faking success.
 
 ---
 
@@ -98,6 +98,26 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 npm run build
 npm run start
 ```
+
+---
+
+## 🔐 Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in what you need:
+
+| Variable | Purpose |
+| :--- | :--- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL used by metadata, `sitemap.xml`, `robots.txt` and JSON-LD. |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Optional Umami analytics website ID (leave empty to disable). |
+| `NEXT_PUBLIC_UMAMI_SRC` | Optional self-hosted Umami script URL. |
+| `RESEND_API_KEY` | Resend API key for real contact-form delivery. |
+| `CONTACT_TO_EMAIL` | Inbox that receives contact messages. |
+| `CONTACT_FROM_EMAIL` | Verified Resend sender. |
+
+> The contact form works without Resend, but it will never claim a message was
+> sent: visitors are offered a prefilled email fallback instead.
+
+CV downloads read PDFs from `public/cv/` — see [`public/cv/README.md`](public/cv/README.md) for the exact filenames.
 
 ---
 

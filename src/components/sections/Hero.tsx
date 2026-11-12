@@ -38,6 +38,24 @@ export function Hero({ onOpenCVModal }: HeroProps) {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Dynamic time greeting (Bonjour / Bonsoir according to visitor's computer local time)
+  const [timeGreeting, setTimeGreeting] = useState<string>("");
+
+  useEffect(() => {
+    const hours = new Date().getHours();
+    if (language === "fr") {
+      setTimeGreeting(hours >= 5 && hours < 18 ? "Bonjour, je suis" : "Bonsoir, je suis");
+    } else {
+      if (hours >= 5 && hours < 12) {
+        setTimeGreeting("Good morning, I'm");
+      } else if (hours >= 12 && hours < 18) {
+        setTimeGreeting("Good afternoon, I'm");
+      } else {
+        setTimeGreeting("Good evening, I'm");
+      }
+    }
+  }, [language]);
+
   useEffect(() => {
     let timer: NodeJS.Timeout;
     const currentFullTitle = titles[currentTitleIndex % titles.length];
@@ -144,7 +162,7 @@ export function Hero({ onOpenCVModal }: HeroProps) {
             {/* Main Greeting Heading */}
             <motion.div variants={itemVariants} className="space-y-3">
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-                {t.hero.greetingPre}{" "}
+                {timeGreeting || t.hero.greetingPre}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 dark:from-purple-400 dark:via-violet-300 dark:to-cyan-400">
                   {t.hero.greetingName}
                 </span>
@@ -241,7 +259,7 @@ export function Hero({ onOpenCVModal }: HeroProps) {
 
                 {/* Facebook */}
                 <a
-                  href="https://facebook.com/djeddiouael"
+                  href={PERSONAL_INFO.contact.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"
@@ -253,7 +271,7 @@ export function Hero({ onOpenCVModal }: HeroProps) {
 
                 {/* Instagram */}
                 <a
-                  href="https://instagram.com/djeddiouael"
+                  href={PERSONAL_INFO.contact.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-300 dark:border-white/[0.12] transition-all hover:scale-110 shadow-sm"

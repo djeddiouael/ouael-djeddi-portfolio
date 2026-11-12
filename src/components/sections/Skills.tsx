@@ -184,7 +184,7 @@ export function Skills({ onSelectTech }: SkillsProps) {
                       {t.skills.activeStack}
                     </span>
                     <span className="text-purple-600 dark:text-purple-400/80 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors font-medium">
-                      Explore Projects →
+                      {t.skills.exploreProjects} →
                     </span>
                   </div>
                 </GlassCard>

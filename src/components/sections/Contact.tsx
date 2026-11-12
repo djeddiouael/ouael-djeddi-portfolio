@@ -29,9 +29,11 @@ export function Contact() {
     email: "",
     subject: "",
     message: "",
+    // Honeypot field: hidden from humans, filled by bots.
+    website: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "fallback" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -93,6 +95,12 @@ export function Contact() {
 
       if (res.ok && data.success) {
         setStatus("success");
+      } else if (data.code === "EMAIL_NOT_CONFIGURED") {
+        // No fake success: offer a prefilled mailto fallback instead.
+        setStatus("fallback");
+      } else if (data.code === "RATE_LIMITED") {
+        setStatus("error");
+        setErrorMessage(t.contact.validation.rateLimited);
       } else {
         setStatus("error");
         setErrorMessage(data.error || t.contact.validation.networkError);
@@ -189,7 +197,7 @@ export function Contact() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
-                      <TechIcon name="github" size={18} className="w-4.5 h-4.5" />
+                      <TechIcon name="github" size={18} />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -212,7 +220,7 @@ export function Contact() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
-                      <TechIcon name="youtube" size={18} className="w-4.5 h-4.5" />
+                      <TechIcon name="youtube" size={18} />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -235,7 +243,7 @@ export function Contact() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
-                      <TechIcon name="linkedin" size={18} className="w-4.5 h-4.5" />
+                      <TechIcon name="linkedin" size={18} />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -258,7 +266,7 @@ export function Contact() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
-                      <TechIcon name="facebook" size={18} className="w-4.5 h-4.5" />
+                      <TechIcon name="facebook" size={18} />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -281,7 +289,7 @@ export function Contact() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-transparent">
-                      <TechIcon name="instagram" size={18} className="w-4.5 h-4.5" />
+                      <TechIcon name="instagram" size={18} />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -315,7 +323,7 @@ export function Contact() {
               </div>
 
               {status === "success" ? (
-                <div className="py-8 text-center space-y-4">
+                <div className="py-8 text-center space-y-4" role="status" aria-live="polite">
                   <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-500/20 border border-emerald-300 dark:border-emerald-500/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-sm dark:shadow-[0_0_25px_rgba(16,185,129,0.3)]">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
@@ -337,7 +345,7 @@ export function Contact() {
                     <button
                       onClick={() => {
                         setStatus("idle");
-                        setFormData({ name: "", email: "", subject: "", message: "" });
+                        setFormData({ name: "", email: "", subject: "", message: "", website: "" });
                       }}
                       className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.05] hover:bg-slate-200 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/[0.1]"
                     >
@@ -345,10 +353,52 @@ export function Contact() {
                     </button>
                   </div>
                 </div>
+              ) : status === "fallback" ? (
+                <div className="py-8 text-center space-y-4" role="status" aria-live="polite">
+                  <div className="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-500/20 border border-amber-300 dark:border-amber-500/40 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto">
+                    <AlertCircle className="w-8 h-8" />
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.contact.fallbackTitle}
+                  </h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
+                    {t.contact.fallbackMessage}
+                  </p>
+
+                  <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+                    <a
+                      href={mailtoUrl}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 shadow-sm"
+                    >
+                      <span>{t.contact.openInEmail}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.05] hover:bg-slate-200 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/[0.1]"
+                    >
+                      {t.contact.sendAnother}
+                    </button>
+                  </div>
+                </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="relative space-y-4">
+                  {/* Honeypot: invisible to humans and screen readers, tempting for bots */}
+                  <div className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                   {status === "error" && (
-                    <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-300 text-xs flex items-center gap-2">
+                    <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-300 text-xs flex items-center gap-2" role="alert">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
@@ -365,6 +415,7 @@ export function Contact() {
                         type="text"
                         name="name"
                         required
+                        autoComplete="name"
                         value={formData.name}
                         onChange={handleChange}
                         placeholder={t.contact.namePlaceholder}
@@ -382,6 +433,7 @@ export function Contact() {
                         type="email"
                         name="email"
                         required
+                        autoComplete="email"
                         value={formData.email}
                         onChange={handleChange}
                         placeholder={t.contact.emailPlaceholder}

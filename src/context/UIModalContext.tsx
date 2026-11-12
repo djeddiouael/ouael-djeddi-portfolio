@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 interface UIModalContextType {
   isCommandPaletteOpen: boolean;
@@ -20,11 +20,11 @@ export function UIModalProvider({ children }: { children: React.ReactNode }) {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [selectedTechFilter, setSelectedTechFilter] = useState<string | null>(null);
 
-  const openCommandPalette = () => setIsCommandPaletteOpen(true);
-  const closeCommandPalette = () => setIsCommandPaletteOpen(false);
-
-  const openCVModal = () => setIsCVModalOpen(true);
-  const closeCVModal = () => setIsCVModalOpen(false);
+  // Stable callbacks so consumers can safely use them in effect dependencies.
+  const openCommandPalette = useCallback(() => setIsCommandPaletteOpen(true), []);
+  const closeCommandPalette = useCallback(() => setIsCommandPaletteOpen(false), []);
+  const openCVModal = useCallback(() => setIsCVModalOpen(true), []);
+  const closeCVModal = useCallback(() => setIsCVModalOpen(false), []);
 
   // Global Ctrl+K / Cmd+K shortcut listener
   useEffect(() => {
@@ -39,22 +39,29 @@ export function UIModalProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  return (
-    <UIModalContext.Provider
-      value={{
-        isCommandPaletteOpen,
-        openCommandPalette,
-        closeCommandPalette,
-        isCVModalOpen,
-        openCVModal,
-        closeCVModal,
-        selectedTechFilter,
-        setSelectedTechFilter,
-      }}
-    >
-      {children}
-    </UIModalContext.Provider>
+  const value = useMemo(
+    () => ({
+      isCommandPaletteOpen,
+      openCommandPalette,
+      closeCommandPalette,
+      isCVModalOpen,
+      openCVModal,
+      closeCVModal,
+      selectedTechFilter,
+      setSelectedTechFilter,
+    }),
+    [
+      isCommandPaletteOpen,
+      openCommandPalette,
+      closeCommandPalette,
+      isCVModalOpen,
+      openCVModal,
+      closeCVModal,
+      selectedTechFilter,
+    ]
   );
+
+  return <UIModalContext.Provider value={value}>{children}</UIModalContext.Provider>;
 }
 
 export function useUIModals() {

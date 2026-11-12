@@ -57,7 +57,7 @@ export function Footer() {
                   {link.name.toLowerCase() === "email" ? (
                     <span className="text-cyan-500 font-bold text-xs">@</span>
                   ) : (
-                    <TechIcon name={link.name} size={18} className="w-4.5 h-4.5" />
+                    <TechIcon name={link.name} size={18} />
                   )}
                 </a>
               ))}

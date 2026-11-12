@@ -199,6 +199,7 @@ export interface TranslationSchema {
     activeStack: string;
     verified: string;
     clickToFilter: string;
+    exploreProjects: string;
   };
   projects: {
     badge: string;
@@ -316,12 +317,15 @@ export interface TranslationSchema {
     successMessage: string;
     openInEmail: string;
     sendAnother: string;
+    fallbackTitle: string;
+    fallbackMessage: string;
     validation: {
       name: string;
       email: string;
       subject: string;
       message: string;
       networkError: string;
+      rateLimited: string;
     };
   };
   footer: {
@@ -623,6 +627,7 @@ export const translations: Record<Language, TranslationSchema> = {
       activeStack: "Active Stack",
       verified: "Verified",
       clickToFilter: "Click to view related projects",
+      exploreProjects: "Explore Projects",
     },
     projects: {
       badge: "04 // FEATURED PROJECTS",
@@ -646,7 +651,7 @@ export const translations: Record<Language, TranslationSchema> = {
         scope: "Scope",
         field: "Field",
         simulator: "Simulator",
-        viewRepo: "View Repository",
+        viewRepo: "GitHub Profile",
         simulationDemo: "Simulation Demo",
         localPrototype: "Local prototype / Model weights",
         matchingProjects: "matching projects",
@@ -757,17 +762,22 @@ export const translations: Record<Language, TranslationSchema> = {
       submitButton: "Send Message",
       submittingButton: "Validating & Sending...",
       securityNote: "Direct validation via Next.js backend • No third-party trackers",
-      successTitle: "Message Transmitted!",
+      successTitle: "Message Delivered!",
       successMessage:
-        "Thank you! Your message was received and logged. Ouael will review and respond promptly.",
+        "Thank you! Your message was delivered to Ouael's inbox. He will get back to you as soon as possible.",
       openInEmail: "Also Open in Email Client",
       sendAnother: "Send Another",
+      fallbackTitle: "One More Step",
+      fallbackMessage:
+        "Direct email delivery is not configured on this deployment yet. Your message is ready — use the button below to send it from your own email app.",
       validation: {
         name: "Please enter a valid name (at least 2 characters).",
         email: "Please enter a valid email address.",
         subject: "Please enter a subject.",
         message: "Please enter a message of at least 10 characters.",
         networkError: "Network error: Could not reach the server. Please try again or use direct email.",
+        rateLimited:
+          "Too many messages sent from this address. Please wait a few minutes or email directly.",
       },
     },
     footer: {
@@ -1067,6 +1077,7 @@ export const translations: Record<Language, TranslationSchema> = {
       activeStack: "Stack Active",
       verified: "Vérifié",
       clickToFilter: "Cliquer pour voir les projets associés",
+      exploreProjects: "Explorer les projets",
     },
     projects: {
       badge: "04 // PROJETS VEDETTES",
@@ -1090,7 +1101,7 @@ export const translations: Record<Language, TranslationSchema> = {
         scope: "Portée",
         field: "Discipline",
         simulator: "Simulateur",
-        viewRepo: "Voir le dépôt",
+        viewRepo: "Profil GitHub",
         simulationDemo: "Démo simulation",
         localPrototype: "Prototype local / Poids du modèle",
         matchingProjects: "projets correspondants",
@@ -1201,17 +1212,22 @@ export const translations: Record<Language, TranslationSchema> = {
       submitButton: "Envoyer le message",
       submittingButton: "Validation & Envoi...",
       securityNote: "Validation directe via le serveur Next.js • Aucun traceur tiers",
-      successTitle: "Message Transmis !",
+      successTitle: "Message Envoyé !",
       successMessage:
-        "Merci ! Votre message a bien été reçu et enregistré. Ouael prendra le temps de l'examiner et vous répondra rapidement.",
+        "Merci ! Votre message a bien été livré dans la boîte de réception d'Ouael. Il vous répondra dans les meilleurs délais.",
       openInEmail: "Ouvrir aussi dans votre messagerie",
       sendAnother: "Envoyer un autre message",
+      fallbackTitle: "Une dernière étape",
+      fallbackMessage:
+        "L'envoi direct par email n'est pas encore configuré sur ce déploiement. Votre message est prêt — utilisez le bouton ci-dessous pour l'envoyer depuis votre propre messagerie.",
       validation: {
         name: "Veuillez entrer un nom valide (au moins 2 caractères).",
         email: "Veuillez entrer une adresse email valide.",
         subject: "Veuillez préciser un objet pour votre message.",
         message: "Veuillez saisir un message d'au moins 10 caractères.",
         networkError: "Erreur réseau : impossible de joindre le serveur. Veuillez réessayer ou utiliser l'email direct.",
+        rateLimited:
+          "Trop de messages envoyés depuis cette adresse. Merci de patienter quelques minutes ou d'écrire directement par email.",
       },
     },
     footer: {

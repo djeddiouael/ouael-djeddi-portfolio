@@ -10,6 +10,7 @@ import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmartCVCenter } from "@/components/ui/SmartCVCenter";
+import { AIAgentWidget } from "@/components/ui/AIAgentWidget";
 import { useUIModals } from "@/context/UIModalContext";
 
 export default function Home() {
@@ -54,6 +55,9 @@ export default function Home() {
 
       {/* Smart CV Center Modal */}
       <SmartCVCenter isOpen={isCVModalOpen} onClose={closeCVModal} />
+
+      {/* Interactive AI Agent Digital Twin Widget */}
+      <AIAgentWidget />
     </>
   );
 }
