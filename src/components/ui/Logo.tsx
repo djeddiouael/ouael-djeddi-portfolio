@@ -33,7 +33,7 @@ export function Logo({
         <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 opacity-40 dark:opacity-60 blur-md transition-opacity duration-300 group-hover:opacity-100" />
 
         {variant === "3d" ? (
-          <div className="relative w-full h-full rounded-xl overflow-hidden border border-purple-500/40 shadow-lg">
+          <div className="relative w-full h-full rounded-xl overflow-hidden border border-purple-500/30 dark:border-purple-500/40 shadow-md dark:shadow-lg bg-white dark:bg-transparent transition-colors duration-300">
             <Image
               src="/logo-3d.png"
               alt="DJEDDI Ouael Logo"
@@ -44,11 +44,11 @@ export function Logo({
             />
           </div>
         ) : (
-          /* High-Precision Cyber-AI Vector Emblem */
-          <div className="relative w-full h-full rounded-xl bg-[#090d20] border border-purple-500/40 p-1 flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-105">
+          /* High-Precision Cyber-AI Vector Emblem — adapts to light & dark themes */
+          <div className="relative w-full h-full rounded-xl bg-white dark:bg-[#090d20] border border-purple-500/30 dark:border-purple-500/40 p-1 flex items-center justify-center shadow-md dark:shadow-lg transition-colors duration-300 group-hover:scale-105">
             <svg
               viewBox="0 0 100 100"
-              className="w-full h-full drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"
+              className="w-full h-full drop-shadow-[0_0_6px_rgba(168,85,247,0.25)] dark:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -70,10 +70,10 @@ export function Logo({
                 </radialGradient>
               </defs>
 
-              {/* Hexagon Perimeter */}
+              {/* Hexagon Perimeter — white in light mode, deep navy in dark mode */}
               <path
                 d="M50 7 L86 28 L86 72 L50 93 L14 72 L14 28 Z"
-                fill="#070b1a"
+                className="fill-slate-50 dark:fill-[#070b1a] transition-colors duration-300"
                 stroke="url(#logoPrimary)"
                 strokeWidth="3"
                 strokeLinejoin="round"
@@ -83,7 +83,12 @@ export function Logo({
               <circle cx="50" cy="50" r="26" fill="url(#logoCore)" />
 
               {/* Neural Circuit Lines */}
-              <g opacity="0.45" stroke="url(#logoAccent)" strokeWidth="1.2" strokeDasharray="3 3">
+              <g
+                className="opacity-60 dark:opacity-45"
+                stroke="url(#logoAccent)"
+                strokeWidth="1.2"
+                strokeDasharray="3 3"
+              >
                 <line x1="50" y1="20" x2="50" y2="80" />
                 <line x1="26" y1="50" x2="74" y2="50" />
                 <line x1="32" y1="35" x2="68" y2="65" />
