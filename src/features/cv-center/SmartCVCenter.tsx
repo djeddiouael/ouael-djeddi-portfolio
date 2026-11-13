@@ -248,7 +248,7 @@ export function SmartCVCenter({ isOpen, onClose }: SmartCVCenterProps) {
 
           {/* Bottom helper */}
           <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>DJEDDI Ouael • Master I2A</span>
+            <span>DJEDDI Ouael • M2 IA Appliquée</span>
             <span>PDF Format • Clean ATS Layout</span>
           </div>
         </motion.div>

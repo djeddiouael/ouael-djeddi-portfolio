@@ -175,7 +175,7 @@ export function ProjectVisual({ type }: ProjectVisualProps) {
               </div>
               <div>
                 <p className="text-xs font-medium text-slate-200">Transfer Request #TR-2041</p>
-                <p className="text-[10px] text-slate-400 font-mono">CS • Master I2A</p>
+                <p className="text-[10px] text-slate-400 font-mono">CS • M2 IA Appliquée</p>
               </div>
             </div>
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-medium flex items-center gap-1">

@@ -112,10 +112,10 @@ export function AIAgentWidget() {
         q.includes("ماستر")
       ) {
         replyText = isArabic
-          ? "يتابع DJEDDI Ouael حالياً دراسة الماستر تخصص الذكاء الاصطناعي وتطبيقاته (I2A) بجامعة محمد بوقرة بومرداس (UMBB) منذ 2023. وقبل ذلك، تخرج بليسانس في الإعلام الآلي (2020 - 2023) بجامعة تبسة."
+          ? "يتابع DJEDDI Ouael حالياً الماستر المهني M2 في الذكاء الاصطناعي التطبيقي بجامعة محمد بوقرة بومرداس (UMBB). درس سابقاً الرياضيات والإعلام الآلي بجامعة العربي التبسي بتبسة، ثم تحصل على ليسانس أكاديمي في نظم الإعلام الآلي بجامعة بومرداس."
           : language === "fr"
-          ? "DJEDDI Ouael prépare actuellement son Master en Intelligence Artificielle et Applications (I2A) à l'Université M'Hamed Bougara de Boumerdès (UMBB, 2023 — Présent). Il est également titulaire d'une Licence en Informatique (2020 — 2023) de l'Université de Tébessa."
-          : "DJEDDI Ouael is currently pursuing a Master's degree in Artificial Intelligence & Applications (I2A) at University M'Hamed Bougara of Boumerdes (UMBB, 2023 — Present). He previously completed his Bachelor's degree in Computer Science (2020 — 2023) at the University of Tebessa.";
+          ? "DJEDDI Ouael prépare actuellement son Master Professionnel M2 en Intelligence Artificielle Appliquée à l'Université M'Hamed Bougara de Boumerdès (UMBB). Il a étudié les Mathématiques & Informatique à l'Université Larbi Tébessi (Tébessa), puis obtenu une Licence académique en Système Informatique à l'UMBB."
+          : "DJEDDI Ouael is currently pursuing a Professional Master M2 in Applied Artificial Intelligence at University M'Hamed Bougara of Boumerdes (UMBB). He previously studied Mathematics & Computer Science at Larbi Tébessi University (Tébessa), then earned an academic Bachelor's degree in Computer Systems at UMBB.";
         actions = [
           {
             label: language === "fr" ? "Voir la section Éducation" : "View Education Section",
@@ -223,7 +223,7 @@ export function AIAgentWidget() {
         replyText = isArabic
           ? "أنا ممثل وائل الذكي! يمكنك سؤالي عن مشاريعه في الذكاء الاصطناعي، مساره الأكاديمي بجامعة بومرداس، مهاراته البرمجية، أو طلب تحميل سيرته الذاتية والتواصل معه."
           : language === "fr"
-          ? "Je suis l'assistant IA d'Ouael. N'hésitez pas à me poser une question sur sa formation en Master I2A, ses réalisations en vision par ordinateur ou ses projets web complets !"
+          ? "Je suis l'assistant IA d'Ouael. N'hésitez pas à me poser une question sur sa formation en M2 IA Appliquée, ses réalisations en vision par ordinateur ou ses projets web complets !"
           : "I am Ouael's AI assistant. Feel free to ask about his Master's in AI, his deep learning computer vision research, or full-stack web projects!";
       }
 
@@ -246,8 +246,8 @@ export function AIAgentWidget() {
       if (topic === "education") {
         handleSendMessage(
           language === "fr"
-            ? "Parle-moi de tes études et de ton Master I2A"
-            : "Tell me about your education and Master I2A"
+            ? "Parle-moi de tes études et de ton M2 IA Appliquée"
+            : "Tell me about your education and M2 Applied AI"
         );
       } else if (topic === "projects") {
         handleSendMessage(
@@ -274,8 +274,8 @@ export function AIAgentWidget() {
   useEffect(() => {
     const initialText =
       language === "fr"
-        ? `${getTimeGreeting(language)} ! Je suis l'Agent IA officiel de DJEDDI Ouael. Je suis là pour vous présenter son parcours en Master IA (I2A @ UMBB), ses projets en Deep Learning & Full Stack, ou répondre à vos questions.`
-        : `${getTimeGreeting(language)}! I am DJEDDI Ouael's official AI Agent. I'm here to introduce his Master's journey in AI (I2A @ UMBB), his Deep Learning & Full Stack projects, or answer any questions.`;
+        ? `${getTimeGreeting(language)} ! Je suis l'Agent IA officiel de DJEDDI Ouael. Je suis là pour vous présenter son parcours en M2 IA Appliquée (@ UMBB), ses projets en Deep Learning & Full Stack, ou répondre à vos questions.`
+        : `${getTimeGreeting(language)}! I am DJEDDI Ouael's official AI Agent. I'm here to introduce his Master's journey in Applied AI (M2 @ UMBB), his Deep Learning & Full Stack projects, or answer any questions.`;
 
     setMessages((prev) => {
       if (prev.length > 1) return prev;
@@ -553,7 +553,7 @@ export function AIAgentWidget() {
                 onClick={() => handleQuickAction("education")}
                 className="px-2 py-0.5 rounded-md bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] hover:border-purple-400 text-slate-700 dark:text-slate-300 shrink-0 transition-colors"
               >
-                🎓 Master I2A
+                🎓 M2 IA Appliquée
               </button>
               <button
                 type="button"

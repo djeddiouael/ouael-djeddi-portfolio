@@ -112,10 +112,10 @@ export function CodeTerminal() {
           <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
           <p className="text-white">
             {isArabic
-              ? `${timeGreetingAR} ومرحباً بك في موقعي! أنا DJEDDI Ouael (طالب ماستر I2A بجامعة بومرداس UMBB ومطور Full Stack & ذكاء اصطناعي). يسعدني الإجابة على أي استفسار!`
+              ? `${timeGreetingAR} ومرحباً بك في موقعي! أنا DJEDDI Ouael (طالب ماستر مهني M2 في الذكاء الاصطناعي التطبيقي بجامعة بومرداس UMBB ومطور Full Stack & ذكاء اصطناعي). يسعدني الإجابة على أي استفسار!`
               : language === "fr"
-              ? `${timeGreetingFR} et bienvenue sur mon portfolio ! Je suis DJEDDI Ouael, étudiant en Master I2A à l'UMBB et développeur Full Stack & IA passionné par le Deep Learning, la vision par ordinateur et les applications web modernes. Que souhaitez-vous découvrir ?`
-              : `${timeGreetingEN} and welcome to my portfolio! I am DJEDDI Ouael, Master I2A student at UMBB and Full Stack & AI Developer passionate about Deep Learning, Computer Vision, and modern web applications. What would you like to explore?`}
+              ? `${timeGreetingFR} et bienvenue sur mon portfolio ! Je suis DJEDDI Ouael, étudiant en Master Professionnel M2 Intelligence Artificielle Appliquée à l'UMBB et développeur Full Stack & IA passionné par le Deep Learning, la vision par ordinateur et les applications web modernes. Que souhaitez-vous découvrir ?`
+              : `${timeGreetingEN} and welcome to my portfolio! I am DJEDDI Ouael, Professional Master M2 student in Applied AI at UMBB and Full Stack & AI Developer passionate about Deep Learning, Computer Vision, and modern web applications. What would you like to explore?`}
           </p>
         </div>
       );
@@ -134,8 +134,8 @@ export function CodeTerminal() {
           <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
           <p className="text-white">
             {language === "fr"
-              ? "DJEDDI Ouael est développeur Full Stack & IA, actuellement en Master Spécialité Intelligence Artificielle et Applications (I2A) à l'Université M'Hamed Bougara de Boumerdès (UMBB). Titulaire d'une Licence en Informatique Générale (2020-2023), il conçoit des modèles d'apprentissage profond (PyTorch, Computer Vision) et des architectures logicielles complètes (Next.js, TypeScript, Node.js)."
-              : "DJEDDI Ouael is a Full Stack & AI Developer currently pursuing a Master's Degree in Artificial Intelligence & Applications (I2A) at UMBB. Holding a Bachelor's degree in General Computer Science (2020-2023), he focuses on deep learning models (PyTorch, Computer Vision) and full-stack software architectures (Next.js, TypeScript, Node.js)."}
+              ? "DJEDDI Ouael est développeur Full Stack & IA, actuellement en Master Professionnel M2 Intelligence Artificielle Appliquée à l'Université M'Hamed Bougara de Boumerdès (UMBB). Titulaire d'une Licence académique en Système Informatique, il conçoit des modèles d'apprentissage profond (PyTorch, Computer Vision) et des architectures logicielles complètes (Next.js, TypeScript, Node.js)."
+              : "DJEDDI Ouael is a Full Stack & AI Developer currently pursuing a Professional Master M2 in Applied Artificial Intelligence at UMBB. Holding an academic Bachelor's degree in Computer Systems, he focuses on deep learning models (PyTorch, Computer Vision) and full-stack software architectures (Next.js, TypeScript, Node.js)."}
           </p>
         </div>
       );
@@ -271,10 +271,13 @@ export function CodeTerminal() {
         <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12.5px] border-l-2 border-amber-400 pl-2.5 my-1">
           <p className="text-amber-400 font-bold">[Ouael-AI Assistant — Formation Universitaire]</p>
           <p className="text-white">
-            🎓 <strong className="text-white">Master Spécialité I2A (2023 — Présent) :</strong> Intelligence Artificielle et Applications à l&apos;Université M&apos;Hamed Bougara de Boumerdès (UMBB).
+            🎓 <strong className="text-white">Master Professionnel M2 IA Appliquée (en cours) :</strong> Intelligence Artificielle Appliquée à l&apos;Université M&apos;Hamed Bougara de Boumerdès (UMBB).
           </p>
           <p className="text-white">
-            📜 <strong className="text-white">Licence Informatique Générale (2020 — 2023) :</strong> Université M&apos;Hamed Bougara de Boumerdès (UMBB).
+            📜 <strong className="text-white">Licence Académique Système Informatique :</strong> Université M&apos;Hamed Bougara de Boumerdès (UMBB).
+          </p>
+          <p className="text-white">
+            🧮 <strong className="text-white">Mathématiques &amp; Informatique (2021 — 2022) :</strong> Université Larbi Tébessi (Tébessa).
           </p>
         </div>
       );
@@ -286,8 +289,8 @@ export function CodeTerminal() {
         <p className="text-purple-400 font-bold">[Ouael-AI Assistant]</p>
         <p className="text-white">
           {language === "fr"
-            ? `Concernant "${prompt}" : En tant qu'assistant de DJEDDI Ouael (Master I2A @ UMBB), je peux vous renseigner en détail sur ses projets en vision par ordinateur et web full stack, ses compétences (Python, PyTorch, React, Next.js), ou vous mettre en contact direct avec lui par email à djeddi.ouael@gmail.com.`
-            : `Regarding "${prompt}": As Ouael's AI assistant (Master I2A @ UMBB), I can provide detailed insights into his computer vision and full-stack projects, core tech stack (Python, PyTorch, Next.js), or connect you directly via email at djeddi.ouael@gmail.com.`}
+            ? `Concernant "${prompt}" : En tant qu'assistant de DJEDDI Ouael (Master M2 IA Appliquée @ UMBB), je peux vous renseigner en détail sur ses projets en vision par ordinateur et web full stack, ses compétences (Python, PyTorch, React, Next.js), ou vous mettre en contact direct avec lui par email à djeddi.ouael@gmail.com.`
+            : `Regarding "${prompt}": As Ouael's AI assistant (Master M2 Applied AI @ UMBB), I can provide detailed insights into his computer vision and full-stack projects, core tech stack (Python, PyTorch, Next.js), or connect you directly via email at djeddi.ouael@gmail.com.`}
         </p>
       </div>
     );
@@ -395,7 +398,7 @@ export function CodeTerminal() {
               <div className="flex">
                 <span className="w-28 text-white font-bold shrink-0">EDUCATION</span>
                 <span className="text-[#cccccc]">
-                  {language === "fr" ? "Détaille le cursus Master I2A et Licence à l'UMBB." : "Displays academic curriculum."}
+                  {language === "fr" ? "Détaille mon cursus : M2 IA Appliquée, Licence Système Informatique et Mathématiques & Informatique." : "Displays academic curriculum."}
                 </span>
               </div>
               <div className="flex">
@@ -450,7 +453,7 @@ export function CodeTerminal() {
             <p>OS Name:                   Microsoft Windows 11 Pro 64-bit</p>
             <p>OS Version:                10.0.22631 Build 22631</p>
             <p>System Manufacturer:       Ouael AI Workstation</p>
-            <p>System Model:              UMBB Master I2A Research Lab</p>
+            <p>System Model:              UMBB M2 Applied AI Research Lab</p>
             <p>Processor(s):              Intel(R) Core(TM) i7 with NVIDIA CUDA Acceleration</p>
             <p>Total Physical Memory:     32,768 MB RAM</p>
             <p>Workspace:                 E:\ouael-djeddi-ai-portfolio</p>
@@ -503,7 +506,7 @@ export function CodeTerminal() {
           outputNode = (
             <div className="space-y-1 text-[#cccccc] font-mono text-xs sm:text-[12px] bg-[#141414] p-2 rounded">
               <p className="text-white font-bold"># DJEDDI Ouael — AI & Full Stack Developer</p>
-              <p>Master Student in Artificial Intelligence and Applications (I2A) at UMBB.</p>
+              <p>Professional Master M2 student in Applied Artificial Intelligence at UMBB.</p>
               <p>Core Repositories: Single Image Super-Resolution, Python Web Scraper, University Transfer Platform, SEI IoT.</p>
               <p>GitHub: https://github.com/djeddiouael</p>
             </div>
@@ -625,7 +628,7 @@ export function CodeTerminal() {
               <span className="text-white font-semibold">Title:</span> {t.hero.title}
             </p>
             <p>
-              <span className="text-white font-semibold">Academic Program:</span> Master Specialty I2A (Artificial
+              <span className="text-white font-semibold">Academic Program:</span> Professional Master M2 — Applied Artificial
               Intelligence & Applications) @ UMBB
             </p>
             <p>
@@ -645,14 +648,17 @@ export function CodeTerminal() {
               <span className="text-white">Name:</span> DJEDDI Ouael
             </p>
             <p>
-              <span className="text-white">Current Degree:</span> Master Specialty: Intelligence Artificielle et
-              Applications (I2A)
+              <span className="text-white">Current Degree:</span> Master Professionnel M2 — Intelligence Artificielle
+              Appliquée
             </p>
             <p>
               <span className="text-white">Institution:</span> Université M&apos;Hamed Bougara de Boumerdes (UMBB)
             </p>
             <p>
-              <span className="text-white">Undergraduate:</span> Licence Informatique Générale @ UMBB (2020 - 2023)
+              <span className="text-white">Undergraduate:</span> Licence Académique Système Informatique @ UMBB
+            </p>
+            <p>
+              <span className="text-white">Foundation:</span> Mathématiques &amp; Informatique @ Université Larbi Tébessi (2021 - 2022)
             </p>
             <p>
               <span className="text-white">Focus:</span> {t.hero.description}
@@ -665,17 +671,22 @@ export function CodeTerminal() {
         outputNode = (
           <div className="space-y-2 text-[#cccccc] font-mono text-xs sm:text-[12.5px]">
             <p className="text-white font-bold border-b border-white/20 pb-1">
-              {language === "fr" ? "CURSUS UNIVERSITAIRE (UMBB) :" : "ACADEMIC CURRICULUM (UMBB):"}
+              {language === "fr" ? "CURSUS UNIVERSITAIRE :" : "ACADEMIC CURRICULUM:"}
             </p>
             <div>
-              <p className="text-white font-semibold">[2023 — Présent] Master Spécialité I2A</p>
-              <p className="text-purple-300">Intelligence Artificielle et Applications — Université M&apos;Hamed Bougara de Boumerdès</p>
+              <p className="text-white font-semibold">[En cours] Master Professionnel M2 IA Appliquée</p>
+              <p className="text-purple-300">Intelligence Artificielle Appliquée — Université M&apos;Hamed Bougara de Boumerdès</p>
               <p className="text-[#a0a0a0]">Modules : Deep Learning, Computer Vision, Systèmes Distribués, NLP</p>
             </div>
             <div className="pt-1">
-              <p className="text-white font-semibold">[2020 — 2023] Licence Informatique Générale</p>
+              <p className="text-white font-semibold">Licence Académique Système Informatique</p>
               <p className="text-cyan-300">Université M&apos;Hamed Bougara de Boumerdès (UMBB)</p>
               <p className="text-[#a0a0a0]">Modules : Algorithmique Avancée, Structures de Données, POO Java/C++, Bases de Données SQL</p>
+            </div>
+            <div className="pt-1">
+              <p className="text-white font-semibold">[2021 — 2022] Mathématiques &amp; Informatique</p>
+              <p className="text-emerald-300">Université Larbi Tébessi — Tébessa</p>
+              <p className="text-[#a0a0a0]">Modules : Analyse, Algèbre, Probabilités, Algorithmique et Programmation</p>
             </div>
           </div>
         );

@@ -83,6 +83,16 @@ export interface TranslationSchema {
       linkedin: string;
     };
   };
+  stats: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    projects: string;
+    technologies: string;
+    internships: string;
+    formations: string;
+    languages: string;
+  };
   journey: {
     badge: string;
     title: string;
@@ -91,15 +101,16 @@ export interface TranslationSchema {
     placeholderLabel: string;
     filters: {
       all: string;
+      project: string;
+      mini: string;
       academic: string;
-      ai: string;
-      engineering: string;
       internship: string;
+      outing: string;
       freelance: string;
     };
     milestones: Array<{
       id: string;
-      category: "academic" | "ai" | "engineering" | "internship" | "freelance";
+      category: "project" | "mini" | "academic" | "internship" | "outing" | "freelance";
       categoryLabel: string;
       title: string;
       period: string;
@@ -277,15 +288,22 @@ export interface TranslationSchema {
     title: string;
     subtitle: string;
     currentStudies: string;
+    yearsToConfirm: string;
     masterDegree: string;
     masterSpec: string;
     masterInst: string;
     masterLoc: string;
     masterDesc: string;
-    bachelorDegree: string;
-    bachelorInst: string;
-    bachelorLoc: string;
-    bachelorDesc: string;
+    licenseDegree: string;
+    licenseSpec: string;
+    licenseInst: string;
+    licenseLoc: string;
+    licenseDesc: string;
+    mathDegree: string;
+    mathSpec: string;
+    mathInst: string;
+    mathLoc: string;
+    mathDesc: string;
     tags: {
       ai: string;
       ml: string;
@@ -368,7 +386,7 @@ export const translations: Record<Language, TranslationSchema> = {
       themeLight: "Light",
     },
     hero: {
-      statusBadge: "Master's Specialty I2A • AI & Full Stack",
+      statusBadge: "M2 Applied Artificial Intelligence (IA Appliquée) • AI & Full Stack",
       greetingPre: "Hi, I'm",
       greetingName: "Ouael",
       title: "Full Stack & AI Developer",
@@ -432,32 +450,136 @@ export const translations: Record<Language, TranslationSchema> = {
         linkedin: "Open LinkedIn Profile (DJEDDI Ouael)",
       },
     },
+    stats: {
+      badge: "PORTFOLIO IN NUMBERS",
+      title: "A Developer's Footprint in Figures",
+      subtitle:
+        "Key indicators from my academic path, technical stack, internships, and hands-on engineering work.",
+      projects: "Projects & Prototypes",
+      technologies: "Technologies",
+      internships: "Internships",
+      formations: "Academic Programs",
+      languages: "Languages",
+    },
     journey: {
       badge: "03 // DEVELOPER JOURNEY",
-      title: "Academic Path & Engineering Milestones",
+      title: "Projects, Mini-Projects & Freelance Work",
       subtitle:
-        "A chronological overview of authentic academic foundations, research experiments, internships, freelance work, and practical software engineering projects.",
+        "The projects I have built, the mini-projects that sharpened my practice, my academic project, three internships, two pedagogical outings, and larger freelance work.",
       contextLabel: "Context",
       placeholderLabel: "To complete",
       filters: {
         all: "All Milestones",
-        academic: "Academic Path",
-        ai: "AI & Research",
-        engineering: "Software Engineering",
+        project: "Projects",
+        mini: "Mini-Projects",
+        academic: "Academic Project",
         internship: "Internships",
+        outing: "Pedagogical Outings",
         freelance: "Freelance",
       },
       milestones: [
         {
+          id: "m6",
+          category: "project",
+          categoryLabel: "AI & Computer Vision Project",
+          title: "Single Image Super-Resolution via Deep Learning",
+          period: "Deep Learning Research Project",
+          institutionOrContext: "PyTorch & Computer Vision",
+          description:
+            "Researched and trained deep convolutional neural models for 4x spatial image reconstruction from degraded inputs, analyzing perceptual loss formulations against bicubic baselines.",
+          tags: ["PyTorch", "Computer Vision", "Super-Resolution", "Deep Learning", "Convolutional Networks"],
+        },
+        {
+          id: "m4",
+          category: "academic",
+          categoryLabel: "Academic Project",
+          title: "University Transfer Management Platform",
+          period: "University Project",
+          institutionOrContext: "Full-Stack Academic Project",
+          description:
+            "Architected an end-to-end university management platform designed to streamline student dossier submission, departmental document review, and status tracking with role-based access.",
+          tags: ["Node.js", "Full Stack", "REST APIs", "Modern UI", "Database Architecture"],
+        },
+        {
+          id: "m2",
+          category: "mini",
+          categoryLabel: "Mini-Project — Data Engineering",
+          title: "Automated Data Mining & Crawling Architectures",
+          period: "Mini-Project",
+          institutionOrContext: "Python Books Web Scraper",
+          description:
+            "Engineered automated crawling architectures in Python. Handled paginated catalog requests, HTTP session persistence, error resilience, and structured export pipelines using BeautifulSoup and Requests.",
+          tags: ["Python", "Web Scraping", "Requests", "BeautifulSoup", "Data Pipelines"],
+        },
+        {
+          id: "m3",
+          category: "mini",
+          categoryLabel: "Mini-Project — Systems & IoT",
+          title: "Embedded Microcontroller & IoT Virtual Telemetry",
+          period: "Mini-Project",
+          institutionOrContext: "SEI IoT Project (Wokwi)",
+          description:
+            "Implemented microcontroller logic and virtualized sensor telemetry in the Wokwi embedded simulator, processing temperature, ultrasonic distance, and actuator control in real time.",
+          tags: ["IoT", "Embedded C", "Wokwi", "Sensors", "Telemetry"],
+        },
+        {
           id: "m7",
           category: "internship",
-          categoryLabel: "Internship",
-          title: "Internship — [Company Name]",
+          categoryLabel: "Internship 1",
+          title: "Internship 1 — [Company Name]",
           period: "[Start Month Year] — [End Month Year]",
           institutionOrContext: "[Company · City / Remote]",
           description:
             "Placeholder to complete: describe the internship mission, the team you joined, your daily responsibilities, and the technical stack you used. Replace this text with your real experience.",
           tags: ["[Your Role]", "[Main Stack]", "[Key Mission]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m9",
+          category: "internship",
+          categoryLabel: "Internship 2",
+          title: "Internship 2 — [Company Name]",
+          period: "[Start Month Year] — [End Month Year]",
+          institutionOrContext: "[Company · City / Remote]",
+          description:
+            "Placeholder to complete: describe the internship mission, the team you joined, your daily responsibilities, and the technical stack you used. Replace this text with your real experience.",
+          tags: ["[Your Role]", "[Main Stack]", "[Key Mission]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m10",
+          category: "internship",
+          categoryLabel: "Internship 3",
+          title: "Internship 3 — [Company Name]",
+          period: "[Start Month Year] — [End Month Year]",
+          institutionOrContext: "[Company · City / Remote]",
+          description:
+            "Placeholder to complete: describe the internship mission, the team you joined, your daily responsibilities, and the technical stack you used. Replace this text with your real experience.",
+          tags: ["[Your Role]", "[Main Stack]", "[Key Mission]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m11",
+          category: "outing",
+          categoryLabel: "Pedagogical Outing 1",
+          title: "Pedagogical Outing 1 — [Site / Company Visited]",
+          period: "[Month Year]",
+          institutionOrContext: "[Location · Organizing University]",
+          description:
+            "Placeholder to complete: describe the visited site, the objective of the outing, and what you learned about industrial or research practices. Replace this text with your real experience.",
+          tags: ["[Site]", "[Theme]", "[Learning Outcome]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m12",
+          category: "outing",
+          categoryLabel: "Pedagogical Outing 2",
+          title: "Pedagogical Outing 2 — [Site / Company Visited]",
+          period: "[Month Year]",
+          institutionOrContext: "[Location · Organizing University]",
+          description:
+            "Placeholder to complete: describe the visited site, the objective of the outing, and what you learned about industrial or research practices. Replace this text with your real experience.",
+          tags: ["[Site]", "[Theme]", "[Learning Outcome]"],
           isPlaceholder: true,
         },
         {
@@ -472,74 +594,9 @@ export const translations: Record<Language, TranslationSchema> = {
           tags: ["[Service]", "[Stack]", "[Result]"],
           isPlaceholder: true,
         },
-        {
-          id: "m1",
-          category: "academic",
-          categoryLabel: "Academic Foundation",
-          title: "Foundations of Computer Science & Algorithmic Rigor",
-          period: "Undergraduate Studies",
-          institutionOrContext: "University of Tebessa",
-          description:
-            "Built a disciplined foundation in theoretical computer science, advanced algorithmic analysis, discrete mathematics, relational database design, and object-oriented software engineering.",
-          tags: ["Algorithms", "Data Structures", "OOP", "Relational Databases", "Software Engineering"],
-        },
-        {
-          id: "m2",
-          category: "engineering",
-          categoryLabel: "Data Engineering",
-          title: "Automated Data Mining & Crawling Architectures",
-          period: "Engineering Project",
-          institutionOrContext: "Python Books Web Scraper",
-          description:
-            "Engineered automated crawling architectures in Python. Handled paginated catalog requests, HTTP session persistence, error resilience, and structured export pipelines using BeautifulSoup and Requests.",
-          tags: ["Python", "Web Scraping", "Requests", "BeautifulSoup", "Data Pipelines"],
-        },
-        {
-          id: "m3",
-          category: "engineering",
-          categoryLabel: "Systems & IoT",
-          title: "Embedded Microcontroller & IoT Virtual Telemetry",
-          period: "Hardware Simulation",
-          institutionOrContext: "SEI IoT Project (Wokwi)",
-          description:
-            "Implemented microcontroller logic and virtualized sensor telemetry in the Wokwi embedded simulator, processing temperature, ultrasonic distance, and actuator control in real time.",
-          tags: ["IoT", "Embedded C", "Wokwi", "Sensors", "Telemetry"],
-        },
-        {
-          id: "m4",
-          category: "engineering",
-          categoryLabel: "Full Stack Web",
-          title: "Academic Management & Transfer Platform",
-          period: "Full-Stack System",
-          institutionOrContext: "University Transfer Platform",
-          description:
-            "Architected an end-to-end university management platform designed to streamline student dossier submission, departmental document review, and status tracking with role-based access.",
-          tags: ["Node.js", "Full Stack", "REST APIs", "Modern UI", "Database Architecture"],
-        },
-        {
-          id: "m5",
-          category: "academic",
-          categoryLabel: "Specialized Master's",
-          title: "Master's Studies — Specialty I2A (Intelligent Computer Science)",
-          period: "Current Master's Program",
-          institutionOrContext: "University of Boumerdes (UMBB)",
-          description:
-            "Enrolled in the competitive Master's program in Informatique Intelligente & Applications (I2A), focusing on neural network architectures, machine learning theory, computer vision, and applied intelligence.",
-          tags: ["Artificial Intelligence", "Machine Learning", "Neural Networks", "Applied Computing"],
-        },
-        {
-          id: "m6",
-          category: "ai",
-          categoryLabel: "Computer Vision Research",
-          title: "Single Image Super-Resolution via Deep Learning",
-          period: "Deep Learning Research",
-          institutionOrContext: "PyTorch & Computer Vision",
-          description:
-            "Researched and trained deep convolutional neural models for 4x spatial image reconstruction from degraded inputs, analyzing perceptual loss formulations against bicubic baselines.",
-          tags: ["PyTorch", "Computer Vision", "Super-Resolution", "Deep Learning", "Convolutional Networks"],
-        },
       ],
     },
+
     smartCV: {
       badge: "SMART CV CENTER",
       title: "Professional Curriculum Vitae",
@@ -579,7 +636,7 @@ export const translations: Record<Language, TranslationSchema> = {
       subtitle:
         "A dedicated computer science student with a passion for intelligent systems, neural architectures, and robust full stack development.",
       cardTitle: "DJEDDI Ouael",
-      cardRole: "Master's Student • Specialty I2A",
+      cardRole: "M2 Student • Applied Artificial Intelligence",
       p1: "I am a Computer Science student with a strong focus on Artificial Intelligence, Machine Learning, and Modern Full Stack Development. My academic journey and hands-on projects revolve around bridging algorithmic intelligence with intuitive, high-performance software engineering.",
       p2: "From training deep learning models for computer vision to designing responsive, full-stack web platforms and simulating IoT embedded architectures, I enjoy solving complex problems through clean architecture and continuous learning.",
       bullets: {
@@ -751,17 +808,25 @@ export const translations: Record<Language, TranslationSchema> = {
       subtitle:
         "Formal academic training specializing in Intelligent Computer Science, Machine Learning architectures, and foundational software engineering principles.",
       currentStudies: "Current Studies",
-      masterDegree: "Master's Studies — Specialty I2A",
-      masterSpec: "Informatique Intelligente & Applications (Intelligent Computer Science & Applications)",
+      yearsToConfirm: "Years to confirm",
+      masterDegree: "Professional Master M2 — Applied Artificial Intelligence",
+      masterSpec: "Applied Artificial Intelligence (IA Appliquée)",
       masterInst: "University of Boumerdes (UMBB)",
       masterLoc: "Boumerdès, Algeria",
       masterDesc:
-        "Specialized Master's program focusing on Intelligent Systems, Advanced Artificial Intelligence, Machine Learning, Deep Neural Architectures, and Applied Computing Methodologies.",
-      bachelorDegree: "Previous University Studies in Computer Science",
-      bachelorInst: "University of Tebessa",
-      bachelorLoc: "Tébessa, Algeria",
-      bachelorDesc:
-        "Foundational computer science curriculum covering algorithmic theory, data structures, object-oriented programming, software engineering, databases, and mathematics.",
+        "Professional Master's program focused on applied artificial intelligence: machine learning, deep neural architectures, computer vision, and the deployment of intelligent systems.",
+      licenseDegree: "Academic Bachelor's Degree — Computer Systems",
+      licenseSpec: "Système Informatique (Computer Systems)",
+      licenseInst: "University of Boumerdes (UMBB)",
+      licenseLoc: "Boumerdès, Algeria",
+      licenseDesc:
+        "Academic bachelor's degree covering computer systems architecture, operating systems, networks, algorithms, databases, and software engineering foundations.",
+      mathDegree: "Mathematics & Computer Science",
+      mathSpec: "Mathematics & Computer Science",
+      mathInst: "Larbi Tébessi University",
+      mathLoc: "Tébessa, Algeria",
+      mathDesc:
+        "University foundation in mathematics and computer science: mathematical analysis, linear algebra, probability, algorithmic reasoning, and programming fundamentals.",
       tags: {
         ai: "Artificial Intelligence",
         ml: "Machine Learning",
@@ -846,7 +911,7 @@ export const translations: Record<Language, TranslationSchema> = {
       themeLight: "Clair",
     },
     hero: {
-      statusBadge: "Master Spécialité I2A • IA & Full Stack",
+      statusBadge: "M2 Intelligence Artificielle Appliquée • IA & Full Stack",
       greetingPre: "Bonjour, je suis",
       greetingName: "Ouael",
       title: "Développeur Full Stack & IA",
@@ -910,32 +975,136 @@ export const translations: Record<Language, TranslationSchema> = {
         linkedin: "Ouvrir le Profil LinkedIn (DJEDDI Ouael)",
       },
     },
+    stats: {
+      badge: "PORTFOLIO EN CHIFFRES",
+      title: "Le Parcours d'un Développeur en Chiffres",
+      subtitle:
+        "Indicateurs clés issus de mon parcours académique, de ma stack technique, de mes stages et de mes réalisations concrètes.",
+      projects: "Projets & Prototypes",
+      technologies: "Technologies",
+      internships: "Stages",
+      formations: "Formations",
+      languages: "Langues",
+    },
     journey: {
       badge: "03 // PARCOURS DÉVELOPPEUR",
-      title: "Parcours Académique & Étapes d'Ingénierie",
+      title: "Projets, Mini-Projets & Missions Freelance",
       subtitle:
-        "Une chronologie fidèle des fondements universitaires, des expérimentations de recherche, des stages, des missions freelance et des réalisations logicielles concrètes.",
+        "Les projets que j'ai réalisés, les mini-projets qui ont affûté ma pratique, mon projet académique, trois stages, deux sorties pédagogiques et mes missions freelance.",
       contextLabel: "Contexte",
       placeholderLabel: "À compléter",
       filters: {
-        all: "Toutes les étapes",
-        academic: "Cursus Académique",
-        ai: "IA & Recherche",
-        engineering: "Génie Logiciel",
+        all: "Tout le parcours",
+        project: "Projets",
+        mini: "Mini-projets",
+        academic: "Projet Académique",
         internship: "Stages",
+        outing: "Sorties Pédagogiques",
         freelance: "Freelance",
       },
       milestones: [
         {
+          id: "m6",
+          category: "project",
+          categoryLabel: "Projet IA & Vision par Ordinateur",
+          title: "Reconstruction par Super-Résolution d'Image Unique",
+          period: "Projet de Recherche Deep Learning",
+          institutionOrContext: "PyTorch & Vision par Ordinateur",
+          description:
+            "Recherche et entraînement de modèles neuronaux convolutifs profonds pour la reconstruction haute définition 4x à partir d'images dégradées, avec analyse de fonctions de perte perceptuelle.",
+          tags: ["PyTorch", "Vision par ordinateur", "Super-Résolution", "Deep Learning", "Réseaux Convolutifs"],
+        },
+        {
+          id: "m4",
+          category: "academic",
+          categoryLabel: "Projet Académique",
+          title: "Plateforme de Gestion des Transferts Universitaires",
+          period: "Projet Universitaire",
+          institutionOrContext: "Projet Académique Full Stack",
+          description:
+            "Conception d'une plateforme web complète pour fluidifier le dépôt des dossiers étudiants, la validation des pièces administratives et le suivi pédagogique avec gestion des rôles.",
+          tags: ["Node.js", "Full Stack", "API REST", "UI Moderne", "Architecture Base de Données"],
+        },
+        {
+          id: "m2",
+          category: "mini",
+          categoryLabel: "Mini-Projet — Ingénierie de Données",
+          title: "Architectures d'Extraction & Crawling Automatisé",
+          period: "Mini-Projet",
+          institutionOrContext: "Python Books Web Scraper",
+          description:
+            "Conception d'une architecture de scraping automatisée en Python avec gestion de requêtes paginées, persistance de sessions HTTP, gestion d'erreurs et export vers des pipelines structurés.",
+          tags: ["Python", "Web Scraping", "Requests", "BeautifulSoup", "Pipelines de données"],
+        },
+        {
+          id: "m3",
+          category: "mini",
+          categoryLabel: "Mini-Projet — Systèmes & IoT",
+          title: "Programmation Microcontrôleur & Télémétrie Virtuelle IoT",
+          period: "Mini-Projet",
+          institutionOrContext: "Projet SEI IoT (Wokwi)",
+          description:
+            "Mise en œuvre d'une logique embarquée et simulation de capteurs dans l'environnement virtuel Wokwi, intégrant l'acquisition de température, de distance ultrasonique et le contrôle d'actionneurs.",
+          tags: ["IoT", "C Embarqué", "Wokwi", "Capteurs", "Télémétrie"],
+        },
+        {
           id: "m7",
           category: "internship",
-          categoryLabel: "Stage",
-          title: "Stage — [Nom de l'entreprise]",
+          categoryLabel: "Stage 1",
+          title: "Stage 1 — [Nom de l'entreprise]",
           period: "[Mois Année] — [Mois Année]",
           institutionOrContext: "[Entreprise · Ville / À distance]",
           description:
             "Emplacement à compléter : décrivez la mission du stage, l'équipe rejointe, vos responsabilités quotidiennes et la stack technique utilisée. Remplacez ce texte par votre expérience réelle.",
           tags: ["[Votre rôle]", "[Stack principale]", "[Mission clé]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m9",
+          category: "internship",
+          categoryLabel: "Stage 2",
+          title: "Stage 2 — [Nom de l'entreprise]",
+          period: "[Mois Année] — [Mois Année]",
+          institutionOrContext: "[Entreprise · Ville / À distance]",
+          description:
+            "Emplacement à compléter : décrivez la mission du stage, l'équipe rejointe, vos responsabilités quotidiennes et la stack technique utilisée. Remplacez ce texte par votre expérience réelle.",
+          tags: ["[Votre rôle]", "[Stack principale]", "[Mission clé]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m10",
+          category: "internship",
+          categoryLabel: "Stage 3",
+          title: "Stage 3 — [Nom de l'entreprise]",
+          period: "[Mois Année] — [Mois Année]",
+          institutionOrContext: "[Entreprise · Ville / À distance]",
+          description:
+            "Emplacement à compléter : décrivez la mission du stage, l'équipe rejointe, vos responsabilités quotidiennes et la stack technique utilisée. Remplacez ce texte par votre expérience réelle.",
+          tags: ["[Votre rôle]", "[Stack principale]", "[Mission clé]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m11",
+          category: "outing",
+          categoryLabel: "Sortie Pédagogique 1",
+          title: "Sortie Pédagogique 1 — [Site / Entreprise visitée]",
+          period: "[Mois Année]",
+          institutionOrContext: "[Lieu · Université organisatrice]",
+          description:
+            "Emplacement à compléter : décrivez le site visité, l'objectif de la sortie et ce que vous avez appris sur les pratiques industrielles ou de recherche. Remplacez ce texte par votre expérience réelle.",
+          tags: ["[Site]", "[Thématique]", "[Apprentissage]"],
+          isPlaceholder: true,
+        },
+        {
+          id: "m12",
+          category: "outing",
+          categoryLabel: "Sortie Pédagogique 2",
+          title: "Sortie Pédagogique 2 — [Site / Entreprise visitée]",
+          period: "[Mois Année]",
+          institutionOrContext: "[Lieu · Université organisatrice]",
+          description:
+            "Emplacement à compléter : décrivez le site visité, l'objectif de la sortie et ce que vous avez appris sur les pratiques industrielles ou de recherche. Remplacez ce texte par votre expérience réelle.",
+          tags: ["[Site]", "[Thématique]", "[Apprentissage]"],
           isPlaceholder: true,
         },
         {
@@ -950,74 +1119,9 @@ export const translations: Record<Language, TranslationSchema> = {
           tags: ["[Service]", "[Stack]", "[Résultat]"],
           isPlaceholder: true,
         },
-        {
-          id: "m1",
-          category: "academic",
-          categoryLabel: "Fondations Académiques",
-          title: "Fondements de l'Informatique & Rigueur Algorithmique",
-          period: "Cursus Universitaire",
-          institutionOrContext: "Université de Tébessa",
-          description:
-            "Acquisition d'un socle solide en informatique théorique, algorithmique avancée, structures de données, conception orientée objet, bases de données relationnelles et mathématiques appliquées.",
-          tags: ["Algorithmes", "Structures de données", "POO", "Bases de données", "Génie logiciel"],
-        },
-        {
-          id: "m2",
-          category: "engineering",
-          categoryLabel: "Ingénierie de Données",
-          title: "Architectures d'Extraction & Crawling Automatisé",
-          period: "Projet d'Ingénierie",
-          institutionOrContext: "Python Books Web Scraper",
-          description:
-            "Conception d'une architecture de scraping automatisée en Python avec gestion de requêtes paginées, persistance de sessions HTTP, gestion d'erreurs et export vers des pipelines structurés.",
-          tags: ["Python", "Web Scraping", "Requests", "BeautifulSoup", "Pipelines de données"],
-        },
-        {
-          id: "m3",
-          category: "engineering",
-          categoryLabel: "Systèmes & IoT",
-          title: "Programmation Microcontrôleur & Télémétrie Virtuelle IoT",
-          period: "Simulation Matérielle",
-          institutionOrContext: "Projet SEI IoT (Wokwi)",
-          description:
-            "Mise en œuvre d'une logique embarquée et simulation de capteurs dans l'environnement virtuel Wokwi, intégrant l'acquisition de température, de distance ultrasonique et le contrôle d'actionneurs.",
-          tags: ["IoT", "C Embarqué", "Wokwi", "Capteurs", "Télémétrie"],
-        },
-        {
-          id: "m4",
-          category: "engineering",
-          categoryLabel: "Web Full Stack",
-          title: "Plateforme de Gestion des Transferts Universitaires",
-          period: "Système Full Stack",
-          institutionOrContext: "Plateforme de Transfert Universitaire",
-          description:
-            "Conception d'une plateforme web complète pour fluidifier le dépôt des dossiers étudiants, la validation des pièces administratives et le suivi pédagogique avec gestion des rôles.",
-          tags: ["Node.js", "Full Stack", "API REST", "UI Moderne", "Architecture Base de Données"],
-        },
-        {
-          id: "m5",
-          category: "academic",
-          categoryLabel: "Master Spécialisé",
-          title: "Études de Master — Spécialité I2A (Informatique Intelligente)",
-          period: "Programme de Master en cours",
-          institutionOrContext: "Université de Boumerdès (UMBB)",
-          description:
-            "Spécialisation approfondie en Informatique Intelligente & Applications (I2A), axée sur les réseaux de neurones profonds, la théorie du machine learning, la vision par ordinateur et les systèmes intelligents.",
-          tags: ["Intelligence Artificielle", "Machine Learning", "Réseaux Neuronaux", "Informatique Appliquée"],
-        },
-        {
-          id: "m6",
-          category: "ai",
-          categoryLabel: "Recherche en Vision IA",
-          title: "Reconstruction par Super-Résolution d'Image Unique",
-          period: "Projet de Recherche Deep Learning",
-          institutionOrContext: "PyTorch & Vision par Ordinateur",
-          description:
-            "Recherche et entraînement de modèles neuronaux convolutifs profonds pour la reconstruction haute définition 4x à partir d'images dégradées, avec analyse de fonctions de perte perceptuelle.",
-          tags: ["PyTorch", "Vision par ordinateur", "Super-Résolution", "Deep Learning", "Réseaux Convolutifs"],
-        },
       ],
     },
+
     smartCV: {
       badge: "ESPACE CV INTELLIGENT",
       title: "Curriculum Vitae Professionnels",
@@ -1057,7 +1161,7 @@ export const translations: Record<Language, TranslationSchema> = {
       subtitle:
         "Étudiant passionné en informatique, spécialisé dans les systèmes intelligents, les architectures neuronales et le développement web full stack.",
       cardTitle: "DJEDDI Ouael",
-      cardRole: "Étudiant en Master • Spécialité I2A",
+      cardRole: "Étudiant en M2 • Intelligence Artificielle Appliquée",
       p1: "Je suis étudiant en informatique avec un intérêt marqué pour l'intelligence artificielle, l'apprentissage automatique et le développement web full stack moderne. Mon parcours universitaire et mes projets pratiques s'articulent autour de la synergie entre puissance algorithmique et génie logiciel intuitif et performant.",
       p2: "De l'entraînement de modèles de deep learning pour la vision par ordinateur à la conception de plateformes web réactives et la simulation d'architectures IoT embarquées, j'aime résoudre des problématiques complexes grâce à une architecture propre et un apprentissage continu.",
       bullets: {
@@ -1229,17 +1333,25 @@ export const translations: Record<Language, TranslationSchema> = {
       subtitle:
         "Formation universitaire formelle spécialisée en informatique intelligente, architectures de machine learning et principes fondamentaux du génie logiciel.",
       currentStudies: "Études en cours",
-      masterDegree: "Études de Master — Spécialité I2A",
-      masterSpec: "Informatique Intelligente & Applications (I2A)",
+      yearsToConfirm: "Années à préciser",
+      masterDegree: "Master Professionnel M2 — Intelligence Artificielle Appliquée",
+      masterSpec: "Intelligence Artificielle Appliquée",
       masterInst: "Université de Boumerdès (UMBB)",
       masterLoc: "Boumerdès, Algérie",
       masterDesc:
-        "Programme de Master approfondi axé sur les systèmes intelligents, l'intelligence artificielle avancée, le machine learning, les architectures neuronales profondes et l'informatique appliquée.",
-      bachelorDegree: "Études universitaires antérieures en informatique",
-      bachelorInst: "Université de Tébessa",
-      bachelorLoc: "Tébessa, Algérie",
-      bachelorDesc:
-        "Cursus informatique fondamental couvrant l'algorithmique théorique, les structures de données, la programmation orientée objet, le génie logiciel, les bases de données et les mathématiques.",
+        "Master professionnel centré sur l'intelligence artificielle appliquée : machine learning, architectures neuronales profondes, vision par ordinateur et déploiement de systèmes intelligents.",
+      licenseDegree: "Licence Académique — Système Informatique",
+      licenseSpec: "Système Informatique",
+      licenseInst: "Université de Boumerdès (UMBB)",
+      licenseLoc: "Boumerdès, Algérie",
+      licenseDesc:
+        "Licence académique couvrant l'architecture des systèmes informatiques, les systèmes d'exploitation, les réseaux, l'algorithmique, les bases de données et le génie logiciel.",
+      mathDegree: "Mathématiques & Informatique",
+      mathSpec: "Mathématiques & Informatique",
+      mathInst: "Université Larbi Tébessi",
+      mathLoc: "Tébessa, Algérie",
+      mathDesc:
+        "Socle universitaire en mathématiques et informatique : analyse, algèbre linéaire, probabilités, raisonnement algorithmique et fondamentaux de la programmation.",
       tags: {
         ai: "Intelligence Artificielle",
         ml: "Machine Learning",

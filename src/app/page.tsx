@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { Hero } from "@/features/hero/Hero";
 import { About } from "@/features/about/About";
+import { PortfolioStats } from "@/features/stats/PortfolioStats";
 import { Skills } from "@/features/skills/Skills";
 import { DeveloperJourney } from "@/features/journey/DeveloperJourney";
 import { Projects } from "@/features/projects/Projects";
@@ -37,6 +38,7 @@ export default function Home() {
     <>
       <Hero onOpenCVModal={openCVModal} />
       <About />
+      <PortfolioStats />
       <Skills onSelectTech={(tech) => setSelectedTechFilter(tech)} />
       <DeveloperJourney />
       <Projects

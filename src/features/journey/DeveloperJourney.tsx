@@ -6,7 +6,7 @@ import {
   Briefcase,
   GraduationCap,
   Laptop,
-  Layers,
+  MapPin,
   Milestone,
   PencilLine,
   Sparkles,
@@ -21,23 +21,26 @@ export function DeveloperJourney() {
 
   const filterTabs = [
     { id: "all", label: t.journey.filters.all },
+    { id: "project", label: t.journey.filters.project },
+    { id: "mini", label: t.journey.filters.mini },
     { id: "academic", label: t.journey.filters.academic },
-    { id: "ai", label: t.journey.filters.ai },
-    { id: "engineering", label: t.journey.filters.engineering },
     { id: "internship", label: t.journey.filters.internship },
+    { id: "outing", label: t.journey.filters.outing },
     { id: "freelance", label: t.journey.filters.freelance },
   ];
 
   const getMilestoneIcon = (category: string) => {
     switch (category) {
+      case "project":
+        return <Sparkles className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />;
+      case "mini":
+        return <PencilLine className="w-5 h-5 text-blue-600 dark:text-blue-400" />;
       case "academic":
         return <GraduationCap className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
-      case "ai":
-        return <Sparkles className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />;
-      case "engineering":
-        return <Layers className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
       case "internship":
         return <Briefcase className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
+      case "outing":
+        return <MapPin className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
       case "freelance":
         return <Laptop className="w-5 h-5 text-rose-600 dark:text-rose-400" />;
       default:
@@ -101,9 +104,11 @@ export function DeveloperJourney() {
                   <div className="w-5 h-5 rounded-full bg-white dark:bg-[#030712] border-2 border-purple-500 dark:border-purple-400 flex items-center justify-center shadow-md dark:shadow-[0_0_15px_rgba(168,85,247,0.6)]">
                     <span
                       className={`w-2 h-2 rounded-full ${
-                        milestone.category === "ai"
+                        milestone.category === "project"
                           ? "bg-cyan-500 dark:bg-cyan-400"
-                          : milestone.category === "engineering"
+                          : milestone.category === "mini"
+                          ? "bg-blue-500 dark:bg-blue-400"
+                          : milestone.category === "outing"
                           ? "bg-emerald-500 dark:bg-emerald-400"
                           : milestone.category === "internship"
                           ? "bg-amber-500 dark:bg-amber-400"
@@ -118,9 +123,11 @@ export function DeveloperJourney() {
                 {/* Milestone Content Card */}
                 <GlassCard
                   glowColor={
-                    milestone.category === "ai"
+                    milestone.category === "project"
                       ? "cyan"
-                      : milestone.category === "engineering"
+                      : milestone.category === "mini"
+                      ? "blue"
+                      : milestone.category === "outing"
                       ? "blue"
                       : milestone.category === "internship"
                       ? "amber"

@@ -22,13 +22,13 @@ export function Hero({ onOpenCVModal }: HeroProps) {
         ? [
             "Développeur Full Stack & IA",
             "Vision par Ordinateur & Deep Learning",
-            "Master Intelligence Artificielle (I2A) @ UMBB",
+            "M2 Intelligence Artificielle Appliquée @ UMBB",
             "Architecte d'Applications Intelligentes",
           ]
         : [
             "Full Stack & AI Developer",
             "Computer Vision & Deep Learning Specialist",
-            "AI Master Student (I2A) @ UMBB",
+            "M2 Applied AI Student @ UMBB",
             "Intelligent Web & ML Systems Architect",
           ],
     [language]

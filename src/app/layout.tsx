@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "TypeScript",
-    "UMBB Master I2A",
+    "UMBB M2 Applied AI",
     "Super Resolution",
     "Software Engineer",
   ],
@@ -140,7 +140,7 @@ const personJsonLd = {
     },
     {
       "@type": "CollegeOrUniversity",
-      name: "University of Tebessa",
+      name: "Larbi Tébessi University (Tébessa)",
     },
   ],
   knowsAbout: [

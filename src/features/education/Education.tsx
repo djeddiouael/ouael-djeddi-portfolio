@@ -12,24 +12,24 @@ export function Education() {
 
   const educationEntries = [
     {
-      period: "2023 — " + (language === "fr" ? "Présent" : "Present"),
+      period: language === "fr" ? "Année universitaire en cours" : "Current Academic Year",
       degree: t.education.masterDegree,
       specialization: t.education.masterSpec,
       institution: t.education.masterInst,
       location: t.education.masterLoc,
       description: t.education.masterDesc,
-      statusBadge: language === "fr" ? "En cours de spécialisation" : "Current Degree Track",
+      statusBadge: language === "fr" ? "En cours" : "In Progress",
       achievements:
         language === "fr"
           ? [
-              "Spécialisation avancée en Intelligence Artificielle et Apprentissage Profond",
+              "Spécialisation en Intelligence Artificielle appliquée et Apprentissage Profond",
               "Projet de recherche appliquée : Super-Résolution d'images (Single Image Super-Resolution)",
-              "Modélisation neuronale, Vision par ordinateur et traitement avancé de données",
+              "Modélisation neuronale, Vision par ordinateur et déploiement de systèmes intelligents",
             ]
           : [
-              "Advanced specialization in Artificial Intelligence & Deep Learning systems",
-              "Applied engineering research: Single Image Super-Resolution with PyTorch",
-              "Neural representations, Computer Vision, and high-dimensional data processing",
+              "Specialization in Applied Artificial Intelligence & Deep Learning systems",
+              "Applied research project: Single Image Super-Resolution with PyTorch",
+              "Neural modeling, Computer Vision, and intelligent system deployment",
             ],
       tags: [
         t.education.tags.ai,
@@ -41,33 +41,61 @@ export function Education() {
       glowColor: "purple" as const,
     },
     {
-      period: "2020 — 2023",
-      degree: t.education.bachelorDegree,
-      specialization: language === "fr" ? "Tronc Commun & Informatique Fondamentale" : "Core Computer Science & Systems",
-      institution: t.education.bachelorInst,
-      location: t.education.bachelorLoc,
-      description: t.education.bachelorDesc,
-      statusBadge: language === "fr" ? "Diplôme Obtenu avec Succès" : "Degree Conferred",
+      period: t.education.yearsToConfirm,
+      degree: t.education.licenseDegree,
+      specialization: t.education.licenseSpec,
+      institution: t.education.licenseInst,
+      location: t.education.licenseLoc,
+      description: t.education.licenseDesc,
+      statusBadge: language === "fr" ? "Diplôme obtenu" : "Degree Conferred",
       achievements:
         language === "fr"
           ? [
-              "Fondements rigoureux en algorithmique, structures de données et complexité",
-              "Conception orientée objet, architecture logicielle et modélisation de bases relationnelles",
-              "Systèmes d'exploitation, programmation concurrente et réseaux informatiques",
+              "Architecture des systèmes informatiques et programmation système",
+              "Systèmes d'exploitation, réseaux et administration de bases de données",
+              "Algorithmique, structures de données et génie logiciel",
             ]
           : [
-              "Rigorous foundations in algorithms, data structures, and computational complexity",
-              "Object-oriented software design, relational database schemas, and clean architectures",
-              "Operating systems, concurrent execution models, and computer networking",
+              "Computer systems architecture and systems programming",
+              "Operating systems, networking, and database administration",
+              "Algorithms, data structures, and software engineering",
             ],
       tags: [
         t.education.tags.algorithms,
         t.education.tags.dataStructures,
         t.education.tags.softwareEng,
-        t.education.tags.math,
+        t.education.tags.cs,
       ],
       isCurrent: false,
       glowColor: "cyan" as const,
+    },
+    {
+      period: "2021 — 2022",
+      degree: t.education.mathDegree,
+      specialization: t.education.mathSpec,
+      institution: t.education.mathInst,
+      location: t.education.mathLoc,
+      description: t.education.mathDesc,
+      statusBadge: language === "fr" ? "Formation universitaire" : "University Studies",
+      achievements:
+        language === "fr"
+          ? [
+              "Fondements rigoureux en analyse mathématique, algèbre et probabilités",
+              "Raisonnement algorithmique et résolution de problèmes",
+              "Initiation à la programmation et aux structures de données",
+            ]
+          : [
+              "Rigorous foundations in mathematical analysis, algebra, and probability",
+              "Algorithmic reasoning and structured problem solving",
+              "Introduction to programming and data structures",
+            ],
+      tags: [
+        t.education.tags.math,
+        t.education.tags.algorithms,
+        t.education.tags.cs,
+      ],
+      isCurrent: false,
+      glowColor: "blue" as const,
     },
   ];
 
@@ -83,8 +111,8 @@ export function Education() {
           title={language === "fr" ? "Formation & Cursus Universitaire" : "Education & Academic Journey"}
           subtitle={
             language === "fr"
-              ? "Un cursus universitaire rigoureux en informatique et intelligence artificielle à l'Université M'Hamed Bougara de Boumerdès."
-              : "Rigorous university curriculum specializing in computer science and artificial intelligence at UMBB."
+              ? "Trois étapes universitaires : Mathématiques & Informatique à l'Université Larbi Tébessi (Tébessa), Licence académique Système Informatique puis Master Professionnel M2 Intelligence Artificielle Appliquée à l'UMBB Boumerdès."
+              : "Three university steps: Mathematics & Computer Science at Larbi Tébessi University (Tébessa), an academic Bachelor's in Computer Systems, then a Professional Master M2 in Applied Artificial Intelligence at UMBB Boumerdès."
           }
         />
 
